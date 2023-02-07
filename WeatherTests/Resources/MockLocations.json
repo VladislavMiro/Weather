@@ -1,0 +1,92 @@
+[
+    {
+        "id": 2801268,
+        "name": "London",
+        "region": "City of London, Greater London",
+        "country": "United Kingdom",
+        "lat": 51.52,
+        "lon": -0.11,
+        "url": "london-city-of-london-greater-london-united-kingdom"
+    },
+    {
+        "id": 2797857,
+        "name": "Islington",
+        "region": "Islington, Greater London",
+        "country": "United Kingdom",
+        "lat": 51.54,
+        "lon": -0.11,
+        "url": "islington-islington-greater-london-united-kingdom"
+    },
+    {
+        "id": 2794318,
+        "name": "Hackney",
+        "region": "Hackney, Greater London",
+        "country": "United Kingdom",
+        "lat": 51.54,
+        "lon": -0.06,
+        "url": "hackney-hackney-greater-london-united-kingdom"
+    },
+    {
+        "id": 2782994,
+        "name": "Brixton",
+        "region": "Lambeth, Greater London",
+        "country": "United Kingdom",
+        "lat": 51.46,
+        "lon": -0.11,
+        "url": "brixton-lambeth-greater-london-united-kingdom"
+    },
+    {
+        "id": 2808977,
+        "name": "Putney",
+        "region": "Wandsworth, Greater London",
+        "country": "United Kingdom",
+        "lat": 51.47,
+        "lon": -0.22,
+        "url": "putney-wandsworth-greater-london-united-kingdom"
+    },
+    {
+        "id": 2815866,
+        "name": "Tooting",
+        "region": "Wandsworth, Greater London",
+        "country": "United Kingdom",
+        "lat": 51.43,
+        "lon": -0.17,
+        "url": "tooting-wandsworth-greater-london-united-kingdom"
+    },
+    {
+        "id": 2785823,
+        "name": "Chiswick",
+        "region": "Hounslow, Greater London",
+        "country": "United Kingdom",
+        "lat": 51.49,
+        "lon": -0.27,
+        "url": "chiswick-hounslow-greater-london-united-kingdom"
+    },
+    {
+        "id": 2819887,
+        "name": "Wimbledon",
+        "region": "Merton, Greater London",
+        "country": "United Kingdom",
+        "lat": 51.43,
+        "lon": -0.21,
+        "url": "wimbledon-merton-greater-london-united-kingdom"
+    },
+    {
+        "id": 2786800,
+        "name": "Colindale",
+        "region": "Brent, Greater London",
+        "country": "United Kingdom",
+        "lat": 51.59,
+        "lon": -0.25,
+        "url": "colindale-brent-greater-london-united-kingdom"
+    },
+    {
+        "id": 2780073,
+        "name": "Barking",
+        "region": "Barking & Dagenham, Greater London",
+        "country": "United Kingdom",
+        "lat": 51.54,
+        "lon": 0.08,
+        "url": "barking-barking-dagenham-greater-london-united-kingdom"
+    }
+]
