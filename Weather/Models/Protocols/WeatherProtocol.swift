@@ -9,5 +9,6 @@ import Foundation
 
 protocol WeatherProtocol: Decodable {
     var location: LocationProtocol { get }
-    var current: CurrentWeatherProtocol { get }
+    var current: WeatherDataProtocol { get }
+    var forecast: [ForecastProtocol] { get }
 }

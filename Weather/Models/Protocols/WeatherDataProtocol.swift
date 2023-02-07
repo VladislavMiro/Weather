@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CurrentWeatherProtocol: Decodable {
+protocol WeatherDataProtocol: Decodable {
     var tempC: Float { get }
     var tempF: Float { get }
     var condition: ConditionProtocol { get }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CurrentWeather: CurrentWeatherProtocol {
+struct WeatherData: WeatherDataProtocol {
     var tempC: Float
     var tempF: Float
     var condition: ConditionProtocol
@@ -53,6 +53,7 @@ struct CurrentWeather: CurrentWeatherProtocol {
         self.windKph = try data.decode(Float.self, forKey: .windKph)
         self.windMph = try data.decode(Float.self, forKey: .windMph)
         self.uv = try data.decode(Float.self, forKey: .uv)
+        
         let isDayInt = try data.decode(Int.self, forKey: .isDay)
         
         if isDayInt == 1 {

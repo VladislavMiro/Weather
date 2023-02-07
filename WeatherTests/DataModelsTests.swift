@@ -11,6 +11,7 @@ import XCTest
 class DataModelsTests: XCTestCase {
     
     private let decoder = JSONDecoder()
+    
     override func setUpWithError() throws {
         try super.setUpWithError()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -37,7 +38,40 @@ class DataModelsTests: XCTestCase {
         }
     }
     
-    //MARK: Conition model tests
+    //MARK: Day model tests
+    
+    func testCreateDayModelAndGetProperties() {
+        let mockCondtion = Condition(text: "test", icon: "234", code: 123)
+        let sut: DayProtocol! = Day(avgTempC: 10, avgTempF: 20,
+                                   dailyWillItSnow: false, dailyChanceOfSnow: 0,
+                                   dailyWillItRain: true, dailyChanceOfRain: 15,
+                                   condition: mockCondtion, uv: 0)
+        
+        XCTAssertNotNil(sut, "Day model is nil")
+        XCTAssertEqual(sut.avgTempC, 10)
+        XCTAssertEqual(sut.avgTempF, 20)
+        XCTAssertFalse(sut.dailyWillItSnow)
+        XCTAssertEqual(sut.dailyChanceOfSnow, 0)
+        XCTAssertTrue(sut.dailyWillItRain)
+        XCTAssertEqual(sut.dailyChanceOfRain, 15)
+        XCTAssertEqual(sut.condition.text, "test")
+        XCTAssertEqual(sut.condition.icon, "234")
+        XCTAssertEqual(sut.condition.code, 123)
+        XCTAssertEqual(sut.uv, 0)
+    }
+    
+    func testGetDayModelFromJson() {
+        guard let mockData = openJsonFile(name: "MockDay") else { XCTFail("Problems with guard"); return }
+        
+        let sut = try! decoder.decode(Day.self, from: mockData)
+        
+        XCTAssertNotNil(sut)
+        XCTAssertEqual(sut.avgTempC, 5.9)
+        XCTAssertEqual(sut.condition.code, 1000)
+    }
+    
+    //MARK: Condition model tests
+    
     func testConditionProperties() {
         let sut: ConditionProtocol = Condition(text: "Sunny", icon: "203", code: 1000)
         
@@ -57,6 +91,7 @@ class DataModelsTests: XCTestCase {
     }
     
     //MARK: Current weather tests
+    
     func testCurrentWeatherProperties() {
         let mockCondtion = Condition(text: "test", icon: "234", code: 123)
         let sut: CurrentWeatherProtocol! = CurrentWeather(tempC: 1.0,
@@ -93,6 +128,21 @@ class DataModelsTests: XCTestCase {
         
         XCTAssertNotNil(sut)
         XCTAssertEqual(sut.tempC, 1.0)
+    }
+    
+    //MARK: Forecast model tests
+    
+    func testGetForecastModelFromJson() {
+        guard let mockData = openJsonFile(name: "MockForecast") else { XCTFail("Problems with guard"); return }
+        
+        let sut = try! decoder.decode(Forecast.self, from: mockData)
+        
+        XCTAssertNotNil(sut)
+        XCTAssertEqual(sut.date, "2023-02-07")
+        XCTAssertEqual(sut.day.avgTempC, 5.9)
+        XCTAssertFalse(sut.hour.isEmpty)
+        XCTAssertEqual(sut.hour.count, 2)
+        XCTAssertEqual(sut.hour.first!.tempC,  4.3)
     }
     
     //MARK: Location model tests
@@ -134,7 +184,9 @@ class DataModelsTests: XCTestCase {
         })
 
     }
-    //MARK: Location model tests
+    
+    //MARK: Weather model tests
+    
     func testGetWeatgerFromJSON() {
         guard let mockData = openJsonFile(name: "MockWeather") else { XCTFail("mockData is nil"); return }
         var sut: WeatherProtocol!
@@ -145,6 +197,7 @@ class DataModelsTests: XCTestCase {
         XCTAssertEqual(sut.location.name, "London")
         XCTAssertEqual(sut.location.id, 0)
         XCTAssertEqual(sut.current.tempC, 1.0)
+        XCTAssertFalse(sut.forecast.isEmpty)
     }
 
 }

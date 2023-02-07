@@ -27,7 +27,9 @@ struct Condition: ConditionProtocol {
         
         text = try data.decode(String.self, forKey: .text)
         code = try data.decode(Int.self, forKey: .code)
+        
         let imagePath = try data.decode(String.self, forKey: .icon)
+        
         icon = imagePath.dropFirst(imagePath.count - 7).dropLast(4).description
     }
 }
