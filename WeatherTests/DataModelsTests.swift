@@ -23,7 +23,7 @@ class DataModelsTests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    private func openJsonFile(name: String) -> Data? {
+    private func openJSONFile(name: String) -> Data? {
         if let path = Bundle(for: type(of: self)).path(forResource: name, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path))
@@ -61,7 +61,7 @@ class DataModelsTests: XCTestCase {
     }
     
     func testGetDayModelFromJson() {
-        guard let mockData = openJsonFile(name: "MockDay") else { XCTFail("Problems with guard"); return }
+        guard let mockData = openJSONFile(name: "MockDay") else { XCTFail("Problems with guard"); return }
         
         let sut = try! decoder.decode(Day.self, from: mockData)
         
@@ -81,7 +81,7 @@ class DataModelsTests: XCTestCase {
     }
     
     func testGetConditionFromJson() {
-        guard let mockData = openJsonFile(name: "MockCondition") else { XCTFail("Problems with guard"); return }
+        guard let mockData = openJSONFile(name: "MockCondition") else { XCTFail("Problems with guard"); return }
         
         let sut = try! decoder.decode(Condition.self, from: mockData)
         
@@ -90,11 +90,11 @@ class DataModelsTests: XCTestCase {
         XCTAssertNotNil(Int(sut.icon))
     }
     
-    //MARK: Current weather tests
+    //MARK: Weather data model tests
     
     func testCurrentWeatherProperties() {
         let mockCondtion = Condition(text: "test", icon: "234", code: 123)
-        let sut: CurrentWeatherProtocol! = CurrentWeather(tempC: 1.0,
+        let sut: WeatherDataProtocol! = WeatherData(tempC: 1.0,
                                                           tempF: 50.0,
                                                           condition: mockCondtion,
                                                           feelslikeC: 1.2,
@@ -122,9 +122,9 @@ class DataModelsTests: XCTestCase {
     }
     
     func testGetCurrentWeatherFromJSON() {
-        guard let mockData = openJsonFile(name: "MockCurrentWeather") else { XCTFail("Problems with guard"); return }
+        guard let mockData = openJSONFile(name: "MockCurrentWeather") else { XCTFail("Problems with guard"); return }
         
-        let sut = try! decoder.decode(CurrentWeather.self, from: mockData)
+        let sut = try! decoder.decode(WeatherData.self, from: mockData)
         
         XCTAssertNotNil(sut)
         XCTAssertEqual(sut.tempC, 1.0)
@@ -133,7 +133,7 @@ class DataModelsTests: XCTestCase {
     //MARK: Forecast model tests
     
     func testGetForecastModelFromJson() {
-        guard let mockData = openJsonFile(name: "MockForecast") else { XCTFail("Problems with guard"); return }
+        guard let mockData = openJSONFile(name: "MockForecast") else { XCTFail("Problems with guard"); return }
         
         let sut = try! decoder.decode(Forecast.self, from: mockData)
         
@@ -171,7 +171,7 @@ class DataModelsTests: XCTestCase {
     }
     
     func testCreateLocationFromJSONFile() {
-        guard let mockLocations = openJsonFile(name: "MockLocations") else { XCTFail("Problems with guard"); return }
+        guard let mockLocations = openJSONFile(name: "MockLocations") else { XCTFail("Problems with guard"); return }
         var locations: [LocationProtocol]?
         
         locations = try! decoder.decode([Location].self, from: mockLocations)
@@ -188,7 +188,7 @@ class DataModelsTests: XCTestCase {
     //MARK: Weather model tests
     
     func testGetWeatgerFromJSON() {
-        guard let mockData = openJsonFile(name: "MockWeather") else { XCTFail("mockData is nil"); return }
+        guard let mockData = openJSONFile(name: "MockWeather") else { XCTFail("mockData is nil"); return }
         var sut: WeatherProtocol!
         
         sut = try! decoder.decode(Weather.self, from: mockData)
