@@ -11,7 +11,7 @@ import Combine
 
 final class NetworkManager: NetworkManagerProtocol {
     
-    private var apiKey: String = "47d04ec1994d4cfc9ef134954230602"
+    private var apiKey: String
     private lazy var session = URLSession.shared
     private let decoder: JSONDecoder
     
