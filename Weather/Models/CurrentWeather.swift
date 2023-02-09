@@ -8,17 +8,17 @@
 import Foundation
 
 struct WeatherData: WeatherDataProtocol {
-    var tempC: Float
-    var tempF: Float
+    var tempC: Float = 0.0
+    var tempF: Float = 0.0
     var condition: ConditionProtocol
-    var feelslikeC: Float
-    var feelslikeF: Float
-    var isDay: Bool
-    var humidity: Int
-    var cloud: Int
-    var windKph: Float
-    var windMph: Float
-    var uv: Float
+    var feelslikeC: Float = 0.0
+    var feelslikeF: Float = 0.0
+    var isDay: Bool = true
+    var humidity: Int = 0
+    var cloud: Int = 0
+    var windKph: Float = 0.0
+    var windMph: Float = 0.0
+    var uv: Float = 0.0
     
     private enum CodingKeys: String, CodingKey, CaseIterable {
         case humidity, cloud, uv, condition, tempC, tempF, feelslikeC, feelslikeF, isDay, windKph, windMph
