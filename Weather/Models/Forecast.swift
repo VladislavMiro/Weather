@@ -8,7 +8,7 @@
 import Foundation
 
 struct Forecast: ForecastProtocol {
-    var date: String
+    var date: String = ""
     var day: DayProtocol
     var hour: [WeatherDataProtocol]
     

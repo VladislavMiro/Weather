@@ -8,14 +8,14 @@
 import Foundation
 
 struct Day: DayProtocol {
-    var avgTempC: Float
-    var avgTempF: Float
+    var avgTempC: Float = 0.0
+    var avgTempF: Float = 0.0
     var dailyWillItSnow: Bool = false
-    var dailyChanceOfSnow: Int
+    var dailyChanceOfSnow: Int = 0
     var dailyWillItRain: Bool = false
-    var dailyChanceOfRain: Int
+    var dailyChanceOfRain: Int = 0
     var condition: Condition
-    var uv: Int
+    var uv: Int = 0
     
     private enum CodingKeys: String, CodingKey, CaseIterable {
         case avgtempC, avgtempF

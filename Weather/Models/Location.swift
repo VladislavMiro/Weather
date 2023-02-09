@@ -9,11 +9,11 @@ import Foundation
 
 struct Location: LocationProtocol {
     var id: Int = 0
-    var name: String
-    var region: String
-    var country: String
-    var lat: Float
-    var lon: Float
+    var name: String = ""
+    var region: String = ""
+    var country: String = ""
+    var lat: Float = 0.0
+    var lon: Float = 0.0
     
     private enum CodingKeys: String, CodingKey, CaseIterable {
         case id, name, region, country, lat, lon

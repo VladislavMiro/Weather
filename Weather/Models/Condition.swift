@@ -8,9 +8,9 @@
 import Foundation
 
 struct Condition: ConditionProtocol {
-    var text: String
-    var icon: String
-    var code: Int
+    var text: String = ""
+    var icon: String = ""
+    var code: Int = 0
     
     private enum CodingKeys: String, CodingKey {
         case text, icon, code
