@@ -17,24 +17,20 @@ final class MainViewCoordinator {
     
     private let factory: MainViewFactoryProtocol
     
-    private var childCoordinators = [CoordinatorProtocol]()  {
-        didSet {
-            print(childCoordinators.count)
-        }
-    }
+    private var childCoordinators: [CoordinatorProtocol]
     
     //MARK: - Initializers
     
     public init(window: UIWindow) {
         self.window = window
         self.factory = MainViewFactory()
+        
+        self.childCoordinators = []
     }
     
 }
 
 extension MainViewCoordinator: MainViewCoordinatorProtocol {
-    
-    
     
     public func openWeatherView() {
         
@@ -49,6 +45,7 @@ extension MainViewCoordinator: MainViewCoordinatorProtocol {
         coordinator.start()
         
         childCoordinators.append(coordinator)
+        print(childCoordinators.count)
     }
     
     public func openWeatherListView() {
@@ -56,12 +53,13 @@ extension MainViewCoordinator: MainViewCoordinatorProtocol {
         tab1.viewControllers.removeAll()
         
         let factory = WeatherListViewFactory()
-        let coordinator = WeatherListViewCoordinator(parentCoordinator: self,
-                                                     navigationController: tab2, factory: factory)
+
+        let coordinator = WeatherListViewCoordinator(parentCoordinator: self, navigationController: tab2, factory: factory)
         
         coordinator.start()
         
         childCoordinators.append(coordinator)
+        print(childCoordinators.count)
     }
     
 }
