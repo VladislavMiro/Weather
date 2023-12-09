@@ -34,6 +34,15 @@ extension MainViewCoordinator: MainViewCoordinatorProtocol {
     
     public func openWeatherView() {
         
+        let factory = WeatherViewModuleFactory(networkManager: NetworkManager(),
+                                               locationManager: LocationManager())
+        
+        let coordinator = WeatherViewCoordinator(parentCoordinator: self, navigationController: tab1,
+                                                 moduleFactory: factory)
+
+        
+        coordinator.start()
+        
         /*//childCoordinators.removeAll()
         //tab2.viewControllers.removeAll()
         
