@@ -21,7 +21,6 @@ final class WeatherViewModuleFactory {
         
         self.weatherViewFactory = WeatherViewFactory(networkManager: networkManager, locationManager: locationManager)
         self.detailViewFactory = DetailAirConditionViewFactory()
-        
     }
     
     convenience init(coordinate: Coordinate, networkManager: NetworkManagerProtocol, locationManager: LocationManagerProtocol) {
@@ -36,6 +35,7 @@ final class WeatherViewModuleFactory {
 extension WeatherViewModuleFactory: WeatherViewModuleFatoryProtocol {
     
     public func createWeatherView(coordinator: WeatherViewCoordinatorProtocol) -> UIViewController {
+        print(coordinate)
         return weatherViewFactory.createWeatherView(coordinate: coordinate, coordinator: coordinator)
     }
     

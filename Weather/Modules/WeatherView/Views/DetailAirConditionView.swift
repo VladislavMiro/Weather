@@ -50,7 +50,6 @@ final class DetailAirConditionView: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -66,6 +65,7 @@ final class DetailAirConditionView: UICollectionViewController {
         collectionView.backgroundColor = Resources.Colors.backgroundColor
         
         navigationItem.title = "Air Condition"
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func bind() {
