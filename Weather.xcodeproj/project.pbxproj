@@ -63,19 +63,11 @@
 		D3E4B38C2B2401F0001B55FA /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				D3E4B38D2B240200001B55FA /* Resources */,
+				D3E4B38F2B240237001B55FA /* Resources */,
 				D3E4B37A2B240161001B55FA /* SceneDelegate.swift */,
 				D3E4B3782B240161001B55FA /* AppDelegate.swift */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		D3E4B38D2B240200001B55FA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				D3E4B38F2B240237001B55FA /* Resources */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		D3E4B38F2B240237001B55FA /* Resources */ = {
@@ -85,7 +77,8 @@
 				D3E4B3812B240163001B55FA /* Assets.xcassets */,
 				D3E4B3832B240163001B55FA /* LaunchScreen.storyboard */,
 			);
-			path = Resources;
+			name = Resources;
+			path = Resources/Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
