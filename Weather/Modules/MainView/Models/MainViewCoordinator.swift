@@ -59,24 +59,11 @@ extension MainViewCoordinator: MainViewCoordinatorProtocol {
     }
     
     public func openWeatherListView() {
-        
-        let layout = UICollectionViewFlowLayout()
-        
-        layout.scrollDirection = .vertical
-        layout.sectionInset = .init(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = .init(width: UIScreen.main.bounds.width - 20, height: 100)
-        
-        let view = CollectionView(collectionViewLayout: layout)
-        
-        tab2.pushViewController(view, animated: false)
-        /*//tab1.viewControllers.removeAll()
-        
+
         let factory = WeatherListViewFactory()
         let coordinator = WeatherListViewCoordinator(navigationController: tab2, factory: factory)
         
         coordinator.start()
-        
-        //childCoordinators.append(coordinator)*/
     }
     
 }

@@ -16,7 +16,7 @@ final class WeatherViewCoordinator {
     
     private let navigationController: UINavigationController
     private let moduleFactory: WeatherViewModuleFactory
-    private let parentCoordinator: CoordinatorProtocol?
+    private weak var parentCoordinator: CoordinatorProtocol?
     
     //MARK: - Initialaizer
     
@@ -46,9 +46,6 @@ extension WeatherViewCoordinator: CoordinatorProtocol {
     
     public func start() {
         let view = moduleFactory.createWeatherView(coordinator: self)
-
-        navigationController.tabBarItem = .init(title: "Current", image: UIImage(systemName: "location.fill"), tag: 0)
-        
         navigationController.pushViewController(view, animated: false)
     }
     
