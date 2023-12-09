@@ -33,6 +33,7 @@ extension MainViewCoordinator: MainViewCoordinatorProtocol {
     
     
     public func openWeatherView() {
+        
         /*//childCoordinators.removeAll()
         //tab2.viewControllers.removeAll()
         
