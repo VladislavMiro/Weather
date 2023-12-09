@@ -27,6 +27,8 @@
 		D3E4B3B02B2403A2001B55FA /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3A92B2403A2001B55FA /* Condition.swift */; };
 		D3E4B3B12B2403A2001B55FA /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3AA2B2403A2001B55FA /* Region.swift */; };
 		D3E4B3B22B2403A2001B55FA /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3AB2B2403A2001B55FA /* Forecast.swift */; };
+		D3E4B3B62B2403E1001B55FA /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3B52B2403E1001B55FA /* NetworkManagerProtocol.swift */; };
+		D3E4B3B82B2403E7001B55FA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3B72B2403E7001B55FA /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		D3E4B3A92B2403A2001B55FA /* Condition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
 		D3E4B3AA2B2403A2001B55FA /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		D3E4B3AB2B2403A2001B55FA /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
+		D3E4B3B52B2403E1001B55FA /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
+		D3E4B3B72B2403E7001B55FA /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 		D3E4B3922B240374001B55FA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D3E4B3B32B2403C8001B55FA /* Managers */,
 				D3E4B3932B240383001B55FA /* DataModels */,
 			);
 			path = Models;
@@ -146,6 +151,23 @@
 				D3E4B3952B240394001B55FA /* ForecastProtocol.swift */,
 				D3E4B39C2B240395001B55FA /* RegionProtocol.swift */,
 				D3E4B3962B240395001B55FA /* WeatherResponseProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D3E4B3B32B2403C8001B55FA /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D3E4B3B42B2403CE001B55FA /* Protocols */,
+				D3E4B3B72B2403E7001B55FA /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		D3E4B3B42B2403CE001B55FA /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D3E4B3B52B2403E1001B55FA /* NetworkManagerProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -232,9 +254,11 @@
 				D3E4B3792B240161001B55FA /* AppDelegate.swift in Sources */,
 				D3E4B3AD2B2403A2001B55FA /* WeatherResponse.swift in Sources */,
 				D3E4B3A42B240395001B55FA /* RegionProtocol.swift in Sources */,
+				D3E4B3B82B2403E7001B55FA /* NetworkManager.swift in Sources */,
 				D3E4B39E2B240395001B55FA /* WeatherResponseProtocol.swift in Sources */,
 				D3E4B3A12B240395001B55FA /* DayWeatherProtocol.swift in Sources */,
 				D3E4B3A02B240395001B55FA /* ConditionProtocol.swift in Sources */,
+				D3E4B3B62B2403E1001B55FA /* NetworkManagerProtocol.swift in Sources */,
 				D3E4B39D2B240395001B55FA /* ForecastProtocol.swift in Sources */,
 				D3E4B39F2B240395001B55FA /* DailyForecastProtocol.swift in Sources */,
 				D3E4B37B2B240161001B55FA /* SceneDelegate.swift in Sources */,
