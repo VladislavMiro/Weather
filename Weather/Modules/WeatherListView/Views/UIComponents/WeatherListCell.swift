@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class WeatherListCell: UICollectionViewCell {
+final class WeatherListCell: UICollectionViewListCell {
 
     //MARK: - Public fields
     
@@ -32,7 +32,7 @@ final class WeatherListCell: UICollectionViewCell {
         label.numberOfLines = 1
         label.font = .boldSystemFont(ofSize: 16)
         label.textColor = Resources.Colors.fontColor
-        label.adjustsFontSizeToFitWidth = false
+        label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
         
         return label
@@ -54,7 +54,6 @@ final class WeatherListCell: UICollectionViewCell {
         
         view.contentMode = .scaleAspectFill
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = UIImage(named: "d119")
         
         return view
     }()
@@ -65,9 +64,9 @@ final class WeatherListCell: UICollectionViewCell {
         view.axis = .horizontal
         view.alignment = .center
         view.distribution  = .fillProportionally
-        view.isLayoutMarginsRelativeArrangement = true
         view.layoutMargins = .init(top: 0, left: 15, bottom: 0, right: 15)
         view.spacing = 15
+        view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()
@@ -93,28 +92,32 @@ final class WeatherListCell: UICollectionViewCell {
     //MARK: - Pribvate methods
 
     private func configuration() {
-        backgroundColor = Resources.Colors.secondBackgroundColor
-        layer.cornerRadius = 15
-        
-        self.isUserInteractionEnabled = true
+        self.backgroundConfiguration?.backgroundColor = Resources.Colors.secondBackgroundColor
+        self.backgroundConfiguration?.cornerRadius = 15
         
         labelStack.addArrangedSubview(temperatureLabel)
         labelStack.addArrangedSubview(regionLabel)
         
         stackView.addArrangedSubview(labelStack)
         stackView.addArrangedSubview(imageView)
-        stackView.frame = self.contentView.bounds
         
         contentView.addSubview(stackView)
     }
     
     private func constraints() {
         NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalToConstant: 86),
+            imageView.heightAnchor.constraint(equalToConstant: 80),
             imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
+            
+            stackView.topAnchor
+                .constraint(equalTo: self.contentView.layoutMarginsGuide.topAnchor),
+            stackView.leadingAnchor
+                .constraint(equalTo: self.contentView.layoutMarginsGuide.leadingAnchor, constant: 5),
+            stackView.trailingAnchor
+                .constraint(equalTo: self.contentView.layoutMarginsGuide.trailingAnchor, constant: 5),
+            stackView.bottomAnchor
+                .constraint(equalTo: self.contentView.layoutMarginsGuide.bottomAnchor)
         ])
     }
-    
-   
     
 }

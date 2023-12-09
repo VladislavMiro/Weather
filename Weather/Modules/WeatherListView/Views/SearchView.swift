@@ -23,8 +23,11 @@ final class SearchView: UITableViewController {
     //MARK: - Initialaizers
     
     public init(viewModel: SearchViewModelProtocol) {
+        
         self.viewModel = viewModel
+        
         super.init(style: .plain)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -38,6 +41,7 @@ final class SearchView: UITableViewController {
         
         configuration()
         bind()
+        
     }
     
     //MARK: - Private methods
@@ -106,7 +110,7 @@ extension SearchView {
 
 //MARK: - UISearchResultsUpdationg implementation
 
-extension SearchView: UISearchResultsUpdating, UISearchControllerDelegate {
+extension SearchView: UISearchResultsUpdating {
     
     public func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }

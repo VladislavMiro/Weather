@@ -12,9 +12,7 @@ final class WeatherListViewCoordinator {
     //MARK: - Private fields
     
     private let navigationController: UINavigationController
-    
     private let factory: WeatherListViewFactoryProtocol
-    
     private var childCoordinators: [CoordinatorProtocol]
     
     //MARK: - Initialaizers
@@ -30,6 +28,7 @@ final class WeatherListViewCoordinator {
 extension WeatherListViewCoordinator: WeatherListViewCoordinatorProtocol {
     
     public func showWeatherView(coordinates: CDCoordinates, coordinator: WeatherListViewCoordinatorProtocol) {
+        
         let factory = WeatherViewModuleFactory(
             coordinate: .init(lat: coordinates.latitude, lon: coordinates.longitude),
             networkManager: NetworkManager(),

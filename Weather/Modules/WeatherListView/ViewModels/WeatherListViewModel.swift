@@ -13,7 +13,10 @@ final class WeatherListViewModel: WeatherListViewModelProtocol {
     //MARK: - Public fields
     
     private(set) var refreshData: PassthroughSubject<Void, Never>
+    private(set) var error: PassthroughSubject<String, Never>
+    private(set) var itemIsDeleted: PassthroughSubject<Void, Never>
     private(set) var selectedItem: PassthroughSubject<Int, Never>
+    
     private(set) var output: [WeatherListOutput]
     
     //MARK: - Private fields
@@ -22,7 +25,8 @@ final class WeatherListViewModel: WeatherListViewModelProtocol {
     private let networkManager: NetworkManagerProtocol
     private let coordinator: WeatherListViewCoordinatorProtocol
 
-    private var coordinates: CurrentValueSubject<[CDCoordinates], Never>
+    private var coordinates: [CDCoordinates]
+    
     private var cancelable = Set<AnyCancellable>()
     
     //MARK: - Initialaizers
@@ -34,8 +38,10 @@ final class WeatherListViewModel: WeatherListViewModelProtocol {
         
         
         self.refreshData = .init()
-        self.coordinates = .init([])
+        self.coordinates = []
         self.selectedItem = .init()
+        self.itemIsDeleted = .init()
+        self.error = .init()
         
         self.output = []
         
@@ -45,16 +51,13 @@ final class WeatherListViewModel: WeatherListViewModelProtocol {
     //MARK: - Private methods
     
     private func bind() {
-        coordinates
-            .sink { [unowned self] coordinates in
-                coordinates.forEach { coordinate in
-                    self.requestData(coordinates: coordinate)
-                }
-            }.store(in: &cancelable)
         
         selectedItem.sink { [unowned self] index in
-            let coordinates = self.coordinates.value[index]
+            
+            let coordinates = self.coordinates[index]
+            
             self.coordinator.showWeatherView(coordinates: coordinates, coordinator: coordinator)
+            
         }.store(in: &cancelable)
 
     }
@@ -62,48 +65,58 @@ final class WeatherListViewModel: WeatherListViewModelProtocol {
     private func requestData(coordinates: CDCoordinates) {
         networkManager
             .requestWeather(lat: coordinates.latitude, lon: coordinates.longitude)
-            .map({ data -> WeatherListOutput in
-                return .init(data: data)
-            })
             .sink { [unowned self] completion in
+                
                 switch completion {
                 case .finished:
-                    refreshData.send()
+                    self.refreshData.send()
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    self.error.send(error.message)
                 }
+                
             } receiveValue: { [unowned self] data in
-                self.output.append(data)
+                self.output.append(.init(data: data))
             }.store(in: &cancelable)
     }
+    
+    private func requestFromNetwork() {
+        output.removeAll()
+        
+        coordinates.forEach { coordinates in
+            self.requestData(coordinates: coordinates)
+        }
+    }
+    
 }
 
 extension WeatherListViewModel {
     
     public func fetchData() {
-        output.removeAll()
-        coordinates.value.removeAll()
-        refreshData.send()
-        
         do {
-            let coord =  try storageManager.fetchData()
+            coordinates =  try storageManager.fetchData()
             
-            coordinates.send(coord)
+            requestFromNetwork()
             
         } catch let error {
-            //print(error)
+            self.error.send(error.localizedDescription)
         }
     }
     
-    public func deleteData(at index: Int) {
+    public func deleteData(at index: Int) -> Bool {
+        
         do {
-            let coordinate = coordinates.value[index]
+            let coordinate = coordinates[index]
             
             try storageManager.deleteData(data: coordinate)
             
-            refreshData.send()
+            output.remove(at: index)
+            coordinates.remove(at: index)
+            
+            return true
+            
         } catch let error {
-            print(error)
+            self.error.send(error.localizedDescription)
+            return false
         }
                     
     }
