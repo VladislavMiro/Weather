@@ -42,6 +42,7 @@ extension WeatherListViewCoordinator: WeatherListViewCoordinatorProtocol {
                                                  moduleFactory: factory)
         coordinator.start()
         
+        childCoordinators.append(coordinator)
     }
     
     public func didFinish() {
