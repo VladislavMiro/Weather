@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class WeatherListViewModel: WeatherListViewModelProtocol {
+final class WeatherListViewModel {
     
     //MARK: - Public fields
     
@@ -89,7 +89,13 @@ final class WeatherListViewModel: WeatherListViewModelProtocol {
     
 }
 
-extension WeatherListViewModel {
+//MARK: - WeatherListViewModelProtocol implementation
+
+extension WeatherListViewModel: WeatherListViewModelProtocol {
+    
+    public func didFinish() {
+        coordinator.didFinish()
+    }
     
     public func fetchData() {
         do {

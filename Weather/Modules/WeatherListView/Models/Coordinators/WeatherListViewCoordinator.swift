@@ -13,13 +13,15 @@ final class WeatherListViewCoordinator {
     
     private let navigationController: UINavigationController
     private let factory: WeatherListViewFactoryProtocol
+    private weak var parentCoordinator: CoordinatorProtocol?
     private var childCoordinators: [CoordinatorProtocol]
     
     //MARK: - Initialaizers
     
-    public init(navigationController: UINavigationController, factory: WeatherListViewFactoryProtocol) {
+    public init(parentCoordinator: CoordinatorProtocol? = nil, navigationController: UINavigationController, factory: WeatherListViewFactoryProtocol) {
         self.navigationController = navigationController
         self.factory = factory
+        self.parentCoordinator = parentCoordinator
         self.childCoordinators = []
     }
     
@@ -40,6 +42,10 @@ extension WeatherListViewCoordinator: WeatherListViewCoordinatorProtocol {
                                                  moduleFactory: factory)
         coordinator.start()
         
+    }
+    
+    public func didFinish() {
+        parentCoordinator?.childFinish(coordinator: self)
     }
 }
 

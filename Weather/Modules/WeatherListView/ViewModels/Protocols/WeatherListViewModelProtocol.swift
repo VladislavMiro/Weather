@@ -17,5 +17,6 @@ protocol WeatherListViewModelProtocol: AnyObject {
     
     func fetchData()
     func deleteData(at index: Int) -> Bool
+    func didFinish()
     
 }

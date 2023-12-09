@@ -10,5 +10,5 @@ import UIKit
 protocol WeatherListViewCoordinatorProtocol: AnyObject {
     
     func showWeatherView(coordinates: CDCoordinates, coordinator: WeatherListViewCoordinatorProtocol)
-    
+    func didFinish()
 }
