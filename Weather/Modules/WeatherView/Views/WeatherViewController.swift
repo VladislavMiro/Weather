@@ -64,6 +64,10 @@ final class WeatherViewController: UIViewController {
         viewModel.didFinish()
     }
     
+    deinit {
+        print("deinit")
+    }
+    
     //MARK: - Private methods
     
     private func configuration() {
@@ -120,11 +124,18 @@ final class WeatherViewController: UIViewController {
         viewModel.error.sink { [unowned self] error in
             self.showErrorAlert(message: error)
         }.store(in: &cancelable)
+            
+        viewModel.data.sink { [unowned self] data in
+            self.headerView.viewModel.data.send(data)
+            self.dayForecast.viewModel.data.send(data)
+            self.weekForecast.viewModel.data.send(data)
+            self.airConditions.viewModel.data.send(data)
+        }.store(in: &cancelable)
         
-        viewModel.data.subscribe(headerView.viewModel.data).store(in: &cancelable)
+        /*viewModel.data.subscribe(headerView.viewModel.data).store(in: &cancelable)
         viewModel.data.subscribe(dayForecast.viewModel.data).store(in: &cancelable)
         viewModel.data.subscribe(weekForecast.viewModel.data).store(in: &cancelable)
-        viewModel.data.subscribe(airConditions.viewModel.data).store(in: &cancelable)
+        viewModel.data.subscribe(airConditions.viewModel.data).store(in: &cancelable)*/
     }
     
     @objc private func startRefresh() {
