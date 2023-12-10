@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D362085A2B25388F00C187DC /* RoutableCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36208592B25388F00C187DC /* RoutableCoordinatorProtocol.swift */; };
 		D385D3E62B248E1400BF983D /* Weather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D385D3E42B248E1400BF983D /* Weather.xcdatamodeld */; };
 		D3E4B3792B240161001B55FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3782B240161001B55FA /* AppDelegate.swift */; };
 		D3E4B37B2B240161001B55FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B37A2B240161001B55FA /* SceneDelegate.swift */; };
@@ -91,6 +92,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D36208592B25388F00C187DC /* RoutableCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutableCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		D385D3E52B248E1400BF983D /* Weather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weather.xcdatamodel; sourceTree = "<group>"; };
 		D3E4B3752B240161001B55FA /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3E4B3782B240161001B55FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				D3E4B3952B240394001B55FA /* ForecastProtocol.swift */,
 				D3E4B39C2B240395001B55FA /* RegionProtocol.swift */,
 				D3E4B3962B240395001B55FA /* WeatherResponseProtocol.swift */,
+				D36208592B25388F00C187DC /* RoutableCoordinatorProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 				D3E4B3F12B2406D5001B55FA /* DetailAirConditionCoordinatorProtocol.swift in Sources */,
 				D3E4B4272B240836001B55FA /* DetailAirConditionView.swift in Sources */,
 				D3E4B3A12B240395001B55FA /* DayWeatherProtocol.swift in Sources */,
+				D362085A2B25388F00C187DC /* RoutableCoordinatorProtocol.swift in Sources */,
 				D3E4B3A02B240395001B55FA /* ConditionProtocol.swift in Sources */,
 				D3E4B4052B240789001B55FA /* HeaderViewModelProtocol.swift in Sources */,
 				D3E4B42E2B240BCB001B55FA /* WeatherListCell.swift in Sources */,
