@@ -45,7 +45,7 @@ final class MainViewModel: MainViewModelProtocol {
                     coordinator.openWeatherListView()
                     
                 default:
-                    coordinator.openWeatherView()
+                    break
                 }
                 
                 currentTab = tabIndex
