@@ -18,7 +18,6 @@ final class WeatherViewModuleFactory {
     //MARK: - Initialaizers
     
     public init(networkManager: NetworkManagerProtocol, locationManager: LocationManagerProtocol) {
-        
         self.weatherViewFactory = WeatherViewFactory(networkManager: networkManager, locationManager: locationManager)
         self.detailViewFactory = DetailAirConditionViewFactory()
     }
