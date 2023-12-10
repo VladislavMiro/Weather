@@ -11,6 +11,6 @@ protocol WeatherViewFactoryProtocol: AnyObject {
 
     typealias Coordinate = WeatherViewDataModels.Coordinates
     
-    func createWeatherView(coordinator: WeatherViewCoordinatorProtocol) -> UIViewController
     func createWeatherView(coordinate: Coordinate?, coordinator: WeatherViewCoordinatorProtocol) -> UIViewController
+    
 }

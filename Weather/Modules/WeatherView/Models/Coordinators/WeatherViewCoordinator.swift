@@ -17,6 +17,7 @@ final class WeatherViewCoordinator {
     private let navigationController: UINavigationController
     private let moduleFactory: WeatherViewModuleFactory
     private weak var parentCoordinator: CoordinatorProtocol?
+    
     private var coordinate: WeatherViewDataModels.Coordinates?
     
     //MARK: - Initialaizer

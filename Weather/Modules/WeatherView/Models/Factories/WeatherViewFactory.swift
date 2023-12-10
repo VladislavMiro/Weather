@@ -56,13 +56,8 @@ final class WeatherViewFactory {
 
 extension WeatherViewFactory: WeatherViewFactoryProtocol {
     
-    func createWeatherView(coordinate: Coordinate?, coordinator: WeatherViewCoordinatorProtocol) -> UIViewController {
+    public func createWeatherView(coordinate: Coordinate? = nil, coordinator: WeatherViewCoordinatorProtocol) -> UIViewController {
         return createView(coordinates: coordinate, coordinator: coordinator)
     }
-    
 
-    public func createWeatherView(coordinator: WeatherViewCoordinatorProtocol) -> UIViewController {
-        return createView(coordinator: coordinator)
-    }
-    
 }
