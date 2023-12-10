@@ -20,6 +20,7 @@ final class WeekForecastView: UIView {
         view.isScrollEnabled = false
         view.allowsSelection = false
         view.rowHeight = 50
+        view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
