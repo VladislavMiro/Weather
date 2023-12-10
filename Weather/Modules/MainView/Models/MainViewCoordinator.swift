@@ -20,6 +20,7 @@ final class MainViewCoordinator {
     private var childCoordinators = [CoordinatorProtocol]() {
         didSet {
             print(childCoordinators.count)
+            print(childCoordinators)
         }
     }
     
