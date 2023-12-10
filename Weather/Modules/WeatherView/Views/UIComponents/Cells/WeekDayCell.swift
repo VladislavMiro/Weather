@@ -43,6 +43,7 @@ final class WeekDayCell: UITableViewCell {
     
         label.font = .systemFont(ofSize: 14)
         label.textColor = Resources.Colors.secondFontColor
+        label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -67,6 +68,7 @@ final class WeekDayCell: UITableViewCell {
         label.numberOfLines = 1
         label.textAlignment = .left
         label.adjustsFontForContentSizeCategory = true
+        label.adjustsFontSizeToFitWidth = true
         label.textColor = Resources.Colors.secondFontColor
         
         return label

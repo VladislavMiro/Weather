@@ -98,8 +98,8 @@ final class WeatherViewController: UIViewController {
             headerView.heightAnchor.constraint(equalToConstant: 350),
             
             dayForecast.topAnchor.constraint(equalTo: headerView.layoutMarginsGuide.bottomAnchor),
-            dayForecast.trailingAnchor.constraint(equalTo: headerView.layoutMarginsGuide.trailingAnchor, constant: -15),
-            dayForecast.leadingAnchor.constraint(equalTo: headerView.layoutMarginsGuide.leadingAnchor, constant: 15),
+            dayForecast.trailingAnchor.constraint(equalTo: headerView.layoutMarginsGuide.trailingAnchor),
+            dayForecast.leadingAnchor.constraint(equalTo: headerView.layoutMarginsGuide.leadingAnchor),
             
             weekForecast.topAnchor.constraint(equalTo: dayForecast.layoutMarginsGuide.bottomAnchor, constant: 30),
             weekForecast.leadingAnchor.constraint(equalTo: dayForecast.leadingAnchor),

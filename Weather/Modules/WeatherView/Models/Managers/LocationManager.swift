@@ -38,7 +38,7 @@ final class LocationManager: NSObject, LocationManagerProtocol {
     }
     
     public func getCurrentLocation() {
-        self.locationManager.requestLocation()
+        self.locationManager.startUpdatingLocation()
     }
     
 }
@@ -48,7 +48,13 @@ final class LocationManager: NSObject, LocationManagerProtocol {
 extension LocationManager: CLLocationManagerDelegate {
     
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        defer {
+            manager.stopUpdatingLocation()
+        }
+        
         guard let location = locations.first else { return }
+        
         self.coordinates.send(location.coordinate)
     }
     

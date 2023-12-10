@@ -17,7 +17,8 @@ final class AirConditionView: UIView {
         
         view.axis = .horizontal
         view.alignment = .center
-        view.distribution = .equalSpacing
+        view.distribution = .fillProportionally
+        view.spacing = 20
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -42,18 +43,20 @@ final class AirConditionView: UIView {
         label.textAlignment = .left
         label.font = .boldSystemFont(ofSize: 16)
         label.text = "Air conditions"
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         
         return label
     }()
     
     private let button: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .custom, primaryAction: nil)
         
         button.setTitle("See more", for: .normal)
+        button.titleLabel?.textAlignment = .center
         button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 15
+        button.layer.cornerRadius = 10
         button.backgroundColor = .systemBlue
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         
         return button
     }()
@@ -158,8 +161,6 @@ final class AirConditionView: UIView {
             headerStack.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 5),
             headerStack.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 15),
             headerStack.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: -15),
-            
-            button.widthAnchor.constraint(greaterThanOrEqualToConstant: 120),
             
             gridStack.topAnchor.constraint(equalTo: self.headerStack.bottomAnchor, constant: 10),
             gridStack.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 5),
