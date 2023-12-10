@@ -17,6 +17,7 @@ final class WeatherViewCoordinator {
     private let navigationController: UINavigationController
     private let moduleFactory: WeatherViewModuleFactory
     private weak var parentCoordinator: CoordinatorProtocol?
+    private var coordinate: WeatherViewDataModels.Coordinates?
     
     //MARK: - Initialaizer
     
@@ -26,6 +27,11 @@ final class WeatherViewCoordinator {
         self.parentCoordinator = parentCoordinator
         
         self.childCoordinators = []
+    }
+    
+    convenience init(coordinate: WeatherViewDataModels.Coordinates?,  parentCoordinator: CoordinatorProtocol, navigationController: UINavigationController, moduleFactory: WeatherViewModuleFactory) {
+        self.init(parentCoordinator: parentCoordinator, navigationController: navigationController, moduleFactory: moduleFactory)
+        self.coordinate = coordinate
     }
     
 }
@@ -38,13 +44,6 @@ extension WeatherViewCoordinator: WeatherViewCoordinatorProtocol {
         childCoordinators.append(coordinator)
     }
     
-    public func openWeatherView(with data: WeatherViewDataModels.Coordinates) {
-        let view = moduleFactory.createWeatherView(coordinator: self)
-        
-        
-        navigationController.pushViewController(view, animated: true)
-    }
-    
     public func finish() {
         parentCoordinator?.childFinish(coordinator: self)
     }
@@ -55,7 +54,9 @@ extension WeatherViewCoordinator: CoordinatorProtocol {
     
     public func start() {
         let view = moduleFactory.createWeatherView(coordinator: self)
-        navigationController.viewControllers = [view]
+        coordinate == nil ?
+        navigationController.viewControllers = [view] :
+        navigationController.pushViewController(view, animated: true)
     }
     
     public func childFinish(coordinator: CoordinatorProtocol) {
