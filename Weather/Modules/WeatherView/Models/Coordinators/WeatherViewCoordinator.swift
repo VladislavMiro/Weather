@@ -58,3 +58,27 @@ extension WeatherViewCoordinator: CoordinatorProtocol {
     }
     
 }
+
+extension WeatherViewCoordinator: RoutableCoordinatorProtocol {
+    
+    public func push(animated: Bool) {
+        let view = moduleFactory.createWeatherView(coordinator: self)
+        navigationController.pushViewController(view, animated: animated)
+    }
+    
+    public func pushAsRoot(animated: Bool) {
+        let view = moduleFactory.createWeatherView(coordinator: self)
+        navigationController.viewControllers = [view]
+    }
+    
+    public func pop(animated: Bool) {
+        navigationController.popViewController(animated: animated)
+    }
+    
+    public func popToRoot(animated: Bool) {
+        parentCoordinator?.childFinish(coordinator: self)
+        navigationController.popToRootViewController(animated: animated)
+    }
+    
+    
+}

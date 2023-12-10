@@ -14,7 +14,7 @@ final class DetailAirConditionCoordinator {
     
     private let navigationController: UINavigationController
     private let data: WeatherResponseProtocol
-    private let parentCoordinator: CoordinatorProtocol
+    private weak var parentCoordinator: CoordinatorProtocol?
     private var childCoordinator: [CoordinatorProtocol]
     
     private let factory: WeatherViewModuleFatoryProtocol
@@ -23,7 +23,7 @@ final class DetailAirConditionCoordinator {
     
     public init(data: WeatherResponseProtocol,
                 navigationController: UINavigationController,
-                parentCoordinator: CoordinatorProtocol, moduleFactory: WeatherViewModuleFatoryProtocol) {
+                parentCoordinator: CoordinatorProtocol? = nil, moduleFactory: WeatherViewModuleFatoryProtocol) {
         self.navigationController = navigationController
         self.data = data
         self.childCoordinator = []
@@ -37,7 +37,7 @@ final class DetailAirConditionCoordinator {
 extension DetailAirConditionCoordinator: DetailAirConditionCoordinatorProtocol {
     
     public func didFinish() {
-        parentCoordinator.childFinish(coordinator: self)
+        parentCoordinator?.childFinish(coordinator: self)
     }
     
 }
