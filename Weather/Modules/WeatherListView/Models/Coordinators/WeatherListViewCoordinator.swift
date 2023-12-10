@@ -37,8 +37,11 @@ extension WeatherListViewCoordinator: WeatherListViewCoordinatorProtocol {
             locationManager: LocationManager())
         
         
-        let coordinator = WeatherViewCoordinator(parentCoordinator: self,
-                                                 navigationController: navigationController, 
+        let coordinator = WeatherViewCoordinator(coordinate: 
+                .init(lat: coordinates.latitude,
+                      lon: coordinates.longitude),
+                                                 parentCoordinator: self,
+                                                 navigationController: navigationController,
                                                  moduleFactory: factory)
         coordinator.start()
         
@@ -55,7 +58,7 @@ extension WeatherListViewCoordinator: CoordinatorProtocol {
     public func start() {
         let view = factory.createWeatherListView(coordinator: self)
         
-        navigationController.pushViewController(view, animated: false)
+        navigationController.viewControllers = [view]
         
     }
     
