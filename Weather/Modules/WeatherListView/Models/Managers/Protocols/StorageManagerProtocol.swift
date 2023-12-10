@@ -10,9 +10,8 @@ import CoreData
 
 protocol StorageManagerProtocol: AnyObject {
     
-    func createEntity() -> CDCoordinates
-    func fetchData() throws -> [CDCoordinates]
-    func appendData(data: CDCoordinates) throws
+    func fetchData(with predicate: NSPredicate?) throws -> [CDCoordinates]
+    func appendData(data: RegionProtocol) throws
     func deleteData(data: CDCoordinates) throws
     
 }

@@ -99,7 +99,7 @@ extension WeatherListViewModel: WeatherListViewModelProtocol {
     
     public func fetchData() {
         do {
-            coordinates =  try storageManager.fetchData()
+            coordinates =  try storageManager.fetchData(with: nil)
             
             requestFromNetwork()
             

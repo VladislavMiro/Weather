@@ -83,13 +83,10 @@ final class SearchViewModel: SearchViewModelProtocol {
     }
     
     private func saveData(data: RegionProtocol) {
-        let entity = storageManager.createEntity()
-        
-        entity.latitude = data.lat
-        entity.longitude = data.lon
         
         do {
-            try storageManager.appendData(data: entity)
+            
+            try storageManager.appendData(data: data)
             
             selectedItem.send(data)
         } catch let error {
