@@ -22,8 +22,6 @@ final class WeatherViewModel: WeatherViewModelProtocol {
     private let locationManager: LocationManagerProtocol?
     private let coordinator: WeatherViewCoordinatorProtocol
     
-    private var coordinates: Coordinate?
-    
     private var cancelable = Set<AnyCancellable>()
     
     //MARK: - Initializers
@@ -39,9 +37,9 @@ final class WeatherViewModel: WeatherViewModelProtocol {
         bind()
     }
     
-    convenience init(coordinator: WeatherViewCoordinatorProtocol, networkManager: NetworkManagerProtocol, coordinates: Coordinate) {
+    convenience init(coordinator: WeatherViewCoordinatorProtocol, networkManager: NetworkManagerProtocol, data: WeatherResponseProtocol) {
         self.init(coordinator: coordinator, networkManager: networkManager)
-        self.coordinates = coordinates
+        self.data.send(data)
     }
     
     //MARK: - Public Methods
@@ -50,9 +48,6 @@ final class WeatherViewModel: WeatherViewModelProtocol {
         if let locationManager = locationManager {
             locationManager.requestAuthStatus()
             locationManager.getCurrentLocation()
-        } else {
-            guard let coordinates = coordinates else { return }
-            requestWeather(coordinates: coordinates)
         }
     }
     
