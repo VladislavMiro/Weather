@@ -36,11 +36,10 @@ extension MainViewCoordinator: MainViewCoordinatorProtocol {
         
         tab2.viewControllers.removeAll()
         
-        let factory = WeatherViewModuleFactory(networkManager: NetworkManager(),
-                                               locationManager: LocationManager())
+        let factory = WeatherViewModuleFactory(coordinate: nil)
         
         let coordinator = WeatherViewCoordinator(parentCoordinator: self, navigationController: tab1,
-                                                 moduleFactory: factory)
+            moduleFactory: factory)
 
         
         coordinator.start()
