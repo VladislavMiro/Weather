@@ -86,6 +86,7 @@
 		D3E4B44D2B240CB5001B55FA /* WeatherListViewFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B44C2B240CB5001B55FA /* WeatherListViewFactoryProtocol.swift */; };
 		D3E4B4502B240CCE001B55FA /* WeatherListViewCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B44F2B240CCE001B55FA /* WeatherListViewCoordinatorProtocol.swift */; };
 		D3E4B4522B240CDB001B55FA /* WeatherListViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B4512B240CDB001B55FA /* WeatherListViewCoordinator.swift */; };
+		D3FD5F7F2B2627390083367E /* AppCoordinatoor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD5F7E2B2627390083367E /* AppCoordinatoor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,6 +171,7 @@
 		D3E4B44C2B240CB5001B55FA /* WeatherListViewFactoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherListViewFactoryProtocol.swift; sourceTree = "<group>"; };
 		D3E4B44F2B240CCE001B55FA /* WeatherListViewCoordinatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherListViewCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		D3E4B4512B240CDB001B55FA /* WeatherListViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherListViewCoordinator.swift; sourceTree = "<group>"; };
+		D3FD5F7E2B2627390083367E /* AppCoordinatoor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatoor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +236,7 @@
 		D3E4B3922B240374001B55FA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D3FD5F7C2B26271D0083367E /* Coordinators */,
 				D3E4B3B32B2403C8001B55FA /* Managers */,
 				D3E4B3932B240383001B55FA /* DataModels */,
 			);
@@ -615,6 +618,22 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
+		D3FD5F7C2B26271D0083367E /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				D3FD5F7D2B2627270083367E /* Protocols */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		D3FD5F7D2B2627270083367E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D3FD5F7E2B2627390083367E /* AppCoordinatoor.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -755,6 +774,7 @@
 				D3E4B3DD2B24064F001B55FA /* DetailAirConditionDataModel.swift in Sources */,
 				D3E4B40D2B2407B4001B55FA /* DayForecastViewModel.swift in Sources */,
 				D3E4B3C62B2404BB001B55FA /* MainViewModel.swift in Sources */,
+				D3FD5F7F2B2627390083367E /* AppCoordinatoor.swift in Sources */,
 				D3E4B4132B2407BC001B55FA /* WeekForecastViewModel.swift in Sources */,
 				D3E4B40E2B2407B4001B55FA /* DetailAirConditionViewModel.swift in Sources */,
 				D3E4B41B2B2407F8001B55FA /* AirConditionCell.swift in Sources */,
