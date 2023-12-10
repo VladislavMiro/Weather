@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AirConditionCell: UICollectionViewCell {
+final class AirConditionCell: UICollectionViewListCell {
     
     //MARK: - Public fields
     
@@ -33,9 +33,9 @@ final class AirConditionCell: UICollectionViewCell {
         let view = UIStackView()
         
         view.axis = .horizontal
-        view.alignment = .leading
+        view.alignment = .center
         view.spacing = 5
-        view.distribution = .fillProportionally
+        view.distribution = .fill
         
         return view
     }()
@@ -46,7 +46,7 @@ final class AirConditionCell: UICollectionViewCell {
         label.numberOfLines = 1
         label.textColor = Resources.Colors.secondFontColor
         label.textAlignment = .left
-        label.font = .boldSystemFont(ofSize: 16)
+        label.font = .boldSystemFont(ofSize: 14)
         label.adjustsFontSizeToFitWidth = true
         
         return label
@@ -56,7 +56,7 @@ final class AirConditionCell: UICollectionViewCell {
         let label = UILabel()
         
         label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 30)
+        label.font = .systemFont(ofSize: 36)
         label.textColor = Resources.Colors.fontColor
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
@@ -65,8 +65,9 @@ final class AirConditionCell: UICollectionViewCell {
     }()
     
     private let imageView: UIImageView = {
-        let view = UIImageView(frame: .init(origin: .zero, size: .init(width: 12, height: 12)))
+        let view = UIImageView()
         
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
         view.tintColor = Resources.Colors.secondFontColor
         
@@ -96,8 +97,8 @@ final class AirConditionCell: UICollectionViewCell {
     //MARK: - Private methods
     
     private func configuration() {
-        contentView.backgroundColor = Resources.Colors.secondBackgroundColor
-        contentView.layer.cornerRadius = 15
+        backgroundConfiguration?.backgroundColor = Resources.Colors.secondBackgroundColor
+        backgroundConfiguration?.cornerRadius = 15
         
         labelStackView.addArrangedSubview(imageView)
         labelStackView.addArrangedSubview(label)
@@ -113,7 +114,10 @@ final class AirConditionCell: UICollectionViewCell {
             stackView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 5),
             stackView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 5),
             stackView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor)
+            stackView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
+            
+            imageView.heightAnchor.constraint(equalToConstant: 14),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor)
         ])
     }
     

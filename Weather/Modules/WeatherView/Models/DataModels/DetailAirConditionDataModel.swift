@@ -8,7 +8,7 @@
 import Foundation
 
 enum DetailAirConditionDataModel {
-    struct AirConditionCellOutputData {
+    struct AirConditionCellOutputData: Hashable {
         var label: String
         var icon: String
         var data: String
