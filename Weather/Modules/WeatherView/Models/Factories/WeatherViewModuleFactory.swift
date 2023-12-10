@@ -45,7 +45,10 @@ extension WeatherViewModuleFactory: WeatherViewModuleFactoryProtocol {
         
         
         if let coordinate = coordinate {
-            weatherViewModel = WeatherViewModel(coordinator: coordinator, networkManager: networkManager, coordinates: coordinate)
+            weatherViewModel = WeatherViewModel(
+                coordinator: coordinator,
+                networkManager: networkManager,
+                coordinate: coordinate)
             
         } else {
             weatherViewModel = WeatherViewModel(coordinator: coordinator, networkManager: networkManager, locationManager: locationManager)
