@@ -11,19 +11,16 @@ final class WeatherViewModuleFactory {
     
     //MARK: - Private fields
     
-    private let weatherViewFactory: WeatherViewFactoryProtocol
-    private let detailViewFactory: DetailAirConditionViewFactoryProtocol
+    private let locationManager: LocationManager
+    private let networkManager: NetworkManagerProtocol
+
     private var coordinate: Coordinate?
     
     //MARK: - Initialaizers
     
-    public init(networkManager: NetworkManagerProtocol, locationManager: LocationManagerProtocol) {
-        self.weatherViewFactory = WeatherViewFactory(networkManager: networkManager, locationManager: locationManager)
-        self.detailViewFactory = DetailAirConditionViewFactory()
-    }
-    
-    convenience init(coordinate: Coordinate, networkManager: NetworkManagerProtocol, locationManager: LocationManagerProtocol) {
-        self.init(networkManager: networkManager, locationManager: locationManager)
+    public init(coordinate: Coordinate?) {
+        self.networkManager = NetworkManager()
+        self.locationManager = LocationManager()
         self.coordinate = coordinate
     }
     
@@ -31,14 +28,46 @@ final class WeatherViewModuleFactory {
 
 //MARK: WeatherViewModuleFactory implemntation
 
-extension WeatherViewModuleFactory: WeatherViewModuleFatoryProtocol {
+extension WeatherViewModuleFactory: WeatherViewModuleFactoryProtocol {
     
     public func createWeatherView(coordinator: WeatherViewCoordinatorProtocol) -> UIViewController {
-        return weatherViewFactory.createWeatherView(coordinate: coordinate, coordinator: coordinator)
+        
+        let headerViewmodel = HeaderViewModel()
+        let dayForecastViewModel = DayForecastViewModel()
+        let weekForecastViewModel = WeekForecastViewModel()
+        let airConditionViewModel = AirConditionViewModel(coordinator: coordinator)
+        var weatherViewModel: WeatherViewModelProtocol
+        
+        let headerView = HeaderView(viewModel: headerViewmodel)
+        let dayForecastView = DayForecastView(viewModel: dayForecastViewModel)
+        let weekForecastView = WeekForecastView(viewModel: weekForecastViewModel)
+        let airConditionView = AirConditionView(viewModel: airConditionViewModel)
+        
+        
+        if let coordinate = coordinate {
+            weatherViewModel = WeatherViewModel(coordinator: coordinator, networkManager: networkManager, coordinates: coordinate)
+            
+        } else {
+            weatherViewModel = WeatherViewModel(coordinator: coordinator, networkManager: networkManager, locationManager: locationManager)
+        }
+        
+        let view = WeatherViewController(headerView: headerView,
+                                         dayForecastView: dayForecastView,
+                                         weekForecast: weekForecastView,
+                                         airConditionView: airConditionView,
+                                         viewModel: weatherViewModel)
+        
+        return view
     }
     
     public func createDetailAirConditionView(data: WeatherResponseProtocol, coordinator: DetailAirConditionCoordinatorProtocol) -> UIViewController {
-        return detailViewFactory.createDetailAirConditionView(data: data, coordinator: coordinator)
+        
+        let headerViewModel = HeaderViewModel()
+        let viewModel = DetailAirConditionViewModel(data: data, coordinator: coordinator)
+        let header = HeaderView(viewModel: headerViewModel)
+        let view = DetailAirConditionView(viewModel: viewModel, header: header)
+        
+        return view
     }
     
     

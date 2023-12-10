@@ -1,13 +1,13 @@
 //
-//  WeatherViewModuleFatoryProtocol.swift
+//  WeatherViewModuleFactoryProtocol.swift
 //  AstonWeather
 //
-//  Created by Vladislav Miroshnichenko on 07.12.2023.
+//  Created by Vladislav Miroshnichenko on 06.12.2023.
 //
 
 import UIKit
 
-protocol WeatherViewModuleFatoryProtocol {
+protocol WeatherViewModuleFactoryProtocol {
     
     typealias Coordinate = WeatherViewDataModels.Coordinates
     

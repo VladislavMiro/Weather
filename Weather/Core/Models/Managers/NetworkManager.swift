@@ -17,7 +17,7 @@ final class NetworkManager {
     //MARK: - Private fields
     
     private let apiKey: String
-    private lazy var session = URLSession.shared
+    private var session: URLSession
     private var cancelable = Set<AnyCancellable>()
     
     
@@ -26,6 +26,7 @@ final class NetworkManager {
     
     public init() {
         self.apiKey = "24425d9dafd74dcbb1503428230512"
+        session = .init(configuration: .default)
     }
     
 }

@@ -41,11 +41,7 @@
 		D3E4B3D02B2404EF001B55FA /* WeatherListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3CF2B2404EF001B55FA /* WeatherListView.swift */; };
 		D3E4B3DC2B24064F001B55FA /* WeatherViewDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3DA2B24064F001B55FA /* WeatherViewDataModels.swift */; };
 		D3E4B3DD2B24064F001B55FA /* DetailAirConditionDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3DB2B24064F001B55FA /* DetailAirConditionDataModel.swift */; };
-		D3E4B3E12B240678001B55FA /* DetailAirConditionViewFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3E02B240678001B55FA /* DetailAirConditionViewFactoryProtocol.swift */; };
-		D3E4B3E42B240688001B55FA /* WeatherViewModuleFatoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3E22B240688001B55FA /* WeatherViewModuleFatoryProtocol.swift */; };
-		D3E4B3E52B240688001B55FA /* WeatherViewFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3E32B240688001B55FA /* WeatherViewFactoryProtocol.swift */; };
-		D3E4B3E92B240693001B55FA /* WeatherViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3E62B240693001B55FA /* WeatherViewFactory.swift */; };
-		D3E4B3EA2B240693001B55FA /* DetailAirConditionViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3E72B240693001B55FA /* DetailAirConditionViewFactory.swift */; };
+		D3E4B3E12B240678001B55FA /* WeatherViewModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3E02B240678001B55FA /* WeatherViewModuleFactoryProtocol.swift */; };
 		D3E4B3EB2B240693001B55FA /* WeatherViewModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3E82B240693001B55FA /* WeatherViewModuleFactory.swift */; };
 		D3E4B3F02B2406D5001B55FA /* WeatherViewCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3EE2B2406D5001B55FA /* WeatherViewCoordinatorProtocol.swift */; };
 		D3E4B3F12B2406D5001B55FA /* DetailAirConditionCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B3EF2B2406D5001B55FA /* DetailAirConditionCoordinatorProtocol.swift */; };
@@ -128,11 +124,7 @@
 		D3E4B3CF2B2404EF001B55FA /* WeatherListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherListView.swift; sourceTree = "<group>"; };
 		D3E4B3DA2B24064F001B55FA /* WeatherViewDataModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewDataModels.swift; sourceTree = "<group>"; };
 		D3E4B3DB2B24064F001B55FA /* DetailAirConditionDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailAirConditionDataModel.swift; sourceTree = "<group>"; };
-		D3E4B3E02B240678001B55FA /* DetailAirConditionViewFactoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailAirConditionViewFactoryProtocol.swift; sourceTree = "<group>"; };
-		D3E4B3E22B240688001B55FA /* WeatherViewModuleFatoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewModuleFatoryProtocol.swift; sourceTree = "<group>"; };
-		D3E4B3E32B240688001B55FA /* WeatherViewFactoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewFactoryProtocol.swift; sourceTree = "<group>"; };
-		D3E4B3E62B240693001B55FA /* WeatherViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewFactory.swift; sourceTree = "<group>"; };
-		D3E4B3E72B240693001B55FA /* DetailAirConditionViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailAirConditionViewFactory.swift; sourceTree = "<group>"; };
+		D3E4B3E02B240678001B55FA /* WeatherViewModuleFactoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewModuleFactoryProtocol.swift; sourceTree = "<group>"; };
 		D3E4B3E82B240693001B55FA /* WeatherViewModuleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewModuleFactory.swift; sourceTree = "<group>"; };
 		D3E4B3EE2B2406D5001B55FA /* WeatherViewCoordinatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		D3E4B3EF2B2406D5001B55FA /* DetailAirConditionCoordinatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailAirConditionCoordinatorProtocol.swift; sourceTree = "<group>"; };
@@ -452,8 +444,6 @@
 			isa = PBXGroup;
 			children = (
 				D3E4B3DF2B240669001B55FA /* Protocols */,
-				D3E4B3E72B240693001B55FA /* DetailAirConditionViewFactory.swift */,
-				D3E4B3E62B240693001B55FA /* WeatherViewFactory.swift */,
 				D3E4B3E82B240693001B55FA /* WeatherViewModuleFactory.swift */,
 			);
 			path = Factories;
@@ -462,9 +452,7 @@
 		D3E4B3DF2B240669001B55FA /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				D3E4B3E32B240688001B55FA /* WeatherViewFactoryProtocol.swift */,
-				D3E4B3E22B240688001B55FA /* WeatherViewModuleFatoryProtocol.swift */,
-				D3E4B3E02B240678001B55FA /* DetailAirConditionViewFactoryProtocol.swift */,
+				D3E4B3E02B240678001B55FA /* WeatherViewModuleFactoryProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -721,7 +709,6 @@
 				D3E4B3F52B2406DE001B55FA /* DetailAirConditionCoordinator.swift in Sources */,
 				D3E4B4422B240C65001B55FA /* StorageManager.swift in Sources */,
 				D3E4B3F02B2406D5001B55FA /* WeatherViewCoordinatorProtocol.swift in Sources */,
-				D3E4B3EA2B240693001B55FA /* DetailAirConditionViewFactory.swift in Sources */,
 				D3E4B3CA2B2404D2001B55FA /* MainViewCoordinatorProtocol.swift in Sources */,
 				D3E4B4232B24081A001B55FA /* AirConditionView.swift in Sources */,
 				D3E4B3FD2B24076E001B55FA /* AirConditionViewModelProtocol.swift in Sources */,
@@ -732,10 +719,9 @@
 				D3E4B41F2B240814001B55FA /* WeekForecastView.swift in Sources */,
 				D3E4B3A42B240395001B55FA /* RegionProtocol.swift in Sources */,
 				D3E4B3B82B2403E7001B55FA /* NetworkManager.swift in Sources */,
-				D3E4B3E12B240678001B55FA /* DetailAirConditionViewFactoryProtocol.swift in Sources */,
+				D3E4B3E12B240678001B55FA /* WeatherViewModuleFactoryProtocol.swift in Sources */,
 				D3E4B4202B240814001B55FA /* DayForecastView.swift in Sources */,
 				D3E4B39E2B240395001B55FA /* WeatherResponseProtocol.swift in Sources */,
-				D3E4B3E92B240693001B55FA /* WeatherViewFactory.swift in Sources */,
 				D3E4B4212B240814001B55FA /* HeaderView.swift in Sources */,
 				D3E4B4182B2407F8001B55FA /* AirConditionsItem.swift in Sources */,
 				D3E4B4122B2407BC001B55FA /* WeatherViewModel.swift in Sources */,
@@ -748,7 +734,6 @@
 				D3E4B42E2B240BCB001B55FA /* WeatherListCell.swift in Sources */,
 				D3E4B44D2B240CB5001B55FA /* WeatherListViewFactoryProtocol.swift in Sources */,
 				D3E4B3FF2B240777001B55FA /* DayForecastViewModelProtocol.swift in Sources */,
-				D3E4B3E42B240688001B55FA /* WeatherViewModuleFatoryProtocol.swift in Sources */,
 				D3E4B4462B240C7F001B55FA /* WeatherListOutput.swift in Sources */,
 				D3E4B44B2B240CAC001B55FA /* WeatherListViewFactory.swift in Sources */,
 				D3E4B3F92B24071F001B55FA /* LocationManagerProtocol.swift in Sources */,
@@ -762,7 +747,6 @@
 				D3E4B4522B240CDB001B55FA /* WeatherListViewCoordinator.swift in Sources */,
 				D3E4B43A2B240C1C001B55FA /* WeatherListViewModelProtocol.swift in Sources */,
 				D3E4B39F2B240395001B55FA /* DailyForecastProtocol.swift in Sources */,
-				D3E4B3E52B240688001B55FA /* WeatherViewFactoryProtocol.swift in Sources */,
 				D3E4B3FB2B24072C001B55FA /* LocationManager.swift in Sources */,
 				D3E4B3DD2B24064F001B55FA /* DetailAirConditionDataModel.swift in Sources */,
 				D3E4B40D2B2407B4001B55FA /* DayForecastViewModel.swift in Sources */,

@@ -17,13 +17,13 @@ final class DetailAirConditionCoordinator {
     private weak var parentCoordinator: CoordinatorProtocol?
     private var childCoordinator: [CoordinatorProtocol]
     
-    private let factory: WeatherViewModuleFatoryProtocol
+    private let factory: WeatherViewModuleFactoryProtocol
     
     //MARK: - Initializers
     
     public init(data: WeatherResponseProtocol,
                 navigationController: UINavigationController,
-                parentCoordinator: CoordinatorProtocol? = nil, moduleFactory: WeatherViewModuleFatoryProtocol) {
+                parentCoordinator: CoordinatorProtocol? = nil, moduleFactory: WeatherViewModuleFactoryProtocol) {
         self.navigationController = navigationController
         self.data = data
         self.childCoordinator = []
