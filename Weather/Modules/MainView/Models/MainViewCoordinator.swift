@@ -33,6 +33,7 @@ final class MainViewCoordinator {
 extension MainViewCoordinator: MainViewCoordinatorProtocol {
     
     public func openWeatherView() {
+        tab2.viewControllers.removeAll()
         
         tab2.viewControllers.removeAll()
         
@@ -45,13 +46,12 @@ extension MainViewCoordinator: MainViewCoordinatorProtocol {
         coordinator.start()
         
         childCoordinators.append(coordinator)
-        print(childCoordinators.count)
     }
     
     public func openWeatherListView() {
 
         tab1.viewControllers.removeAll()
-        
+
         let factory = WeatherListViewFactory()
 
         let coordinator = WeatherListViewCoordinator(parentCoordinator: self, navigationController: tab2, factory: factory)
@@ -59,7 +59,7 @@ extension MainViewCoordinator: MainViewCoordinatorProtocol {
         coordinator.start()
         
         childCoordinators.append(coordinator)
-        print(childCoordinators.count)
+     
     }
     
 }
