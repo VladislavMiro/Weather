@@ -12,7 +12,7 @@ final class WeatherViewCoordinator {
     
     //MARK: - Private fields
 
-    private var childCoordinators: [CoordinatorProtocol] = [] 
+    private var childCoordinators: [CoordinatorProtocol]
     
     private let navigationController: UINavigationController
     private let moduleFactory: WeatherViewModuleFactory
@@ -24,6 +24,8 @@ final class WeatherViewCoordinator {
         self.navigationController = navigationController
         self.moduleFactory = moduleFactory
         self.parentCoordinator = parentCoordinator
+        
+        self.childCoordinators = []
     }
     
 }
@@ -36,6 +38,13 @@ extension WeatherViewCoordinator: WeatherViewCoordinatorProtocol {
         childCoordinators.append(coordinator)
     }
     
+    public func openWeatherView(with data: WeatherViewDataModels.Coordinates) {
+        let view = moduleFactory.createWeatherView(coordinator: self)
+        
+        
+        navigationController.pushViewController(view, animated: true)
+    }
+    
     public func finish() {
         parentCoordinator?.childFinish(coordinator: self)
     }
@@ -46,7 +55,7 @@ extension WeatherViewCoordinator: CoordinatorProtocol {
     
     public func start() {
         let view = moduleFactory.createWeatherView(coordinator: self)
-        navigationController.pushViewController(view, animated: false)
+        navigationController.viewControllers = [view]
     }
     
     public func childFinish(coordinator: CoordinatorProtocol) {
@@ -56,29 +65,5 @@ extension WeatherViewCoordinator: CoordinatorProtocol {
             }
         }
     }
-    
-}
-
-extension WeatherViewCoordinator: RoutableCoordinatorProtocol {
-    
-    public func push(animated: Bool) {
-        let view = moduleFactory.createWeatherView(coordinator: self)
-        navigationController.pushViewController(view, animated: animated)
-    }
-    
-    public func pushAsRoot(animated: Bool) {
-        let view = moduleFactory.createWeatherView(coordinator: self)
-        navigationController.viewControllers = [view]
-    }
-    
-    public func pop(animated: Bool) {
-        navigationController.popViewController(animated: animated)
-    }
-    
-    public func popToRoot(animated: Bool) {
-        parentCoordinator?.childFinish(coordinator: self)
-        navigationController.popToRootViewController(animated: animated)
-    }
-    
     
 }
