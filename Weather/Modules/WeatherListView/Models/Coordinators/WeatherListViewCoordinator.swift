@@ -32,9 +32,7 @@ extension WeatherListViewCoordinator: WeatherListViewCoordinatorProtocol {
     public func showWeatherView(coordinates: CDCoordinates, coordinator: WeatherListViewCoordinatorProtocol) {
         
         let factory = WeatherViewModuleFactory(
-            coordinate: .init(lat: coordinates.latitude, lon: coordinates.longitude),
-            networkManager: NetworkManager(),
-            locationManager: LocationManager())
+            coordinate: .init(lat: coordinates.latitude, lon: coordinates.longitude))
         
         
         let coordinator = WeatherViewCoordinator(coordinate: 
