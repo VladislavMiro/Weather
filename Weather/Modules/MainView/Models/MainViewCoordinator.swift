@@ -57,7 +57,8 @@ extension MainViewCoordinator: MainViewCoordinatorProtocol {
         tab1.viewControllers.removeAll()
         
         let factory = WeatherListViewFactory()
-        let coordinator = WeatherListViewCoordinator(navigationController: tab2, factory: factory)
+        let coordinator = WeatherListViewCoordinator(parentCoordinator: self,
+                                                     navigationController: tab2, factory: factory)
         
         coordinator.start()
         
