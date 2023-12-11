@@ -85,6 +85,7 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
         
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().tintColor = Resources.Colors.fontColor
     }
 
 }
