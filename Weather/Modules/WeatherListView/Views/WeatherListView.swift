@@ -80,11 +80,14 @@ final class WeatherListView: UICollectionViewController {
         let searchController = UISearchController(searchResultsController: searchView)
         searchController.delegate = self
         self.navigationItem.searchController = searchController
+        self.navigationItem.rightBarButtonItem?.tintColor = Resources.Colors.fontColor
         self.navigationItem.searchController?.searchResultsUpdater = searchView
         self.navigationItem.searchController?.searchBar.searchTextField.textColor = Resources.Colors.fontColor
         self.navigationItem.searchController?.searchBar.searchTextField.leftView?.tintColor = Resources.Colors.secondFontColor
         self.navigationItem.searchController?.searchBar.searchTextField.leftView?.tintColor = Resources.Colors.secondFontColor
         self.navigationItem.searchController?.searchBar.searchTextField.keyboardAppearance = .dark
+        self.navigationItem.searchController?.searchBar.tintColor = Resources.Colors.fontColor
+        self.navigationItem.searchController?.searchBar.barStyle = .black
         self.navigationItem.searchController?.searchBar.searchTextField.attributedPlaceholder = .some(.init(string: "Search", attributes: [.foregroundColor: Resources.Colors.secondFontColor ?? .white]))
         
         createDataSource()
