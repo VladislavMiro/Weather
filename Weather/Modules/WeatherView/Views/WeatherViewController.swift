@@ -69,6 +69,8 @@ final class WeatherViewController: UIViewController {
     private func configuration() {
         view.backgroundColor = Resources.Colors.backgroundColor
         
+        navigationController?.navigationBar.prefersLargeTitles = false
+        
         headerView.translatesAutoresizingMaskIntoConstraints = false
         dayForecast.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
