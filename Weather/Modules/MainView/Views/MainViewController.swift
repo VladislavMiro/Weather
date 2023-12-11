@@ -38,17 +38,61 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
     //MARK: - Private methods
     
     private func configuration() {
-        
-        UITabBar.appearance().backgroundColor = Resources.Colors.secondBackgroundColor
-        UITabBar.appearance().tintColor = Resources.Colors.fontColor
-        UITabBar.appearance().unselectedItemTintColor = Resources.Colors.secondFontColor
-        
+        tabBarConfiguration()
+        navBarConfiguration()
     }
+    
     
     //MARK: - Public methods
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         viewModel.selectedTab.send(item.tag)
+    }
+    
+    //MARK: - Private methods
+    
+    private func tabBarConfiguration() {
+        let standartAppearance = UITabBarAppearance()
+        let itemAppearance = UITabBarItemAppearance()
+        let scrollAppearance = UITabBarAppearance()
+        
+        standartAppearance.configureWithOpaqueBackground()
+        scrollAppearance.configureWithOpaqueBackground()
+        
+        itemAppearance.normal.titleTextAttributes = [.foregroundColor: Resources.Colors.secondFontColor ?? .systemGray]
+        itemAppearance.selected.titleTextAttributes = [.foregroundColor: Resources.Colors.fontColor ?? .systemBlue]
+        itemAppearance.normal.iconColor = Resources.Colors.secondFontColor
+        itemAppearance.selected.iconColor = Resources.Colors.fontColor
+        
+        standartAppearance.stackedLayoutAppearance = itemAppearance
+        standartAppearance.backgroundColor = Resources.Colors.secondBackgroundColor?.withAlphaComponent(0.95)
+
+        scrollAppearance.stackedLayoutAppearance = itemAppearance
+        scrollAppearance.backgroundColor = Resources.Colors.secondBackgroundColor
+        
+        UITabBar.appearance().standardAppearance = standartAppearance
+        UITabBar.appearance().scrollEdgeAppearance = scrollAppearance
+    }
+    
+    private func navBarConfiguration() {
+        let standartAppearance = UINavigationBarAppearance()
+        let scrollAppearance = UINavigationBarAppearance()
+        
+        standartAppearance.configureWithOpaqueBackground()
+        scrollAppearance.configureWithOpaqueBackground()
+        
+        standartAppearance.backgroundColor = Resources.Colors.backgroundColor
+        standartAppearance.titleTextAttributes = [.foregroundColor: Resources.Colors.fontColor ?? .white]
+        standartAppearance.largeTitleTextAttributes = [.foregroundColor: Resources.Colors.fontColor ?? .white]
+        
+        scrollAppearance.backgroundColor = Resources.Colors.backgroundColor
+        scrollAppearance.titleTextAttributes = [.foregroundColor: Resources.Colors.fontColor ?? .white]
+        
+        
+        
+        
+        UINavigationBar.appearance().standardAppearance = standartAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = standartAppearance
     }
 
 }
