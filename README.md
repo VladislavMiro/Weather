@@ -2,7 +2,7 @@
 
 Pet project for AstonDevs 
 
-Applicvation get weather information with user current location. User can search another regions and save it in storage.
+Application get weather information obtained from current coordinates. User can search another regions and save it in storage.
 
 ## Stack: 
 - UIkit
