@@ -59,7 +59,7 @@ extension StorageManager: StorageManagerProtocol {
         let predicate = NSPredicate.init(format: "latitude == %f AND longitude == %f ", data.lat, data.lon)
        
         let isEmptyResult = try fetchData(with: predicate).isEmpty
-        print(isEmptyResult)
+        
         if isEmptyResult {
             
             let entity = NSEntityDescription.insertNewObject(forEntityName: "CDCoordinates", into: context) as! CDCoordinates

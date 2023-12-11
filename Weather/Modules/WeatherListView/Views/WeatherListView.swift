@@ -83,6 +83,8 @@ final class WeatherListView: UICollectionViewController {
         self.navigationItem.searchController?.searchResultsUpdater = searchView
         self.navigationItem.searchController?.searchBar.searchTextField.textColor = Resources.Colors.fontColor
         self.navigationItem.searchController?.searchBar.searchTextField.leftView?.tintColor = Resources.Colors.secondFontColor
+        self.navigationItem.searchController?.searchBar.searchTextField.leftView?.tintColor = Resources.Colors.secondFontColor
+        self.navigationItem.searchController?.searchBar.searchTextField.keyboardAppearance = .dark
         self.navigationItem.searchController?.searchBar.searchTextField.attributedPlaceholder = .some(.init(string: "Search", attributes: [.foregroundColor: Resources.Colors.secondFontColor ?? .white]))
         
         createDataSource()
@@ -237,5 +239,5 @@ extension WeatherListView: UISearchControllerDelegate {
         self.setEditing(false, animated: true)
         
     }
-    
+
 }
