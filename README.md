@@ -22,7 +22,7 @@ Weather information obtained from current coordinates:
 
 Saved weather information in storage:
 
-![Screen1](Screens/4.png){:height="350px" width="720px"} ![Screen2](Screens/5.png){:height="350px" width="720px"} ![Screen3](Screens/6.png){:height="350px" width="720px"} ![Screen4](Screens/7.png){:height="350px" width="720px"}
+<img src="Screens/4.png" width="200" height="400"> <img src="Screens/5.png" width="200" height="400"> <img src="Screens/6.png" width="200" height="400"> <img src="Screens/7.png" width="200" height="400">
 
 ## 🔗 Links
 
