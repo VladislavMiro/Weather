@@ -1,4 +1,4 @@
-# WeatherUIKit
+# Weather
 
 Pet project for AstonDevs 
 
@@ -18,11 +18,11 @@ Applicvation get weather information with user current location. User can search
 
 Weather information obtained from current coordinates:
 
-![Screen1](\Screens\1.png) ![Screen2](\Screens\2.png) ![Screen3](\Screens\3.png)
+![Screen1](Screens\1.png) ![Screen2](Screens\2.png) ![Screen3](Screens\3.png)
 
 Saved weather information in storage:
 
-![Screen1](\Screens\4.png) ![Screen2](\Screens\5.png) ![Screen3](\Screens\6.png) ![Screen4](\Screens\7.png)
+![Screen1](Screens\4.png) ![Screen2](Screens\5.png) ![Screen3](Screens\6.png) ![Screen4](Screens\7.png)
 
 ## 🔗 Links
 
