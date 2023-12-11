@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ApiKey</key>
+	<string>24425d9dafd74dcbb1503428230512</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Application need to get your location data</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Application need to get your location data</string>
 	<key>UIApplicationSceneManifest</key>

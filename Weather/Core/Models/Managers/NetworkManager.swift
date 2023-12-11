@@ -8,24 +8,17 @@
 import Foundation
 import Combine
 
-struct NetworkError: Error {
-    public var message: String
-}
-
 final class NetworkManager {
     
     //MARK: - Private fields
     
     private let apiKey: String
-    private var session: URLSession
+    private let session: URLSession
+    
     private var cancelable = Set<AnyCancellable>()
     
-    
-    private var baseURL = "https://api.weatherapi.com/v1/forecast.json?key=%@&q=%f,%f&days=7&aqi=no&alerts=no"
-    private var locationURL = "https://api.weatherapi.com/v1/search.json?key=%@&q=%@"
-    
     public init() {
-        self.apiKey = "24425d9dafd74dcbb1503428230512"
+        self.apiKey = Bundle.main.object(forInfoDictionaryKey: "ApiKey") as! String
         session = .init(configuration: .default)
     }
     
@@ -36,7 +29,7 @@ extension NetworkManager: NetworkManagerProtocol {
     public func requestWeather(lat: Float, lon: Float) -> Future<WeatherResponseProtocol, NetworkError> {
         
         return Future { [unowned self] promise in
-            let urlString = String(format: baseURL,
+            let urlString = String(format: URLPaths.baseURL.rawValue,
                                    apiKey, lat, lon)
             
             guard let url = URL(string: urlString)
@@ -68,7 +61,8 @@ extension NetworkManager: NetworkManagerProtocol {
     public func requestLocation(locationName: String) -> Future<[RegionProtocol], NetworkError> {
         
         return Future { [unowned self] promise in
-            let urlString = String(format: locationURL, apiKey, locationName)
+            let urlString = String(
+                format: URLPaths.locationURL.rawValue, apiKey, locationName)
             
             guard let url = URL(string: urlString) else { return promise(.failure(NetworkError(message: "Bad URL adress") )) }
             
@@ -91,4 +85,15 @@ extension NetworkManager: NetworkManagerProtocol {
                 .store(in: &cancelable)
         }
     }
+}
+
+//MARK: - URL enum
+
+extension NetworkManager {
+    
+    fileprivate enum URLPaths: String {
+        case baseURL = "https://api.weatherapi.com/v1/forecast.json?key=%@&q=%f,%f&days=7&aqi=no&alerts=no"
+        case locationURL = "https://api.weatherapi.com/v1/search.json?key=%@&q=%@"
+    }
+    
 }
