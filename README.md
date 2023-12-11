@@ -18,11 +18,11 @@ Applicvation get weather information with user current location. User can search
 
 Weather information obtained from current coordinates:
 
-![Screen1](Screens/1.png) {:height="350px" width="720px"} ![Screen2](Screens/2.png) {:height="350px" width="720px"} ![Screen3](Screens/3.png) {:height="350px" width="720px"}
+![Screen1](Screens/1.png){:height="350px" width="720px"} ![Screen2](Screens/2.png){:height="350px" width="720px"} ![Screen3](Screens/3.png){:height="350px" width="720px"}
 
 Saved weather information in storage:
 
-![Screen1](Screens/4.png) {:height="350px" width="720px"} ![Screen2](Screens/5.png) {:height="350px" width="720px"} ![Screen3](Screens/6.png) {:height="350px" width="720px"} ![Screen4](Screens/7.png) {:height="350px" width="720px"}
+![Screen1](Screens/4.png){:height="350px" width="720px"} ![Screen2](Screens/5.png){:height="350px" width="720px"} ![Screen3](Screens/6.png){:height="350px" width="720px"} ![Screen4](Screens/7.png){:height="350px" width="720px"}
 
 ## 🔗 Links
 
