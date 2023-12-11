@@ -75,24 +75,16 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
     }
     
     private func navBarConfiguration() {
-        let standartAppearance = UINavigationBarAppearance()
-        let scrollAppearance = UINavigationBarAppearance()
+        let appearance = UINavigationBarAppearance()
         
-        standartAppearance.configureWithOpaqueBackground()
-        scrollAppearance.configureWithOpaqueBackground()
+        appearance.configureWithOpaqueBackground()
         
-        standartAppearance.backgroundColor = Resources.Colors.backgroundColor
-        standartAppearance.titleTextAttributes = [.foregroundColor: Resources.Colors.fontColor ?? .white]
-        standartAppearance.largeTitleTextAttributes = [.foregroundColor: Resources.Colors.fontColor ?? .white]
+        appearance.backgroundColor = Resources.Colors.backgroundColor
+        appearance.titleTextAttributes = [.foregroundColor: Resources.Colors.fontColor ?? .white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: Resources.Colors.fontColor ?? .white]
         
-        scrollAppearance.backgroundColor = Resources.Colors.backgroundColor
-        scrollAppearance.titleTextAttributes = [.foregroundColor: Resources.Colors.fontColor ?? .white]
-        
-        
-        
-        
-        UINavigationBar.appearance().standardAppearance = standartAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = standartAppearance
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
 
 }
