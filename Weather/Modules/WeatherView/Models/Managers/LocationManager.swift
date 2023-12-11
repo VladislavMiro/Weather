@@ -14,8 +14,7 @@ final class LocationManager: NSObject, LocationManagerProtocol {
     //MARK: - Public fields
     
     public let coordinates: PassthroughSubject<CLLocationCoordinate2D, Never>
-    public let error: PassthroughSubject<String, Never>
-    
+
     //MARK: - Private fields
     
     private let locationManager = CLLocationManager()
@@ -24,7 +23,6 @@ final class LocationManager: NSObject, LocationManagerProtocol {
     
     override init() {
         self.coordinates = .init()
-        self.error = .init()
         
         super.init()
         
@@ -33,11 +31,8 @@ final class LocationManager: NSObject, LocationManagerProtocol {
     
     //MARK: - Public methods
     
-    public func requestAuthStatus() {
-        self.locationManager.requestWhenInUseAuthorization()
-    }
-    
     public func getCurrentLocation() {
+        self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
     }
     
@@ -58,8 +53,20 @@ extension LocationManager: CLLocationManagerDelegate {
         self.coordinates.send(location.coordinate)
     }
     
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .notDetermined, .restricted, .denied:
+            break
+        case .authorizedAlways:
+            manager.startUpdatingLocation()
+        case .authorizedWhenInUse:
+            manager.startUpdatingLocation()
+        @unknown default:
+            break
+        }
+    }
+    
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        self.error.send(error.localizedDescription)
         manager.stopUpdatingLocation()
     }
 }

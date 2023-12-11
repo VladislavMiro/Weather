@@ -48,7 +48,6 @@ final class WeatherViewModel: WeatherViewModelProtocol {
     
     public func loadData() {
         if let locationManager = locationManager {
-            locationManager.requestAuthStatus()
             locationManager.getCurrentLocation()
         } else {
             requestWeather(coordinates: coordinate)
@@ -75,9 +74,6 @@ final class WeatherViewModel: WeatherViewModelProtocol {
                     
                 }.store(in: &cancelable)
 
-            locationManager.error.sink {  [unowned self] error in
-                self.error.send(error)
-            }.store(in: &cancelable)
         }
     }
     

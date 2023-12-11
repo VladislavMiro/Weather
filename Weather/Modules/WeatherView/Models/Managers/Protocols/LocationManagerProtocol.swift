@@ -12,8 +12,7 @@ import CoreLocation
 protocol LocationManagerProtocol: AnyObject {
     
     var coordinates: PassthroughSubject<CLLocationCoordinate2D, Never> { get }
-    var error: PassthroughSubject<String, Never> { get }
-    
-    func requestAuthStatus()
+
     func getCurrentLocation()
+    
 }
