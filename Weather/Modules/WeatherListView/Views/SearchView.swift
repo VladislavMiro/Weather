@@ -49,8 +49,10 @@ final class SearchView: UITableViewController {
     private func configuration() {
         self.tableView.backgroundColor = Resources.Colors.backgroundColor
         self.clearsSelectionOnViewWillAppear = true
-        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifire)
+        
+        self.tableView.separatorColor = Resources.Colors.secondFontColor
+        
     }
     
     private func bind() {
@@ -76,9 +78,12 @@ final class SearchView: UITableViewController {
         
         configuration.text = viewModel.output[index].name
         configuration.secondaryText = viewModel.output[index].country
+        configuration.textProperties.color = Resources.Colors.fontColor ?? .black
+        configuration.secondaryTextProperties.color = Resources.Colors.fontColor ?? .black
         
         cell.backgroundColor = Resources.Colors.backgroundColor
         cell.contentConfiguration = configuration
+        cell.selectionStyle = .none
         
         return cell
     }
