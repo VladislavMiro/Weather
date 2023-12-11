@@ -82,6 +82,8 @@ final class WeatherViewController: UIViewController {
         scrollView.addSubview(weekForecast)
         scrollView.addSubview(airConditions)
         
+        scrollView.refreshControl?.tintColor = Resources.Colors.secondFontColor
+        
         scrollView.refreshControl?.addTarget(self, action: #selector(startRefresh), for: .valueChanged)
     
         view.addSubview(scrollView)
