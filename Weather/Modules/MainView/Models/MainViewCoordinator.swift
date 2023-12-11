@@ -17,12 +17,7 @@ final class MainViewCoordinator {
     
     private let factory: MainViewFactoryProtocol
     
-    private var childCoordinators = [CoordinatorProtocol]() {
-        didSet {
-            print(childCoordinators.count)
-            print(childCoordinators)
-        }
-    }
+    private var childCoordinators = [CoordinatorProtocol]()
     
     //MARK: - Initializers
     
