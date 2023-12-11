@@ -18,7 +18,7 @@ Applicvation get weather information with user current location. User can search
 
 Weather information obtained from current coordinates:
 
-<img src="Screens/1.png" width="120" height="125"> <img src="Screens/2.png" width="120" height="125"> <img src="Screens/3.png" width="120" height="125">
+<img src="Screens/1.png" width="200" height="300"> <img src="Screens/2.png" width="200" height="300"> <img src="Screens/3.png" width="200" height="300">
 
 Saved weather information in storage:
 
