@@ -19,6 +19,7 @@ final class WeekForecastView: UIView {
         view.backgroundColor = Resources.Colors.secondBackgroundColor
         view.isScrollEnabled = false
         view.allowsSelection = false
+        view.separatorColor = Resources.Colors.secondFontColor
         view.rowHeight = 50
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
