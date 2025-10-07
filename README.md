@@ -1,7 +1,5 @@
 # Weather
 
-Pet project for AstonDevs 
-
 Application get weather information obtained from current coordinates. User can search another regions and save it in storage.
 
 ## Stack: 
