@@ -18,14 +18,19 @@ final class LocationManager: NSObject, LocationManagerProtocol {
     //MARK: - Private fields
     
     private let locationManager = CLLocationManager()
+    private let defaultCoordinates: CLLocationCoordinate2D
     
     //MARK: - Initializers
     
     override init() {
         self.coordinates = .init()
         
-        super.init()
+        //Moscow coordinates
+        self.defaultCoordinates = .init(latitude: 55.7558,
+                                        longitude: 37.6178)
         
+        super.init()
+    
         locationManager.delegate = self
     }
     
@@ -33,7 +38,6 @@ final class LocationManager: NSObject, LocationManagerProtocol {
     
     public func getCurrentLocation() {
         self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.startUpdatingLocation()
     }
     
 }
@@ -56,7 +60,7 @@ extension LocationManager: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
         case .notDetermined, .restricted, .denied:
-            break
+            coordinates.send(defaultCoordinates)
         case .authorizedAlways:
             manager.startUpdatingLocation()
         case .authorizedWhenInUse:
