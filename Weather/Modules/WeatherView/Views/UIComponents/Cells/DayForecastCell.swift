@@ -119,7 +119,7 @@ private extension DayForecastCell {
     }
     
     enum StringConstants {
-        static let cellIdentifier: String = "DayForecastCell"
+        static let cellIdentifier: String = String(describing: DayForecastCell.self)
     }
     
 }
