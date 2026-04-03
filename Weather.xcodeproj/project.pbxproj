@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D30BC4C72F8024A80064F60E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D30BC4C62F8024A80064F60E /* SnapKit */; };
+		D30BC4C92F8024A80064F60E /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = D30BC4C82F8024A80064F60E /* SnapKit-Dynamic */; };
 		D362085A2B25388F00C187DC /* RoutableCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36208592B25388F00C187DC /* RoutableCoordinatorProtocol.swift */; };
 		D379B0D22B2689A600E8E3DD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379B0D12B2689A600E8E3DD /* NetworkError.swift */; };
 		D385D3E62B248E1400BF983D /* Weather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D385D3E42B248E1400BF983D /* Weather.xcdatamodeld */; };
@@ -177,6 +179,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D30BC4C72F8024A80064F60E /* SnapKit in Frameworks */,
+				D30BC4C92F8024A80064F60E /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,6 +663,9 @@
 				Base,
 			);
 			mainGroup = D3E4B36C2B240161001B55FA;
+			packageReferences = (
+				D30BC4C52F8024A80064F60E /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = D3E4B3762B240161001B55FA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -986,6 +993,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D30BC4C52F8024A80064F60E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D30BC4C62F8024A80064F60E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D30BC4C52F8024A80064F60E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		D30BC4C82F8024A80064F60E /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D30BC4C52F8024A80064F60E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		D385D3E42B248E1400BF983D /* Weather.xcdatamodeld */ = {
