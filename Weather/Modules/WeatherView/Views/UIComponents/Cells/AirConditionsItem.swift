@@ -6,36 +6,37 @@
 //
 
 import UIKit
+import SnapKit
 
 final class AirConditionsItem: UIView {
     
-    //MARK: - Public fields
+    //MARK: - Public properties
     
-    public var itemLabel: String = "" {
+    public var itemLabel: String = StringConstants.LabelDefaultValue {
         didSet {
             label.text = itemLabel
         }
     }
     
-    public var data: String = "" {
+    public var data: String = StringConstants.LabelDefaultValue {
         didSet {
             dataLabel.text = data
         }
     }
     
-    public var image: UIImage? = nil {
+    public var image: UIImage? = Images.imageDefaulValue {
         didSet {
             imageView.image = image
         }
     }
     
-    //MARK: - Private fields
+    //MARK: - Private properties
     
     private let imageStack: UIStackView = {
         let view = UIStackView()
         
         view.axis = .vertical
-        view.spacing = 10
+        view.spacing = LayoutConstants.imageStackSpacing
         view.alignment = .leading
         view.distribution = .fillEqually
         
@@ -48,14 +49,16 @@ final class AirConditionsItem: UIView {
         view.axis = .horizontal
         view.alignment = .trailing
         view.distribution = .fillProportionally
-        view.spacing = 5
+        view.spacing = LayoutConstants.stackViewSpacing
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()
     
     private let imageView: UIImageView = {
-        let view = UIImageView(frame: .init(origin: .zero, size: .init(width: 16, height: 16)))
+        let imageSize = CGSize(width: LayoutConstants.imageViewSize,
+                               height: LayoutConstants.imageViewSize)
+        let view = UIImageView(frame: .init(origin: .zero, size: imageSize))
         
         view.tintColor = Resources.Colors.secondFontColor
         view.contentMode = .scaleAspectFill
@@ -66,7 +69,7 @@ final class AirConditionsItem: UIView {
     private let label: UILabel =  {
         let label = UILabel()
 
-        label.font = .systemFont(ofSize: 16)
+        label.font = Fonts.label
         label.textColor = Resources.Colors.secondFontColor
         label.adjustsFontSizeToFitWidth = true
         
@@ -76,7 +79,7 @@ final class AirConditionsItem: UIView {
     private let dataLabel: UILabel = {
         let label = UILabel()
     
-        label.font = .systemFont(ofSize: 16)
+        label.font = Fonts.dataLabel
         label.textAlignment = .center
         label.textColor = Resources.Colors.fontColor
         
@@ -107,9 +110,13 @@ final class AirConditionsItem: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Private methods
-    
-    private func configuration() {
+}
+
+//MARK: - Extension with private methods
+
+private extension AirConditionsItem {
+
+    func configuration() {
         imageStack.addArrangedSubview(label)
         imageStack.addArrangedSubview(dataLabel)
         
@@ -121,13 +128,43 @@ final class AirConditionsItem: UIView {
         addSubview(stackView)
     }
     
-    private func constraints() {
-        NSLayoutConstraint.activate([
+    func constraints() {
+        
+        stackView.snp.makeConstraints {
+            $0.edges.equalToSuperview { $0.layoutMarginsGuide.snp.edges }
+        }
+        
+        /*NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor)
-        ])
+        ])*/
+    }
+    
+}
+
+//MARK: - Extension with private subobjects
+
+private extension AirConditionsItem {
+    
+    enum LayoutConstants {
+        static let imageViewSize: CGFloat = 16.0
+        static let imageStackSpacing: CGFloat = 10.0
+        static let stackViewSpacing: CGFloat = 5.0
+    }
+    
+    enum Fonts {
+        static let label: UIFont = .systemFont(ofSize: 16)
+        static let dataLabel: UIFont = .systemFont(ofSize: 16)
+    }
+    
+    enum StringConstants {
+        static let LabelDefaultValue: String = ""
+    }
+    
+    enum Images {
+        static let imageDefaulValue: UIImage? = nil
     }
     
 }
