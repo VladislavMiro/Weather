@@ -7,10 +7,11 @@
 
 import UIKit
 import Combine
+import SnapKit
 
 final class WeatherViewController: UIViewController {
 
-    //MARK: - Private fields
+    //MARK: - Private properties
 
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -49,13 +50,17 @@ final class WeatherViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Life Cycle
+    //MARK: - Life Cycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
         constraints()
         bind()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.loadData()
     }
     
@@ -64,9 +69,13 @@ final class WeatherViewController: UIViewController {
         viewModel.didFinish()
     }
     
-    //MARK: - Private methods
+}
+
+//MARK: - Extension with private methods
+
+private extension WeatherViewController {
     
-    private func configuration() {
+    func configuration() {
         view.backgroundColor = Resources.Colors.backgroundColor
         
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -82,6 +91,8 @@ final class WeatherViewController: UIViewController {
         scrollView.addSubview(weekForecast)
         scrollView.addSubview(airConditions)
         
+        scrollView.frame = view.bounds
+        
         scrollView.refreshControl?.tintColor = Resources.Colors.secondFontColor
         
         scrollView.refreshControl?.addTarget(self, action: #selector(startRefresh), for: .valueChanged)
@@ -89,34 +100,41 @@ final class WeatherViewController: UIViewController {
         view.addSubview(scrollView)
     }
     
-    private func constraints() {
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            headerView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 350),
-            
-            dayForecast.topAnchor.constraint(equalTo: headerView.layoutMarginsGuide.bottomAnchor),
-            dayForecast.trailingAnchor.constraint(equalTo: headerView.layoutMarginsGuide.trailingAnchor),
-            dayForecast.leadingAnchor.constraint(equalTo: headerView.layoutMarginsGuide.leadingAnchor),
-            
-            weekForecast.topAnchor.constraint(equalTo: dayForecast.layoutMarginsGuide.bottomAnchor, constant: 30),
-            weekForecast.leadingAnchor.constraint(equalTo: dayForecast.leadingAnchor),
-            weekForecast.trailingAnchor.constraint(equalTo: dayForecast.trailingAnchor),
-            
-            airConditions.topAnchor.constraint(equalTo: weekForecast.layoutMarginsGuide.bottomAnchor, constant: 30),
-            airConditions.leadingAnchor.constraint(equalTo: weekForecast.leadingAnchor),
-            airConditions.trailingAnchor.constraint(equalTo: weekForecast.trailingAnchor),
-            airConditions.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30)
-        ])
+    func constraints() {
+        
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        headerView.snp.makeConstraints {
+            $0.top.equalTo(scrollView.snp.top)
+            $0.leading.equalTo(view.snp.leadingMargin)
+            $0.trailing.equalTo(view.snp.trailingMargin)
+            $0.height.equalTo(LayoutConstants.headerViewHeight)
+        }
+        
+        dayForecast.snp.makeConstraints {
+            $0.top.equalTo(headerView.snp.bottomMargin)
+            $0.horizontalEdges.equalTo(headerView.snp.horizontalEdges)
+        }
+        
+        weekForecast.snp.makeConstraints {
+            $0.top.equalTo(dayForecast.snp.bottomMargin)
+                .offset(LayoutConstants.offset)
+            $0.horizontalEdges.equalTo(dayForecast.snp.horizontalEdges)
+        }
+        
+        airConditions.snp.makeConstraints {
+            $0.top.equalTo(weekForecast.snp.bottomMargin)
+                .offset(LayoutConstants.offset)
+            $0.horizontalEdges.equalTo(weekForecast.snp.horizontalEdges)
+            $0.bottom.equalToSuperview()
+                .inset(LayoutConstants.offset)
+        }
+        
     }
     
-    private func bind() {
+    func bind() {
         viewModel.isRefreshing.sink { [unowned self] _ in
             self.scrollView.refreshControl?.endRefreshing()
         }.store(in: &cancelable)
@@ -134,14 +152,14 @@ final class WeatherViewController: UIViewController {
         
     }
     
-    @objc private func startRefresh() {
+    @objc func startRefresh() {
         viewModel.loadData()
     }
     
-    private func showErrorAlert(message: String) {
-        let view = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+    func showErrorAlert(message: String) {
+        let view = UIAlertController(title: StringConstants.errorTitle, message: message, preferredStyle: .alert)
         
-        view.addAction(.init(title: "OK", style: .default, handler: { [weak self] _ in
+        view.addAction(.init(title: StringConstants.okButtonTitle, style: .default, handler: { [weak self] _ in
             guard let refreshing = self?.scrollView.refreshControl else { return }
             
             if refreshing.isRefreshing {
@@ -151,4 +169,21 @@ final class WeatherViewController: UIViewController {
         
         present(view, animated: true)
     }
+    
+}
+
+//MARK: - Extension with private subobjects
+
+private extension WeatherViewController {
+    
+    enum LayoutConstants {
+        static let offset: CGFloat = 30
+        static let headerViewHeight: CGFloat = 350
+    }
+    
+    enum StringConstants {
+        static let errorTitle: String = "Error"
+        static let okButtonTitle: String = "OK"
+    }
+    
 }
