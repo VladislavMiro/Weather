@@ -7,16 +7,17 @@
 
 import UIKit
 import Combine
+import SnapKit
 
 final class HeaderView: UIView {
 
-    //MARK: - Private fields
+    //MARK: - Private peoperties
     
     private let headerStack: UIStackView = {
         let stack = UIStackView()
         
         stack.axis = .vertical
-        stack.spacing = 25
+        stack.spacing = LayoutConstants.headerStackSpacing
         stack.alignment = .center
         stack.translatesAutoresizingMaskIntoConstraints = false
         
@@ -27,7 +28,7 @@ final class HeaderView: UIView {
         let stack = UIStackView()
         
         stack.axis = .vertical
-        stack.spacing = 5
+        stack.spacing = LayoutConstants.labelStackSpacing
         stack.alignment = .center
         stack.distribution = .fill
         
@@ -39,7 +40,7 @@ final class HeaderView: UIView {
         
         label.textColor = Resources.Colors.fontColor
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 34, weight: .bold)
+        label.font = Fonts.cityLabel
         
         return label
     }()
@@ -49,7 +50,7 @@ final class HeaderView: UIView {
         
         label.textColor = Resources.Colors.secondFontColor
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = Fonts.descriptionLabel
         
         return label
     }()
@@ -59,7 +60,7 @@ final class HeaderView: UIView {
         
         label.textColor = Resources.Colors.fontColor
         label.textAlignment = .center
-        label.font = .boldSystemFont(ofSize: 64)
+        label.font = Fonts.temperatureLabel
         
         return label
     }()
@@ -75,7 +76,7 @@ final class HeaderView: UIView {
     
     private var cancelable = Set<AnyCancellable>()
     
-    //MARK: - Public fields
+    //MARK: - Public properties
     
     public let viewModel: HeaderViewModelProtocol
     
@@ -95,9 +96,13 @@ final class HeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Private methods
+}
+
+//MARK: - Extension with private methods
+
+private extension HeaderView {
     
-    private func configuration() {
+    func configuration() {
         labelsStack.addArrangedSubview(cityLabel)
         labelsStack.addArrangedSubview(descriptionLabel)
 
@@ -108,7 +113,7 @@ final class HeaderView: UIView {
         self.addSubview(headerStack)
     }
     
-    private func bind() {
+    func bind() {
         viewModel.output.sink { [unowned self] data in
             self.cityLabel.text = data.regionName
             self.descriptionLabel.text = data.description
@@ -117,15 +122,37 @@ final class HeaderView: UIView {
         }.store(in: &cancelable)
     }
     
-    private func constraints() {
-        NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalToConstant: 128),
-            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
-            
-            headerStack.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
-            headerStack.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            headerStack.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            headerStack.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: self.layoutMargins.bottom - 25),
-        ])
+    func constraints() {
+        
+        imageView.snp.makeConstraints {
+            $0.height.width.equalTo(LayoutConstants.iamgeSize)
+        }
+        
+        headerStack.snp.makeConstraints {
+            $0.top.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
+                .inset(LayoutConstants.offset)
+        }
+        
     }
+    
+}
+
+//MARK: - Extension with private subpbjects
+
+private extension HeaderView {
+    
+    enum LayoutConstants {
+        static let offset: CGFloat = 25.0
+        static let iamgeSize: CGFloat = 128.0
+        static let headerStackSpacing: CGFloat = 25.0
+        static let labelStackSpacing: CGFloat = 5.0
+    }
+    
+    enum Fonts {
+        static let cityLabel: UIFont = .systemFont(ofSize: 34, weight: .bold)
+        static let descriptionLabel: UIFont = .systemFont(ofSize: 14, weight: .medium)
+        static let temperatureLabel: UIFont = .boldSystemFont(ofSize: 64)
+    }
+    
 }
