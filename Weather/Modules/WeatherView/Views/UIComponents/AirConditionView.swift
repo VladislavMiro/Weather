@@ -7,10 +7,11 @@
 
 import UIKit
 import Combine
+import SnapKit
 
 final class AirConditionView: UIView {
     
-    //MARK: - Private fields
+    //MARK: - Private properties
 
     private let headerStack: UIStackView = {
         let view = UIStackView()
@@ -18,7 +19,7 @@ final class AirConditionView: UIView {
         view.axis = .horizontal
         view.alignment = .center
         view.distribution = .fillProportionally
-        view.spacing = 20
+        view.spacing = LayoutConstants.headerStackSpacing
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -28,7 +29,7 @@ final class AirConditionView: UIView {
         let view = UIStackView()
         
         view.axis = .vertical
-        view.spacing = 10
+        view.spacing = LayoutConstants.gridStackSpacing
         view.distribution = .fillEqually
         view.alignment = .fill
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -41,8 +42,8 @@ final class AirConditionView: UIView {
         
         label.textColor = Resources.Colors.secondFontColor
         label.textAlignment = .left
-        label.font = .boldSystemFont(ofSize: 16)
-        label.text = "Air conditions"
+        label.font = Fonts.label
+        label.text = StringConstants.label
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         
         return label
@@ -51,10 +52,10 @@ final class AirConditionView: UIView {
     private let button: UIButton = {
         let button = UIButton(type: .custom, primaryAction: nil)
         
-        button.setTitle("See more", for: .normal)
+        button.setTitle(StringConstants.buttonLabel, for: .normal)
         button.titleLabel?.textAlignment = .center
         button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = LayoutConstants.buttonCornerRadius
         button.backgroundColor = .systemBlue
         button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         
@@ -68,7 +69,7 @@ final class AirConditionView: UIView {
     
     private var cancelable = Set<AnyCancellable>()
     
-    //MARK: - Public fields
+    //MARK: - Public properties
     
     public let viewModel: AirConditionViewModelProtocol
     
@@ -88,40 +89,44 @@ final class AirConditionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Private methods
+}
+
+//MARK: - Extension with private methods
+
+private extension AirConditionView {
     
-    private func configuration() {
+    func configuration() {
         backgroundColor = Resources.Colors.secondBackgroundColor
-        layer.cornerRadius = 15
+        layer.cornerRadius = LayoutConstants.superViewCornerRadius
         
         
-        self.realFeelItem.itemLabel = "Feels like"
-        self.realFeelItem.image = UIImage(named: "thermometer.medium")
+        self.realFeelItem.itemLabel = StringConstants.realFeelItemLabel
+        self.realFeelItem.image = Images.realFeelItem
         
-        self.windItem.itemLabel = "Wind"
-        self.windItem.image = UIImage(named: "wind")
+        self.windItem.itemLabel = StringConstants.windItemLabel
+        self.windItem.image = Images.windItem
         
-        self.rainChanceItem.itemLabel = "Chance of rain"
-        self.rainChanceItem.image = UIImage(named: "drop.fill")
+        self.rainChanceItem.itemLabel = StringConstants.rainChanceItemLabel
+        self.rainChanceItem.image = Images.rainChanceItem
         
-        self.uvIndexItem.itemLabel = "UV Index"
-        self.uvIndexItem.image = UIImage(named: "sun.max.fill")
+        self.uvIndexItem.itemLabel = StringConstants.uvIndexItemLabel
+        self.uvIndexItem.image = Images.uvIndexItem
         
         
         createHeader()
         createGridView()
     }
     
-    private func bind() {
-        viewModel.output.sink { [unowned self] data in
-            realFeelItem.data = data.realFeel
-            uvIndexItem.data = data.uvIndex
-            windItem.data = data.wind
-            rainChanceItem.data = data.chanceOfRain
+    func bind() {
+        viewModel.output.sink { [weak self] data in
+            self?.realFeelItem.data = data.realFeel
+            self?.uvIndexItem.data = data.uvIndex
+            self?.windItem.data = data.wind
+            self?.rainChanceItem.data = data.chanceOfRain
         }.store(in: &cancelable)
     }
     
-    private func createHeader() {
+    func createHeader() {
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         
         headerStack.addArrangedSubview(label)
@@ -130,7 +135,7 @@ final class AirConditionView: UIView {
         addSubview(headerStack)
     }
     
-    private func createGridView() {
+    func createGridView() {
         let fLine = createGridLine()
         let sLine = createGridLine()
 
@@ -145,34 +150,85 @@ final class AirConditionView: UIView {
         addSubview(gridStack)
     }
     
-    private func createGridLine() -> UIStackView {
+    func createGridLine() -> UIStackView {
         let hItemStack = UIStackView()
         
         hItemStack.axis = .horizontal
         hItemStack.distribution = .fillEqually
-        hItemStack.spacing = 10
+        hItemStack.spacing = LayoutConstants.gridItemStackSpacing
         hItemStack.alignment = .fill
         
         return hItemStack
     }
     
-    private func constraints() {
-        NSLayoutConstraint.activate([
-            headerStack.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 5),
-            headerStack.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 15),
-            headerStack.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: -15),
-            
-            gridStack.topAnchor.constraint(equalTo: self.headerStack.bottomAnchor, constant: 10),
-            gridStack.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 5),
-            gridStack.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            gridStack.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
-            
-            self.heightAnchor.constraint(equalToConstant: 220)
-        ])
+    func constraints() {
+        
+        self.snp.makeConstraints {
+            $0.height.equalTo(LayoutConstants.superViewHeight)
+        }
+        
+        headerStack.snp.makeConstraints {
+            $0.top.equalToSuperview()
+                .offset(LayoutConstants.headerStackTopOffset)
+            $0.leading.equalToSuperview()
+                .offset(LayoutConstants.headerStackHorizontalOffset)
+            $0.trailing.equalToSuperview()
+                .inset(LayoutConstants.headerStackHorizontalOffset)
+        }
+        
+        gridStack.snp.makeConstraints {
+            $0.top.equalTo(headerStack.snp.bottom)
+                .offset(LayoutConstants.gridStackTopOffset)
+            $0.leading.equalToSuperview()
+                .offset(LayoutConstants.gridStackLeadingOffset)
+            $0.trailing.bottom.equalToSuperview()
+                .inset(LayoutConstants.gridStackBottomOffset)
+        }
+    
     }
     
-    @objc private func buttonPressed() {
+    @objc func buttonPressed() {
         viewModel.openWeatherDetailView()
+    }
+    
+}
+
+//MARK: - Extension with private subobjects
+
+private extension AirConditionView {
+    
+    enum LayoutConstants {
+        static let headerStackSpacing: CGFloat = 20.0
+        static let headerStackTopOffset: CGFloat = 5.0
+        static let headerStackHorizontalOffset: CGFloat = 15.0
+        static let gridStackTopOffset: CGFloat = 10.0
+        static let gridStackLeadingOffset: CGFloat = 5.0
+        static let superViewCornerRadius: CGFloat = 15.0
+        static let superViewHeight: CGFloat = 220.0
+        static let gridStackSpacing: CGFloat = 10.0
+        static let gridItemStackSpacing: CGFloat = 10.0
+        static let gridStackBottomOffset: CGFloat = 10.0
+        static let buttonCornerRadius: CGFloat = 10.0
+    }
+    
+    enum Fonts {
+        static let label: UIFont = .boldSystemFont(ofSize: 16)
+    }
+    
+    enum StringConstants {
+        static let label: String = "Air conditions"
+        static let buttonLabel: String = "See more"
+        static let realFeelItemLabel: String = "Feels like"
+        static let windItemLabel: String = "Wind"
+        static let rainChanceItemLabel: String = "Chance of rain"
+        static let uvIndexItemLabel: String = "UV Index"
+    }
+    
+    enum Images {
+        static let realFeelItem: UIImage? = UIImage(named: "thermometer.medium")
+        static let windItem: UIImage? = UIImage(named: "wind")
+        static let rainChanceItem: UIImage? = UIImage(named: "drop.fill")
+        static let uvIndexItem: UIImage? = UIImage(named: "sun.max.fill")
     }
     
 }
