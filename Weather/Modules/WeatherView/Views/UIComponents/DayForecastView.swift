@@ -49,7 +49,7 @@ final class DayForecastView: UIView {
     
     private var cancelable = Set<AnyCancellable>()
     
-    //MARK: - Public fields
+    //MARK: - Public properties
     
     public let viewModel: DayForecastViewModelProtocol
     
