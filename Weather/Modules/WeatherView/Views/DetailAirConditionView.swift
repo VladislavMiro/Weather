@@ -181,4 +181,3 @@ private extension DetailAirConditionView {
     }
     
 }
-

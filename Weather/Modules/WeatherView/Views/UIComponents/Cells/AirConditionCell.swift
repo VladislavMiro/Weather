@@ -6,16 +6,17 @@
 //
 
 import UIKit
+import SnapKit
 
 final class AirConditionCell: UICollectionViewListCell {
     
-    //MARK: - Public fields
+    //MARK: - Public properties
     
     typealias Data = DetailAirConditionDataModel.AirConditionCellOutputData
     
-    public static let cellReuseIdentifier = "AirConditionCell"
+    public static let cellReuseIdentifier = StringConstants.cellReuseIdentifier
     
-    //MARK: - Private fields
+    //MARK: - Private properties
     
     private let stackView: UIStackView = {
         let view = UIStackView()
@@ -23,7 +24,7 @@ final class AirConditionCell: UICollectionViewListCell {
         view.axis = .vertical
         view.distribution = .fillProportionally
         view.alignment = .leading
-        view.spacing = 5
+        view.spacing = LayoutConstants.stackViewSpacing
         view.translatesAutoresizingMaskIntoConstraints = false
 
         return view
@@ -34,7 +35,7 @@ final class AirConditionCell: UICollectionViewListCell {
         
         view.axis = .horizontal
         view.alignment = .center
-        view.spacing = 5
+        view.spacing = LayoutConstants.labelStackViewSpacing
         view.distribution = .fill
         
         return view
@@ -43,10 +44,10 @@ final class AirConditionCell: UICollectionViewListCell {
     private let label: UILabel = {
         let label = UILabel()
         
-        label.numberOfLines = 1
+        label.numberOfLines = LayoutConstants.labelNumberOfLines
         label.textColor = Resources.Colors.secondFontColor
         label.textAlignment = .left
-        label.font = .boldSystemFont(ofSize: 14)
+        label.font = Fonts.label
         label.adjustsFontSizeToFitWidth = true
         
         return label
@@ -55,8 +56,8 @@ final class AirConditionCell: UICollectionViewListCell {
     private let dataLabel: UILabel = {
         let label = UILabel()
         
-        label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 36)
+        label.numberOfLines = LayoutConstants.dataLabelNumberOfLines
+        label.font = Fonts.dataLabel
         label.textColor = Resources.Colors.fontColor
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
@@ -86,19 +87,27 @@ final class AirConditionCell: UICollectionViewListCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Public methods
-    
+}
+
+//MARK: - Extension with public methods
+
+extension AirConditionCell {
+   
     public func setup(data: Data) {
         self.imageView.image = UIImage(systemName: data.icon)
         self.label.text = data.label
         self.dataLabel.text = data.data
     }
     
-    //MARK: - Private methods
+}
+
+//MARK: - Extension with private methods
+
+private extension AirConditionCell {
     
-    private func configuration() {
+    func configuration() {
         backgroundConfiguration?.backgroundColor = Resources.Colors.secondBackgroundColor
-        backgroundConfiguration?.cornerRadius = 15
+        backgroundConfiguration?.cornerRadius = LayoutConstants.superViewCornerRadius
         
         labelStackView.addArrangedSubview(imageView)
         labelStackView.addArrangedSubview(label)
@@ -109,16 +118,52 @@ final class AirConditionCell: UICollectionViewListCell {
         contentView.addSubview(stackView)
     }
     
-    private func constraints() {
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 5),
-            stackView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 5),
-            stackView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
-            
-            imageView.heightAnchor.constraint(equalToConstant: 14),
-            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor)
-        ])
+    func constraints() {
+        
+        stackView.snp.makeConstraints {
+            $0.top.equalToSuperview { $0.layoutMarginsGuide.snp.top }
+                .offset(LayoutConstants.stackViewTopOffset)
+            $0.leading.equalToSuperview { $0.layoutMarginsGuide.snp.leading }
+                .offset(LayoutConstants.stackViewLeadingOffset)
+            $0.trailing.bottom.equalToSuperview { $0.layoutMarginsGuide }
+        }
+        
+        imageView.snp.makeConstraints {
+            $0.size.equalTo(LayoutConstants.imageViewSize)
+        }
+        
     }
     
 }
+
+//MARK: - Extension with private subobjects
+
+private extension AirConditionCell {
+    
+    enum LayoutConstants {
+        static let stackViewSpacing: CGFloat = 5.0
+        static let labelStackViewSpacing: CGFloat = 5.0
+        static let labelNumberOfLines: Int = 1
+        static let dataLabelNumberOfLines: Int = 1
+        static let superViewCornerRadius: CGFloat = 15.0
+        static let stackViewTopOffset: CGFloat = 5.0
+        static let stackViewLeadingOffset: CGFloat = 5.0
+        static let imageViewSize: CGFloat = 14.0
+    }
+    
+    enum Fonts {
+        static let label: UIFont = .boldSystemFont(ofSize: 14)
+        static let dataLabel: UIFont = .systemFont(ofSize: 36)
+    }
+    
+    enum StringConstants {
+        static let cellReuseIdentifier: String = String(describing: AirConditionCell.self)
+    }
+    
+    enum Section: Int, CaseIterable {
+        case main
+    }
+    
+}
+
+
