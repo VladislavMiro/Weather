@@ -135,19 +135,19 @@ private extension WeatherViewController {
     }
     
     func bind() {
-        viewModel.isRefreshing.sink { [unowned self] _ in
-            self.scrollView.refreshControl?.endRefreshing()
+        viewModel.isRefreshing.sink { [weak self] _ in
+            self?.scrollView.refreshControl?.endRefreshing()
         }.store(in: &cancelable)
         
-        viewModel.error.sink { [unowned self] error in
-            self.showErrorAlert(message: error)
+        viewModel.error.sink { [weak self] error in
+            self?.showErrorAlert(message: error)
         }.store(in: &cancelable)
             
-        viewModel.data.sink { [unowned self] data in
-            self.headerView.viewModel.data.send(data)
-            self.dayForecast.viewModel.data.send(data)
-            self.weekForecast.viewModel.data.send(data)
-            self.airConditions.viewModel.data.send(data)
+        viewModel.data.sink { [weak self] data in
+            self?.headerView.viewModel.data.send(data)
+            self?.dayForecast.viewModel.data.send(data)
+            self?.weekForecast.viewModel.data.send(data)
+            self?.airConditions.viewModel.data.send(data)
         }.store(in: &cancelable)
         
     }

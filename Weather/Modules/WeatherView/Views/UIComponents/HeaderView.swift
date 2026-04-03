@@ -114,11 +114,11 @@ private extension HeaderView {
     }
     
     func bind() {
-        viewModel.output.sink { [unowned self] data in
-            self.cityLabel.text = data.regionName
-            self.descriptionLabel.text = data.description
-            self.temperatureLabel.text = data.temperature
-            self.imageView.image = UIImage(named: data.icon)
+        viewModel.output.sink { [weak self] data in
+            self?.cityLabel.text = data.regionName
+            self?.descriptionLabel.text = data.description
+            self?.temperatureLabel.text = data.temperature
+            self?.imageView.image = UIImage(named: data.icon)
         }.store(in: &cancelable)
     }
     

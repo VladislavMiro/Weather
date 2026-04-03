@@ -49,7 +49,7 @@ final class DayForecastView: UIView {
     
     private var cancelable = Set<AnyCancellable>()
     
-    //MARK: - Public properties
+    //MARK: - Public fields
     
     public let viewModel: DayForecastViewModelProtocol
     
@@ -108,8 +108,8 @@ private extension DayForecastView {
     }
     
     func bind() {
-        viewModel.refreshData.sink { [unowned self] _ in
-            self.collectionView.reloadData()
+        viewModel.refreshData.sink { [weak self] _ in
+            self?.collectionView.reloadData()
         }.store(in: &cancelable)
     }
     
