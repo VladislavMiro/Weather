@@ -26,7 +26,7 @@ final class HeaderViewModel: HeaderViewModelProtocol {
         
         self.output = .init(
             .init(regionName: "--",
-                  temperature: "0" + Symbols.celciusSymbol.rawValue,
+                  temperature: "0" + Symbols.celciusSymbol.localized,
                   description: "---",
                  icon: "d119"))       
         
@@ -51,7 +51,7 @@ final class HeaderViewModel: HeaderViewModelProtocol {
         return .init(
             regionName: data.location.name,
                           
-            temperature: String(Int(data.current.temp)) + Symbols.celciusSymbol.rawValue,
+            temperature: String(Int(data.current.temp)) + Symbols.celciusSymbol.localized,
                           
             description: data.current.condition.text,
             

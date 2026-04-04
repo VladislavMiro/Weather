@@ -29,9 +29,9 @@ final class AirConditionViewModel: AirConditionViewModelProtocol {
         self.data = .init()
         
         self.output = .init(
-            .init(wind: "0" + Symbols.kmPerHour.rawValue,
-                  chanceOfRain: "0" + Symbols.precent.rawValue,
-                  realFeel: "0" + Symbols.celciusSymbol.rawValue,
+            .init(wind: "0" + Symbols.kmPerHour.localized,
+                  chanceOfRain: "0" + Symbols.precent.localized,
+                  realFeel: "0" + Symbols.celciusSymbol.localized,
                   uvIndex: "0"
                  ))
         
@@ -56,11 +56,11 @@ final class AirConditionViewModel: AirConditionViewModelProtocol {
     
     private func converData(data: WeatherResponseProtocol) -> Output {
         let day: Int = data.forecast.first == nil ? 0 : data.forecast.first!.day.chanceOfRain
-        let chanceOfRain = String(day) + Symbols.precent.rawValue
+        let chanceOfRain = String(day) + Symbols.precent.localized
         
-        return .init(wind: String(Int(data.current.wind)) + Symbols.kmPerHour.rawValue,
+        return .init(wind: String(Int(data.current.wind)) + Symbols.kmPerHour.localized,
                      chanceOfRain: chanceOfRain,
-                     realFeel:  String(Int(data.current.feelslikeC)) + Symbols.celciusSymbol.rawValue, uvIndex: String(Int(data.current.uv)))
+                     realFeel:  String(Int(data.current.feelslikeC)) + Symbols.celciusSymbol.localized, uvIndex: String(Int(data.current.uv)))
     }
     
 }

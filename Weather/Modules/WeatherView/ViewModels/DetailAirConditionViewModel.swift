@@ -54,18 +54,18 @@ final class DetailAirConditionViewModel: DetailAirConditionViewModelProtocol {
         
         guard let currWeather = data.forecast.first?.day else { return [] }
         
-        let maxTemp = String(Int(currWeather.maxTemp)) + Symbols.celciusSymbol.rawValue
-        let minTemp = String(Int(currWeather.minTemp)) + Symbols.celciusSymbol.rawValue
-        let chanceOfRain = String(currWeather.chanceOfRain) + Symbols.precent.rawValue
-        let chanceOfShow = String(currWeather.chanceOfShow) + Symbols.precent.rawValue
+        let maxTemp = String(Int(currWeather.maxTemp)) + Symbols.celciusSymbol.localized
+        let minTemp = String(Int(currWeather.minTemp)) + Symbols.celciusSymbol.localized
+        let chanceOfRain = String(currWeather.chanceOfRain) + Symbols.precent.localized
+        let chanceOfShow = String(currWeather.chanceOfShow) + Symbols.precent.localized
         let uv = String(Int(data.current.uv))
-        let wind = String(Int(data.current.wind)) + Symbols.kmPerHour.rawValue
-        let visibility = String(Int(data.current.visKm)) + Symbols.km.rawValue
-        let hummidity = String(Int(data.current.humidity)) + Symbols.precent.rawValue
-        let feelsLike = String(Int(data.current.feelslikeC)) + Symbols.celciusSymbol.rawValue
-        let precip = String(Int(data.current.precip)) + Symbols.mm.rawValue
-        let pressure = String(Int(data.current.pressure)) + Symbols.hPa.rawValue
-        let gust = String(Int(data.current.gust)) + Symbols.kmPerHour.rawValue
+        let wind = String(Int(data.current.wind)) + Symbols.kmPerHour.localized
+        let visibility = String(Int(data.current.visKm)) + Symbols.km.localized
+        let hummidity = String(Int(data.current.humidity)) + Symbols.precent.localized
+        let feelsLike = String(Int(data.current.feelslikeC)) + Symbols.celciusSymbol.localized
+        let precip = String(Int(data.current.precip)) + Symbols.mm.localized
+        let pressure = String(Int(data.current.pressure)) + Symbols.hPa.localized
+        let gust = String(Int(data.current.gust)) + Symbols.kmPerHour.localized
         
         var array: [Output] = []
         

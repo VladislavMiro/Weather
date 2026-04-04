@@ -24,5 +24,12 @@
 "WeatherViewController.ErrorAlert.title" = "Error";
 "WeatherViewController.ErrorAlert.okButtonTitle" = "OK";
 "DetailAirConditionView.navigationTitle" = "Air condition";
+"Symbols.celciusSymbol" = "°";
+"Symbols.kmPerHour" = " km/h";
+"Symbols.km" = " km";
+"Symbols.precent" = " %";
+"Symbols.hPa" = " hPa";
+"Symbols.mBa" = " mBa";
+"Symbols.mm" = " mm";
 
 //MARK: - WeatherListView
