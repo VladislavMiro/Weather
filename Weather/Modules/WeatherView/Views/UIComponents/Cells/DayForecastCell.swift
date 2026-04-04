@@ -89,7 +89,7 @@ extension DayForecastCell {
 private extension DayForecastCell {
     
     func configure() {
-        backgroundColor = Resources.Colors.backgroundColor
+        backgroundColor = Colors.background
         layer.cornerRadius = LayoutConstants.superViewCornerRadius
     
         stackView.frame = self.bounds
@@ -123,6 +123,7 @@ private extension DayForecastCell {
     }
     
     enum Colors {
+        static let background: UIColor? = R.color.backgroundColor()
         static let timeLabel: UIColor? = R.color.secondFontColor()
         static let tempLabel: UIColor? = R.color.secondFontColor()
     }
