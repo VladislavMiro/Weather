@@ -216,12 +216,12 @@ private extension AirConditionView {
     }
     
     enum StringConstants {
-        static let label: String = "Air conditions"
-        static let buttonLabel: String = "See more"
-        static let realFeelItemLabel: String = "Feels like"
-        static let windItemLabel: String = "Wind"
-        static let rainChanceItemLabel: String = "Chance of rain"
-        static let uvIndexItemLabel: String = "UV Index"
+        static let label: String = R.string.localizable.airConditionViewTitleLabel()
+        static let buttonLabel: String = R.string.localizable.airConditionViewButtonLabel()
+        static let realFeelItemLabel: String = R.string.localizable.airConditionViewRealFeelItemLabel()
+        static let windItemLabel: String = R.string.localizable.airConditionViewWindItemLabel()
+        static let rainChanceItemLabel: String = R.string.localizable.airConditionViewRainChanceItemLabel()
+        static let uvIndexItemLabel: String = R.string.localizable.airConditionViewUvIndexItemLabel()
     }
     
     enum Images {

@@ -15,6 +15,11 @@
 
 "dayForecastView.titleLabel" = "Day Forecast";
 "weekForecastView.titleLabel" = "Week Forecast";
-
+"AirConditionView.titleLabel" = "Air conditions";
+"AirConditionView.buttonLabel" = "See more";
+"AirConditionView.realFeelItemLabel" = "Feels like";
+"AirConditionView.windItemLabel" = "Wind";
+"AirConditionView.rainChanceItemLabel" = "Chance of rain";
+"AirConditionView.uvIndexItemLabel" = "UV Index";
 
 //MARK: - WeatherListView
