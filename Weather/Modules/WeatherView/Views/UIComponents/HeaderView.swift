@@ -38,7 +38,7 @@ final class HeaderView: UIView {
     private let cityLabel: UILabel = {
         let label = UILabel()
         
-        label.textColor = Resources.Colors.fontColor
+        label.textColor = Colors.cityLabelText
         label.textAlignment = .center
         label.font = Fonts.cityLabel
         
@@ -48,7 +48,7 @@ final class HeaderView: UIView {
     private let descriptionLabel: UILabel =  {
         let label = UILabel()
         
-        label.textColor = Resources.Colors.secondFontColor
+        label.textColor = Colors.descriptionLabelText
         label.textAlignment = .center
         label.font = Fonts.descriptionLabel
         
@@ -58,7 +58,7 @@ final class HeaderView: UIView {
     private let temperatureLabel: UILabel = {
         let label = UILabel()
         
-        label.textColor = Resources.Colors.fontColor
+        label.textColor = Colors.temperatureLabelText
         label.textAlignment = .center
         label.font = Fonts.temperatureLabel
         
@@ -153,6 +153,12 @@ private extension HeaderView {
         static let cityLabel: UIFont = .systemFont(ofSize: 34, weight: .bold)
         static let descriptionLabel: UIFont = .systemFont(ofSize: 14, weight: .medium)
         static let temperatureLabel: UIFont = .boldSystemFont(ofSize: 64)
+    }
+    
+    enum Colors {
+        static let cityLabelText: UIColor? = R.color.fontColor()
+        static let descriptionLabelText: UIColor? = R.color.secondFontColor()
+        static let temperatureLabelText: UIColor? = R.color.fontColor()
     }
     
 }
