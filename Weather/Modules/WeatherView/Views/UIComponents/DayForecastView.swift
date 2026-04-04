@@ -160,7 +160,7 @@ private extension DayForecastView {
     }
     
     enum StringConstants {
-        static let label: String = "Day Forecast"
+        static let label: String = R.string.localizable.dayForecastViewTitleLabel()
     }
     
     enum Colors {

@@ -13,4 +13,7 @@
 
 //MARK: - WeatherView
 
+"dayForecastView.titleLabel" = "Day Forecast";
+
+
 //MARK: - WeatherListView
