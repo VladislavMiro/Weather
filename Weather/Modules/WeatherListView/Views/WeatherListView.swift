@@ -9,14 +9,8 @@ import UIKit
 import Combine
 
 final class WeatherListView: UICollectionViewController {
-
-    //MARK: - Public fields
     
-    enum Section: Int, CaseIterable {
-        case main
-    }
-    
-    //MARK: - Private fields
+    //MARK: - Private properties
     
     private let searchView: SearchView
     private let viewModel: WeatherListViewModelProtocol
@@ -40,7 +34,7 @@ final class WeatherListView: UICollectionViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Life cycle
+    //MARK: - Life cycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +51,7 @@ final class WeatherListView: UICollectionViewController {
         viewModel.didFinish()
     }
     
-    //MARK: - Public methods
+    //MARK: - Overriden methods
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
@@ -66,13 +60,45 @@ final class WeatherListView: UICollectionViewController {
         
     }
     
-    //MARK: - Private methods
+}
+
+//MARK: - Extension wit CollectionViewDelegate & CollectionViewDataSource  implementations
+
+extension WeatherListView {
     
-    private func configuration() {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       
+        if !collectionView.isEditing {
+            
+            viewModel.selectedItem.send(indexPath.row)
+            
+        }
+        
+    }
+    
+}
+
+//MARK: - Extension with UISearchControllerDelegate implementations
+
+extension WeatherListView: UISearchControllerDelegate {
+    
+    public func willPresentSearchController(_ searchController: UISearchController) {
+        
+        self.setEditing(false, animated: true)
+        
+    }
+
+}
+
+//MARK: - Extension with private methods
+
+private extension WeatherListView {
+    
+    func configuration() {
         
         self.collectionView.backgroundColor = Resources.Colors.backgroundColor
         
-        self.navigationItem.title = "Weather"
+        self.navigationItem.title = StringConstants.navigationViewTitle
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.navigationItem.hidesSearchBarWhenScrolling = true
         self.navigationItem.rightBarButtonItem = editButtonItem
@@ -88,7 +114,11 @@ final class WeatherListView: UICollectionViewController {
         self.navigationItem.searchController?.searchBar.searchTextField.keyboardAppearance = .dark
         self.navigationItem.searchController?.searchBar.tintColor = Resources.Colors.fontColor
         self.navigationItem.searchController?.searchBar.barStyle = .black
-        self.navigationItem.searchController?.searchBar.searchTextField.attributedPlaceholder = .some(.init(string: "Search", attributes: [.foregroundColor: Resources.Colors.secondFontColor ?? .white]))
+        self.navigationItem.searchController?.searchBar.searchTextField
+            .attributedPlaceholder = .some(.init(string: StringConstants.searchControllerPlaceholder,
+                                                 attributes: [
+                                                    .foregroundColor: Resources.Colors.secondFontColor ?? .white
+                                                 ]))
         
         createDataSource()
         
@@ -98,31 +128,31 @@ final class WeatherListView: UICollectionViewController {
         
     }
     
-    private func bind() {
+    func bind() {
         
-        searchView.viewModel.selectedItem.sink { [unowned self] data in
-            self.navigationItem.searchController?.isActive = false
-            self.viewModel.fetchData()
+        searchView.viewModel.selectedItem.sink { [weak self] data in
+            self?.navigationItem.searchController?.isActive = false
+            self?.viewModel.fetchData()
         }.store(in: &cancelable)
         
-        viewModel.refreshData.sink { [unowned self] _ in
-            self.reloadShapshot()
+        viewModel.refreshData.sink { [weak self] _ in
+            self?.reloadShapshot()
         }.store(in: &cancelable)
         
-        viewModel.error.sink { [unowned self] error in
-            self.showAlert(message: error)
+        viewModel.error.sink { [weak self] error in
+            self?.showAlert(message: error)
         }.store(in: &cancelable)
         
     }
     
-    private func showAlert(message: String) {
-        let view = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
+    func showAlert(message: String) {
+        let view = UIAlertController(title: StringConstants.errorTitle, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: StringConstants.okButtonTitle, style: .default)
         
         view.addAction(action)
     }
 
-    private func createLayout() -> UICollectionViewCompositionalLayout {
+    func createLayout() -> UICollectionViewCompositionalLayout {
         
         return .init { index, layoutEnviorement in
             guard let section = Section(rawValue: index) else { return nil }
@@ -130,20 +160,23 @@ final class WeatherListView: UICollectionViewController {
             switch section {
             case .main:
                 let item = NSCollectionLayoutItem(layoutSize:
-                        .init(widthDimension: .fractionalWidth(1.0),
-                              heightDimension: .fractionalHeight(1.0)))
+                        .init(widthDimension: .fractionalWidth(LayoutConstants.itemWidth),
+                              heightDimension: .fractionalHeight(LayoutConstants.itemHeight)))
                 
                 
                 let group = NSCollectionLayoutGroup
                     .horizontal(layoutSize:
-                            .init(widthDimension: .fractionalWidth(1.0),
-                                  heightDimension: .absolute(100)),
+                            .init(widthDimension: .fractionalWidth(LayoutConstants.groupWidth),
+                                  heightDimension: .absolute(LayoutConstants.groupHeight)),
                                 subitems: [item])
                 
                 let section = NSCollectionLayoutSection(group: group)
                 
-                section.contentInsets = .init(top: 10, leading: 20, bottom: 10, trailing: 20)
-                section.interGroupSpacing = 20
+                section.contentInsets = .init(top: LayoutConstants.sectionVerticalContentInset,
+                                              leading: LayoutConstants.sectionHorizontalContentInset,
+                                              bottom: LayoutConstants.sectionVerticalContentInset,
+                                              trailing: LayoutConstants.sectionHorizontalContentInset)
+                section.interGroupSpacing = LayoutConstants.interGroupSpacing
             
                 return section
                 
@@ -152,9 +185,9 @@ final class WeatherListView: UICollectionViewController {
         
     }
     
-    private func createDataSource() {
+    func createDataSource() {
         
-        let cellRegistration = 
+        let cellRegistration =
         UICollectionView.CellRegistration<WeatherListCell, WeatherListOutput> { [unowned self]
             (cell: WeatherListCell, indexPath, item: WeatherListOutput) in
             
@@ -192,7 +225,7 @@ final class WeatherListView: UICollectionViewController {
         
     }
     
-    private func reloadShapshot() {
+    func reloadShapshot() {
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, WeatherListOutput>()
         
@@ -203,7 +236,7 @@ final class WeatherListView: UICollectionViewController {
         
     }
     
-    private func deleteItem(item: WeatherListOutput) {
+    func deleteItem(item: WeatherListOutput) {
         var shapshot = self.dataSource.snapshot()
         
         shapshot.deleteItems([item])
@@ -214,33 +247,35 @@ final class WeatherListView: UICollectionViewController {
             setEditing(false, animated: true)
         }
     }
-    
+   
 }
 
-//MARK: - CollectionViewDelegate implementation
+//MARK: - Extension with private subobjects
 
-extension WeatherListView {
+private extension WeatherListView {
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
-        if !collectionView.isEditing {
-            
-            viewModel.selectedItem.send(indexPath.row)
-            
-        }
-        
+    enum LayoutConstants {
+        static let itemWidth: CGFloat = 1.0
+        static let itemHeight: CGFloat = 1.0
+        static let groupWidth: CGFloat = 1.0
+        static let groupHeight: CGFloat = 100.0
+        static let sectionVerticalContentInset: CGFloat = 10.0
+        static let sectionHorizontalContentInset: CGFloat = 20.0
+        static let interGroupSpacing: CGFloat = 20.0
+    }
+    
+    enum StringConstants {
+        static let navigationViewTitle: String = "Weather"
+        static let errorTitle: String = "Error"
+        static let okButtonTitle: String = "OK"
+        static let searchControllerPlaceholder: String = "Search"
+    }
+    
+    enum Section: Int, CaseIterable {
+        case main
     }
     
 }
 
-//MARK: - UISearchControllerDelegate
 
-extension WeatherListView: UISearchControllerDelegate {
-    
-    public func willPresentSearchController(_ searchController: UISearchController) {
-        
-        self.setEditing(false, animated: true)
-        
-    }
 
-}
