@@ -10,7 +10,7 @@ import Combine
 
 final class MainViewController: UITabBarController, UITabBarControllerDelegate {
     
-    //MARK: - Private fields
+    //MARK: - Private properties
     
     private let viewModel: MainViewModelProtocol
     
@@ -27,7 +27,7 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Life Cycle
+    //MARK: - Life Cycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,23 +35,25 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
         configuration()
     }
     
-    //MARK: - Private methods
-    
-    private func configuration() {
-        tabBarConfiguration()
-        navBarConfiguration()
-    }
-    
-    
-    //MARK: - Public methods
+    //MARK: - Overriden methods
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         viewModel.selectedTab.send(item.tag)
     }
+
+}
+
+//MARK: - Extension with private methods
+
+private extension MainViewController {
     
-    //MARK: - Private methods
+    func configuration() {
+        view.backgroundColor = Resources.Colors.backgroundColor
+        tabBarConfiguration()
+        navBarConfiguration()
+    }
     
-    private func tabBarConfiguration() {
+    func tabBarConfiguration() {
         let standartAppearance = UITabBarAppearance()
         let itemAppearance = UITabBarItemAppearance()
         let scrollAppearance = UITabBarAppearance()
@@ -74,7 +76,7 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
         UITabBar.appearance().scrollEdgeAppearance = scrollAppearance
     }
     
-    private func navBarConfiguration() {
+    func navBarConfiguration() {
         let appearance = UINavigationBarAppearance()
         
         appearance.configureWithOpaqueBackground()
@@ -87,5 +89,5 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().tintColor = Resources.Colors.fontColor
     }
-
+    
 }
