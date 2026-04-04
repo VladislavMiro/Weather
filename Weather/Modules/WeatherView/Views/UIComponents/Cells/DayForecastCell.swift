@@ -33,7 +33,7 @@ final class DayForecastCell: UICollectionViewCell {
         let label = UILabel()
         
         label.font = Fonts.timeLabel
-        label.textColor = Resources.Colors.secondFontColor
+        label.textColor = Colors.timeLabel
         label.textAlignment = .center
         
         return label
@@ -43,7 +43,7 @@ final class DayForecastCell: UICollectionViewCell {
         let label = UILabel()
         
         label.font = Fonts.tempLabel
-        label.textColor = Resources.Colors.secondFontColor
+        label.textColor = Colors.tempLabel
         label.textAlignment = .center
         
         return label
@@ -120,6 +120,11 @@ private extension DayForecastCell {
     
     enum StringConstants {
         static let cellIdentifier: String = String(describing: DayForecastCell.self)
+    }
+    
+    enum Colors {
+        static let timeLabel: UIColor? = R.color.secondFontColor()
+        static let tempLabel: UIColor? = R.color.secondFontColor()
     }
     
 }
