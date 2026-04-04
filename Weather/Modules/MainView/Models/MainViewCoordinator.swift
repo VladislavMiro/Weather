@@ -68,8 +68,8 @@ extension MainViewCoordinator: CoordinatorProtocol {
     
     public func start() {
         
-        tab1.tabBarItem = .init(title: "Current", image: UIImage(systemName: "location.fill"), tag: 0)
-        tab2.tabBarItem = .init(title: "List", image: .init(systemName: "list.bullet"), tag: 1)
+        tab1.tabBarItem = .init(title: StringConstants.currentTab, image: Images.currentTab, tag: 0)
+        tab2.tabBarItem = .init(title: StringConstants.listTab, image: Images.listTab, tag: 1)
 
         
         let view = factory.createMainView(coordinator: self,
@@ -88,6 +88,22 @@ extension MainViewCoordinator: CoordinatorProtocol {
             }
         }
         
+    }
+    
+}
+
+//MARK: - Extension with private subobjects
+
+private extension MainViewCoordinator {
+    
+    enum StringConstants {
+        static let currentTab: String = "Current"
+        static let listTab: String = "List"
+    }
+    
+    enum Images {
+        static let currentTab: UIImage? = UIImage(systemName: "location.fill")
+        static let listTab: UIImage? = UIImage(systemName: "list.bullet")
     }
     
 }
