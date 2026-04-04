@@ -43,7 +43,7 @@ final class WeekDayCell: UITableViewCell {
         let label = UILabel()
     
         label.font = Fonts.dayLabel
-        label.textColor = Resources.Colors.secondFontColor
+        label.textColor = Colors.dayLabelText
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -56,7 +56,7 @@ final class WeekDayCell: UITableViewCell {
         label.font = Fonts.temperatureLabel
         label.numberOfLines = Constants.numberOfLines
         label.textAlignment = .right
-        label.textColor = Resources.Colors.secondFontColor
+        label.textColor = Colors.temperatureLabelText
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -70,7 +70,7 @@ final class WeekDayCell: UITableViewCell {
         label.textAlignment = .left
         label.adjustsFontForContentSizeCategory = true
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = Resources.Colors.secondFontColor
+        label.textColor = Colors.conditionLabelText
         
         return label
     }()
@@ -175,6 +175,12 @@ private extension WeekDayCell {
     
     enum StringConstants {
         static let cellIdentifier: String = String(describing: WeekDayCell.self)
+    }
+    
+    enum Colors {
+        static let dayLabelText: UIColor? = R.color.secondFontColor()
+        static let temperatureLabelText: UIColor? = R.color.secondFontColor()
+        static let conditionLabelText: UIColor? = R.color.secondFontColor()
     }
     
 }
