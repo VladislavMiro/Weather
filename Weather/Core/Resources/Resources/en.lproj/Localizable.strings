@@ -21,5 +21,7 @@
 "AirConditionView.windItemLabel" = "Wind";
 "AirConditionView.rainChanceItemLabel" = "Chance of rain";
 "AirConditionView.uvIndexItemLabel" = "UV Index";
+"WeatherViewController.ErrorAlert.title" = "Error";
+"WeatherViewController.ErrorAlert.okButtonTitle" = "OK";
 
 //MARK: - WeatherListView

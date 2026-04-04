@@ -177,13 +177,13 @@ private extension WeatherViewController {
 private extension WeatherViewController {
     
     enum LayoutConstants {
-        static let offset: CGFloat = 30
-        static let headerViewHeight: CGFloat = 350
+        static let offset: CGFloat = 30.0
+        static let headerViewHeight: CGFloat = 350.0
     }
     
     enum StringConstants {
-        static let errorTitle: String = "Error"
-        static let okButtonTitle: String = "OK"
+        static let errorTitle: String = R.string.localizable.weatherViewControllerErrorAlertTitle()
+        static let okButtonTitle: String = R.string.localizable.weatherViewControllerErrorAlertOkButtonTitle()
     }
     
     enum Colors {
