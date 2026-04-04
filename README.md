@@ -4,7 +4,9 @@ Application get weather information obtained from current coordinates. User can 
 
 ## Stack: 
 - UIkit
-- UI layout via code (UIKIt)
+- SnapKit
+- R.swift
+- Localization
 - HTTP requests (URLSession, REST API)
 - MVVM + Coordinator
 - SOLID
