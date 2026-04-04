@@ -87,7 +87,7 @@ private extension DetailAirConditionView {
     func configure() {
         collectionView.register(AirConditionCell.self, forCellWithReuseIdentifier: AirConditionCell.cellReuseIdentifier)
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: StringConstants.headerIdentifier)
-        collectionView.backgroundColor = Resources.Colors.backgroundColor
+        collectionView.backgroundColor = Colors.collectionViewBackground
         collectionView.allowsMultipleSelection = false
         collectionView.allowsSelection = false
         
@@ -178,6 +178,10 @@ private extension DetailAirConditionView {
     
     enum Section: Int, CaseIterable {
         case main
+    }
+    
+    enum Colors {
+        static let collectionViewBackground: UIColor? = R.color.backgroundColor()
     }
     
 }
