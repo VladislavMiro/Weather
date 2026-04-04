@@ -265,10 +265,10 @@ private extension WeatherListView {
     }
     
     enum StringConstants {
-        static let navigationViewTitle: String = "Weather"
-        static let errorTitle: String = "Error"
-        static let okButtonTitle: String = "OK"
-        static let searchControllerPlaceholder: String = "Search"
+        static let navigationViewTitle: String = R.string.localizable.weatherListViewNavTitle()
+        static let errorTitle: String = R.string.localizable.weatherListViewErrorTitle()
+        static let okButtonTitle: String = R.string.localizable.weatherListViewOkButtonTitle()
+        static let searchControllerPlaceholder: String = R.string.localizable.weatherListViewSearchTextFieldPlaceholder()
     }
     
     enum Section: Int, CaseIterable {

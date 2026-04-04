@@ -45,3 +45,8 @@
 "Symbols.mm" = " mm";
 
 //MARK: - WeatherListView
+
+"WeatherListView.navTitle" = "Weather";
+"WeatherListView.errorTitle" = "Error";
+"WeatherListView.okButtonTitle" = "OK";
+"WeatherListView.searchTextFieldPlaceholder" = "Search";
