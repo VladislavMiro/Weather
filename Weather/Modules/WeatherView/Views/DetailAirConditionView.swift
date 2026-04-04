@@ -172,7 +172,7 @@ private extension DetailAirConditionView {
     }
     
     enum StringConstants {
-        static let navigationViewTitle: String = "Air condition"
+        static let navigationViewTitle: String = R.string.localizable.detailAirConditionViewNavigationTitle()
         static let headerIdentifier: String = "HeaderView"
     }
     

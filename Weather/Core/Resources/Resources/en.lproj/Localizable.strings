@@ -23,5 +23,6 @@
 "AirConditionView.uvIndexItemLabel" = "UV Index";
 "WeatherViewController.ErrorAlert.title" = "Error";
 "WeatherViewController.ErrorAlert.okButtonTitle" = "OK";
+"DetailAirConditionView.navigationTitle" = "Air condition";
 
 //MARK: - WeatherListView
