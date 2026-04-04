@@ -154,7 +154,7 @@ private extension WeekForecastView {
     }
     
     enum StringConstants {
-        static let headerLabel: String = "Week Forecast"
+        static let headerLabel: String = R.string.localizable.weekForecastViewTitleLabel()
     }
     
     enum Colors {

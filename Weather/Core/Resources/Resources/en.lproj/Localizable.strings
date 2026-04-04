@@ -14,6 +14,7 @@
 //MARK: - WeatherView
 
 "dayForecastView.titleLabel" = "Day Forecast";
+"weekForecastView.titleLabel" = "Week Forecast";
 
 
 //MARK: - WeatherListView
