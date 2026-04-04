@@ -50,7 +50,7 @@ final class DayForecastViewModel: DayForecastViewModelProtocol {
  
             return .init(
                 time: convertDate(date: data.time) ?? "00:00",
-                temperature: String(Int(data.temp)) + Resources.Symbols.celciusSymbol,
+                temperature: String(Int(data.temp)) + Symbols.celciusSymbol.rawValue,
                 icon: icon)
         }
         

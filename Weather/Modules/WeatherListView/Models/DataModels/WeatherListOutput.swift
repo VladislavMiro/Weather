@@ -20,7 +20,7 @@ struct WeatherListOutput: Hashable {
     }
     
     init(data: WeatherResponseProtocol) {
-        self.temperature = String(Int(data.current.temp)) + Resources.Symbols.celciusSymbol
+        self.temperature = String(Int(data.current.temp)) + Symbols.celciusSymbol.rawValue
         self.region = data.location.name + ", " + data.location.country
         let isDay = data.current.isDay
         
