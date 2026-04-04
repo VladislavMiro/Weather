@@ -89,6 +89,7 @@
 		D3E7AFE92F815F950038DD6E /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = D3E7AFE82F815F950038DD6E /* RswiftLibrary */; };
 		D3E7AFF22F816EAF0038DD6E /* Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E7AFF12F816EAF0038DD6E /* Symbols.swift */; };
 		D3E7B0042F8170E80038DD6E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3E7B0022F8170E80038DD6E /* Localizable.strings */; };
+		D3E7B00F2F817C110038DD6E /* AirConditionsItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E7B00E2F817C110038DD6E /* AirConditionsItems.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -174,6 +175,7 @@
 		D3E4B4512B240CDB001B55FA /* WeatherListViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherListViewCoordinator.swift; sourceTree = "<group>"; };
 		D3E7AFF12F816EAF0038DD6E /* Symbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbols.swift; sourceTree = "<group>"; };
 		D3E7B0032F8170E80038DD6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D3E7B00E2F817C110038DD6E /* AirConditionsItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirConditionsItems.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,6 +448,7 @@
 				D3E4B3DB2B24064F001B55FA /* DetailAirConditionDataModel.swift */,
 				D3E4B3DA2B24064F001B55FA /* WeatherViewDataModels.swift */,
 				D3E7AFF12F816EAF0038DD6E /* Symbols.swift */,
+				D3E7B00E2F817C110038DD6E /* AirConditionsItems.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -727,6 +730,7 @@
 				D3E4B3F02B2406D5001B55FA /* WeatherViewCoordinatorProtocol.swift in Sources */,
 				D3E4B3CA2B2404D2001B55FA /* MainViewCoordinatorProtocol.swift in Sources */,
 				D3E4B4232B24081A001B55FA /* AirConditionView.swift in Sources */,
+				D3E7B00F2F817C110038DD6E /* AirConditionsItems.swift in Sources */,
 				D3E4B3FD2B24076E001B55FA /* AirConditionViewModelProtocol.swift in Sources */,
 				D3E4B3C92B2404D2001B55FA /* MainViewFactoryProtocol.swift in Sources */,
 				D3E4B3792B240161001B55FA /* AppDelegate.swift in Sources */,

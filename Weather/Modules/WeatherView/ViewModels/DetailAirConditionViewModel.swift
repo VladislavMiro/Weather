@@ -69,18 +69,42 @@ final class DetailAirConditionViewModel: DetailAirConditionViewModelProtocol {
         
         var array: [Output] = []
         
-        array.append(.init(label: "Feels like", icon: "thermometer.medium", data: feelsLike))
-        array.append(.init(label: "Wind", icon: "wind", data: wind))
-        array.append(.init(label: "Min temperature", icon: "thermometer.low", data: minTemp))
-        array.append(.init(label: "Max temperature", icon: "thermometer.high", data: maxTemp))
-        array.append(.init(label: "Chance of rain", icon: "cloud.rain", data: chanceOfRain))
-        array.append(.init(label: "Chance of snow", icon: "cloud.snow", data: chanceOfShow))
-        array.append(.init(label: "Hummidity", icon: "humidity", data: hummidity))
-        array.append(.init(label: "Visibility", icon: "eye", data: visibility))
-        array.append(.init(label: "Precipitation", icon: "cloud.drizzle.fill", data: precip))
-        array.append(.init(label: "Pressure", icon: "cloud.circle", data: pressure))
-        array.append(.init(label: "Gust", icon: "aqi.medium", data: gust))
-        array.append(.init(label: "UV Index", icon: "sun.max.fill", data: uv))
+        array.append(.init(label: AirConditionsItems.FeelsLike.localizedLabel,
+                           icon: AirConditionsItems.FeelsLike.imageName,
+                           data: feelsLike))
+        array.append(.init(label: AirConditionsItems.Wind.localizedLabel,
+                           icon: AirConditionsItems.Wind.imageName,
+                           data: wind))
+        array.append(.init(label: AirConditionsItems.MinTemperature.localizedLabel,
+                           icon: AirConditionsItems.MinTemperature.imageName,
+                           data: minTemp))
+        array.append(.init(label: AirConditionsItems.MaxTemperatures.localizedLabel,
+                           icon: AirConditionsItems.MaxTemperatures.imageName,
+                           data: maxTemp))
+        array.append(.init(label: AirConditionsItems.ChanceOfRain.localizedLabel,
+                           icon: AirConditionsItems.ChanceOfRain.imageName,
+                           data: chanceOfRain))
+        array.append(.init(label: AirConditionsItems.ChanceOfSnow.localizedLabel,
+                           icon: AirConditionsItems.ChanceOfRain.imageName,
+                           data: chanceOfShow))
+        array.append(.init(label: AirConditionsItems.Hummidity.localizedLabel,
+                           icon: AirConditionsItems.Hummidity.imageName,
+                           data: hummidity))
+        array.append(.init(label: AirConditionsItems.Visibility.localizedLabel,
+                           icon: AirConditionsItems.Visibility.imageName,
+                           data: visibility))
+        array.append(.init(label: AirConditionsItems.Precipitation.localizedLabel,
+                           icon: AirConditionsItems.Precipitation.imageName,
+                           data: precip))
+        array.append(.init(label: AirConditionsItems.Pressure.localizedLabel,
+                           icon: AirConditionsItems.Pressure.imageName,
+                           data: pressure))
+        array.append(.init(label: AirConditionsItems.Gust.localizedLabel,
+                           icon: AirConditionsItems.Gust.imageName,
+                           data: gust))
+        array.append(.init(label: AirConditionsItems.UVIndex.localizedLabel,
+                           icon: AirConditionsItems.UVIndex.imageName,
+                           data: uv))
         
         return array
     }
