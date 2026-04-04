@@ -76,7 +76,7 @@ final class WeatherViewController: UIViewController {
 private extension WeatherViewController {
     
     func configuration() {
-        view.backgroundColor = Resources.Colors.backgroundColor
+        view.backgroundColor = Colors.background
         
         navigationController?.navigationBar.prefersLargeTitles = false
         
@@ -93,7 +93,7 @@ private extension WeatherViewController {
         
         scrollView.frame = view.bounds
         
-        scrollView.refreshControl?.tintColor = Resources.Colors.secondFontColor
+        scrollView.refreshControl?.tintColor = Colors.refreshControlTint
         
         scrollView.refreshControl?.addTarget(self, action: #selector(startRefresh), for: .valueChanged)
     
@@ -184,6 +184,11 @@ private extension WeatherViewController {
     enum StringConstants {
         static let errorTitle: String = "Error"
         static let okButtonTitle: String = "OK"
+    }
+    
+    enum Colors {
+        static let background: UIColor? = R.color.backgroundColor()
+        static let refreshControlTint: UIColor? = R.color.secondFontColor()
     }
     
 }
