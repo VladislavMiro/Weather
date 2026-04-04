@@ -17,10 +17,10 @@ final class WeekForecastView: UIView {
         let view = UITableView(frame: .zero, style: .plain)
         
         view.register(WeekDayCell.self, forCellReuseIdentifier: WeekDayCell.cellIdentifier)
-        view.backgroundColor = Resources.Colors.secondBackgroundColor
+        view.backgroundColor = Colors.tableViewBackground
         view.isScrollEnabled = false
         view.allowsSelection = false
-        view.separatorColor = Resources.Colors.secondFontColor
+        view.separatorColor = Colors.tableViewSeparator
         view.rowHeight = LayoutConstants.tableViewRowHeight
         view.clipsToBounds = true
         view.backgroundView?.clipsToBounds = true
@@ -35,7 +35,7 @@ final class WeekForecastView: UIView {
         label.text = StringConstants.headerLabel
         label.font = Fonts.headerLabel
         label.textAlignment = .left
-        label.textColor = Resources.Colors.secondFontColor
+        label.textColor = Colors.headerLabelText
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -93,7 +93,7 @@ private extension WeekForecastView {
  
     func configuration() {
         layer.cornerRadius = LayoutConstants.superViewCornerRadius
-        backgroundColor = Resources.Colors.secondBackgroundColor
+        backgroundColor = Colors.background
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -155,6 +155,13 @@ private extension WeekForecastView {
     
     enum StringConstants {
         static let headerLabel: String = "Week Forecast"
+    }
+    
+    enum Colors {
+        static let background: UIColor? = R.color.secondBackgroundColor()
+        static let tableViewBackground: UIColor? = R.color.secondBackgroundColor()
+        static let tableViewSeparator: UIColor? = R.color.secondFontColor()
+        static let headerLabelText: UIColor? = R.color.secondFontColor()
     }
     
 }
