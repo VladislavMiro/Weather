@@ -1,0 +1,55 @@
+/* 
+  Localizable.strings
+  Weather
+
+  Created by Vladislav Miroshnichenko on 04.04.2026.
+  
+*/
+
+//MARK: - MainView
+
+"currentTab.title" = "Текущая позция";
+"listTab.title" = "Список";
+
+//MARK: - WeatherView
+
+"dayForecastView.titleLabel" = "Прогноз на день";
+"weekForecastView.titleLabel" = "Прогноз на неделю";
+"AirConditionView.titleLabel" = "Состояние воздуха";
+"AirConditionView.buttonLabel" = "Больше";
+"AirConditionView.realFeelItemLabel" = "Ощущается как";
+"AirConditionView.windItemLabel" = "Ветер";
+"AirConditionView.rainChanceItemLabel" = "Вероятность дождя";
+"AirConditionView.uvIndexItemLabel" = "UV индекс";
+"WeatherViewController.ErrorAlert.title" = "Ошибка";
+"WeatherViewController.ErrorAlert.okButtonTitle" = "ОК";
+"DetailAirConditionView.navigationTitle" = "Состояние воздуха";
+"AirConditionsItem.FeelsLike" = "Ощущается как";
+"AirConditionsItem.Wind" = "Ветер";
+"AirConditionsItem.MinTemperature" = "Мин температура";
+"AirConditionsItem.MaxTemperature" = "Макс температура";
+"AirConditionsItem.ChanceOfRain" = "Вероятность дождя";
+"AirConditionsItem.ChanceOfSnow" = "Вероятность снега";
+"AirConditionsItem.Hummidity" = "Влажность";
+"AirConditionsItem.Visibility" = "Видимость";
+"AirConditionsItem.Precipitation" = "Осадки";
+"AirConditionsItem.Pressure" = "Давление";
+"AirConditionsItem.Gust" = "Порыв ветра";
+"AirConditionsItem.UVIndex" = "UV индекс";
+"Symbols.celciusSymbol" = "°";
+"Symbols.kmPerHour" = " км/ч";
+"Symbols.km" = " км";
+"Symbols.precent" = " %";
+"Symbols.hPa" = " гПа";
+"Symbols.mBa" = " mBa";
+"Symbols.mm" = " мм";
+
+//MARK: - WeatherListView
+
+"WeatherListView.navTitle" = "Погода";
+"WeatherListView.errorTitle" = "Ошибка";
+"WeatherListView.okButtonTitle" = "ОК";
+"WeatherListView.searchTextFieldPlaceholder" = "Поиск";
+"SearchView.errorTitle" = "Ошибка";
+"SearchView.okButtonTitle" = "ОК";
+
