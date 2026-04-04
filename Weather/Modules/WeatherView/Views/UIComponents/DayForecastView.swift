@@ -17,7 +17,7 @@ final class DayForecastView: UIView {
         let label = UILabel()
         
         label.text = StringConstants.label
-        label.textColor = Resources.Colors.secondFontColor
+        label.textColor = Colors.labelText
         label.textAlignment = .left
         label.font = Fonts.title
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +41,7 @@ final class DayForecastView: UIView {
         view.showsVerticalScrollIndicator = false
         view.showsHorizontalScrollIndicator = false
         view.register(DayForecastCell.self, forCellWithReuseIdentifier: DayForecastCell.cellIdentifier)
-        view.backgroundColor = Resources.Colors.secondBackgroundColor
+        view.backgroundColor = Colors.collectionViewBackground
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -96,7 +96,7 @@ extension DayForecastView: UICollectionViewDelegate, UICollectionViewDataSource 
 private extension DayForecastView {
     
     func configure() {
-        backgroundColor = Resources.Colors.secondBackgroundColor
+        backgroundColor = Colors.background
         layer.cornerRadius = LayoutConstants.superViewCornerRadius
         self.clipsToBounds = true
         
@@ -161,6 +161,12 @@ private extension DayForecastView {
     
     enum StringConstants {
         static let label: String = "Day Forecast"
+    }
+    
+    enum Colors {
+        static let background: UIColor? = R.color.secondBackgroundColor()
+        static let labelText: UIColor? = R.color.secondFontColor()
+        static let collectionViewBackground: UIColor? = R.color.secondBackgroundColor()
     }
     
 }
