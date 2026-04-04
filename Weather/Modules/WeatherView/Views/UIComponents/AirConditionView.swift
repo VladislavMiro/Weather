@@ -40,7 +40,7 @@ final class AirConditionView: UIView {
     private let label: UILabel = {
         let label = UILabel()
         
-        label.textColor = Resources.Colors.secondFontColor
+        label.textColor = Colors.labelText
         label.textAlignment = .left
         label.font = Fonts.label
         label.text = StringConstants.label
@@ -96,7 +96,7 @@ final class AirConditionView: UIView {
 private extension AirConditionView {
     
     func configuration() {
-        backgroundColor = Resources.Colors.secondBackgroundColor
+        backgroundColor = Colors.background
         layer.cornerRadius = LayoutConstants.superViewCornerRadius
         
         
@@ -229,6 +229,11 @@ private extension AirConditionView {
         static let windItem: UIImage? = UIImage(named: "wind")
         static let rainChanceItem: UIImage? = UIImage(named: "drop.fill")
         static let uvIndexItem: UIImage? = UIImage(named: "sun.max.fill")
+    }
+    
+    enum Colors {
+        static let background: UIColor? = R.color.secondBackgroundColor()
+        static let labelText: UIColor? = R.color.secondFontColor()
     }
     
 }
