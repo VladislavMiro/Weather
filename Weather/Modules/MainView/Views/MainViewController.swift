@@ -48,7 +48,7 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
 private extension MainViewController {
     
     func configuration() {
-        view.backgroundColor = Resources.Colors.backgroundColor
+        view.backgroundColor = Colors.background
         tabBarConfiguration()
         navBarConfiguration()
     }
@@ -61,16 +61,16 @@ private extension MainViewController {
         standartAppearance.configureWithOpaqueBackground()
         scrollAppearance.configureWithOpaqueBackground()
         
-        itemAppearance.normal.titleTextAttributes = [.foregroundColor: Resources.Colors.secondFontColor ?? .systemGray]
-        itemAppearance.selected.titleTextAttributes = [.foregroundColor: Resources.Colors.fontColor ?? .systemBlue]
-        itemAppearance.normal.iconColor = Resources.Colors.secondFontColor
-        itemAppearance.selected.iconColor = Resources.Colors.fontColor
+        itemAppearance.normal.titleTextAttributes = [.foregroundColor: Colors.normalText ?? .systemGray]
+        itemAppearance.selected.titleTextAttributes = [.foregroundColor: Colors.selectedText ?? .systemBlue]
+        itemAppearance.normal.iconColor = Colors.normalItemIcon
+        itemAppearance.selected.iconColor = Colors.selectedItemIcon
         
         standartAppearance.stackedLayoutAppearance = itemAppearance
-        standartAppearance.backgroundColor = Resources.Colors.secondBackgroundColor?.withAlphaComponent(0.95)
+        standartAppearance.backgroundColor = Colors.standartTabViewBackground
 
         scrollAppearance.stackedLayoutAppearance = itemAppearance
-        scrollAppearance.backgroundColor = Resources.Colors.secondBackgroundColor
+        scrollAppearance.backgroundColor = Colors.tabViewScrollAppearanceBackground
         
         UITabBar.appearance().standardAppearance = standartAppearance
         UITabBar.appearance().scrollEdgeAppearance = scrollAppearance
@@ -81,13 +81,33 @@ private extension MainViewController {
         
         appearance.configureWithOpaqueBackground()
         
-        appearance.backgroundColor = Resources.Colors.backgroundColor
-        appearance.titleTextAttributes = [.foregroundColor: Resources.Colors.fontColor ?? .white]
-        appearance.largeTitleTextAttributes = [.foregroundColor: Resources.Colors.fontColor ?? .white]
+        appearance.backgroundColor = Colors.navBarBackground
+        appearance.titleTextAttributes = [.foregroundColor: Colors.navBarTitle ?? .white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: Colors.navBarLargeTitle ?? .white]
         
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        UINavigationBar.appearance().tintColor = Resources.Colors.fontColor
+        UINavigationBar.appearance().tintColor = Colors.navBarTint
+    }
+    
+}
+
+//MARK: - Extensuion with private subobjects
+
+private extension MainViewController {
+    
+    enum Colors {
+        static let normalText: UIColor? = R.color.secondFontColor()
+        static let selectedText: UIColor? = R.color.fontColor()
+        static let background: UIColor? = R.color.backgroundColor()
+        static let normalItemIcon: UIColor? = R.color.secondFontColor()
+        static let selectedItemIcon: UIColor? = R.color.fontColor()
+        static let standartTabViewBackground: UIColor? = R.color.secondBackgroundColor()?.withAlphaComponent(0.95)
+        static let tabViewScrollAppearanceBackground: UIColor? = R.color.secondBackgroundColor()
+        static let navBarBackground: UIColor? = R.color.backgroundColor()
+        static let navBarTitle: UIColor? = R.color.fontColor()
+        static let navBarLargeTitle: UIColor? = R.color.fontColor()
+        static let navBarTint: UIColor? = R.color.fontColor()
     }
     
 }
