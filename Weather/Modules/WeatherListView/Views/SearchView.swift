@@ -87,11 +87,11 @@ extension SearchView: UISearchResultsUpdating {
 private extension SearchView {
     
     func configuration() {
-        self.tableView.backgroundColor = Resources.Colors.backgroundColor
+        self.tableView.backgroundColor = Colors.tableViewBackground
         self.clearsSelectionOnViewWillAppear = true
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifire)
         
-        self.tableView.separatorColor = Resources.Colors.secondFontColor
+        self.tableView.separatorColor = Colors.tableViewSeparator
         
     }
     
@@ -120,10 +120,10 @@ private extension SearchView {
         
         configuration.text = viewModel.output[index].name
         configuration.secondaryText = viewModel.output[index].country
-        configuration.textProperties.color = Resources.Colors.fontColor ?? .black
-        configuration.secondaryTextProperties.color = Resources.Colors.fontColor ?? .black
+        configuration.textProperties.color = Colors.cellText ?? .black
+        configuration.secondaryTextProperties.color = Colors.cellSecondaryText ?? .black
         
-        cell.backgroundColor = Resources.Colors.backgroundColor
+        cell.backgroundColor = Colors.background
         cell.contentConfiguration = configuration
         cell.selectionStyle = .none
         
@@ -140,6 +140,14 @@ private extension SearchView {
         static let cellIdentifire: String = "SearchViewCell"
         static let errorTitle: String = "Error"
         static let okButtonTitle: String = "OK"
+    }
+    
+    enum Colors {
+        static let background: UIColor? = R.color.backgroundColor()
+        static let tableViewBackground: UIColor? = R.color.backgroundColor()
+        static let tableViewSeparator: UIColor? = R.color.secondFontColor()
+        static let cellText: UIColor? = R.color.fontColor()
+        static let cellSecondaryText: UIColor? = R.color.fontColor()
     }
     
 }
