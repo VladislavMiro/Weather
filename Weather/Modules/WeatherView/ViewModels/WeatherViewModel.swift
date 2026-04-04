@@ -68,9 +68,9 @@ final class WeatherViewModel: WeatherViewModelProtocol {
                     let longitude = Float(coordinates.longitude)
     
                     return Coordinate(lat: latitude, lon: longitude)
-                }).sink { [unowned self] coordinates in
+                }).sink { [weak self] coordinates in
                     
-                    self.requestWeather(coordinates: coordinates)
+                    self?.requestWeather(coordinates: coordinates)
                     
                 }.store(in: &cancelable)
 
@@ -80,18 +80,18 @@ final class WeatherViewModel: WeatherViewModelProtocol {
     private func requestWeather(coordinates: Coordinate) {
         networkManager
             .requestWeather(lat: coordinates.lat, lon: coordinates.lon)
-            .sink { [unowned self] error in
+            .sink { [weak self] error in
                 switch error {
                 case .finished:
                     break
                 case .failure(let error):
-                    self.error.send(error.message)
-                    self.isRefreshing.send()
+                    self?.error.send(error.message)
+                    self?.isRefreshing.send()
                 }
-            } receiveValue: { [unowned self] data in
+            } receiveValue: { [weak self] data in
                 
-                self.data.send(data)
-                self.isRefreshing.send()
+                self?.data.send(data)
+                self?.isRefreshing.send()
                
             }.store(in: &cancelable)
     }

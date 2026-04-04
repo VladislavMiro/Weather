@@ -48,9 +48,14 @@ final class AirConditionViewModel: AirConditionViewModelProtocol {
     //MARK: - Private methods
     
     private func bind() {
-        data.sink { [unowned self] data in
-            self.passData = data
-            self.output.send(self.converData(data: data))
+        data.sink { [weak self] data in
+            self?.passData = data
+            let convertedData = self?.converData(data: data) ?? .init(wind: "0" + Symbols.kmPerHour.localized,
+                                                                     chanceOfRain: "0" + Symbols.precent.localized,
+                                                                     realFeel: "0" + Symbols.celciusSymbol.localized,
+                                                                     uvIndex: "0"
+                                                                    )
+            self?.output.send(convertedData)
         }.store(in: &cancelable)
     }
     

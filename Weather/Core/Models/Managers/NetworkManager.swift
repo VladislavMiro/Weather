@@ -28,7 +28,9 @@ extension NetworkManager: NetworkManagerProtocol {
     
     public func requestWeather(lat: Float, lon: Float) -> Future<WeatherResponseProtocol, NetworkError> {
         
-        return Future { [unowned self] promise in
+        return Future { [weak self] promise in
+            guard let self = self else { return promise(.failure(.init(message: "Unknown error"))) }
+            
             let urlString = String(format: URLPaths.baseURL.rawValue,
                                    apiKey, lat, lon)
             
@@ -60,7 +62,9 @@ extension NetworkManager: NetworkManagerProtocol {
     
     public func requestLocation(locationName: String) -> Future<[RegionProtocol], NetworkError> {
         
-        return Future { [unowned self] promise in
+        return Future { [weak self] promise in
+            guard let self = self else { return promise(.failure(.init(message: "Unknown error"))) }
+            
             let urlString = String(
                 format: URLPaths.locationURL.rawValue, apiKey, locationName)
             

@@ -33,12 +33,12 @@ final class DayForecastViewModel: DayForecastViewModelProtocol {
     //MARK: - Private methods
     
     private func bind() {
-        data.map({ [unowned self] data in
-            return self.convertData(data: data.forecast.first?.hour ?? [])
+        data.map({ [weak self] data in
+            return self?.convertData(data: data.forecast.first?.hour ?? []) ?? .init()
         })
-        .sink { [unowned self] data in
-            self.output = data
-            self.refreshData.send()
+        .sink { [weak self] data in
+            self?.output = data
+            self?.refreshData.send()
         }.store(in: &cancelable)
     }
     

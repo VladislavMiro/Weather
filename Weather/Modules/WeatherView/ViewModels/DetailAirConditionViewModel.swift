@@ -42,11 +42,11 @@ final class DetailAirConditionViewModel: DetailAirConditionViewModelProtocol {
     
     private func bind() {
         data
-            .map { [unowned self] data -> [DetailAirConditionViewModel.Output] in
-                return self.converData(data: data)
+            .map { [weak self] data -> [DetailAirConditionViewModel.Output] in
+                return self?.converData(data: data) ?? []
             }
-            .sink { [unowned self] data in
-                self.output.send(data)
+            .sink { [weak self] data in
+                self?.output.send(data)
             }.store(in: &cancelable)
     }
     

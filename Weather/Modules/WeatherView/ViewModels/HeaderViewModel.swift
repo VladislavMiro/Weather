@@ -36,11 +36,14 @@ final class HeaderViewModel: HeaderViewModelProtocol {
     
     private func bind() {
         data
-            .map { [unowned self] data in
-                return self.convertData(data: data)
+            .map { [weak self] data in
+                return self?.convertData(data: data) ?? .init(regionName: "--",
+                                                              temperature: "0" + Symbols.celciusSymbol.localized,
+                                                              description: "---",
+                                                             icon: "d119")
             }
-            .sink { [unowned self] data in
-                output.send(data)
+            .sink { [weak self] data in
+                self?.output.send(data)
             }.store(in: &cancelable)
     }
     

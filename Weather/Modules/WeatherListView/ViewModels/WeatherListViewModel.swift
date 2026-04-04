@@ -52,12 +52,12 @@ final class WeatherListViewModel {
     
     private func bind() {
         
-        selectedItem.sink { [unowned self] index in
+        selectedItem.sink { [weak self] index in
+            guard let self = self else { return }
             
             let coordinates = self.coordinates[index]
             
             self.coordinator.showWeatherView(coordinates: coordinates, coordinator: coordinator)
-            
         }.store(in: &cancelable)
 
     }
@@ -65,17 +65,17 @@ final class WeatherListViewModel {
     private func requestData(coordinates: CDCoordinates) {
         networkManager
             .requestWeather(lat: coordinates.latitude, lon: coordinates.longitude)
-            .sink { [unowned self] completion in
+            .sink { [weak self] completion in
                 
                 switch completion {
                 case .finished:
-                    self.refreshData.send()
+                    self?.refreshData.send()
                 case .failure(let error):
-                    self.error.send(error.message)
+                    self?.error.send(error.message)
                 }
                 
-            } receiveValue: { [unowned self] data in
-                self.output.append(.init(data: data))
+            } receiveValue: { [weak self] data in
+                self?.output.append(.init(data: data))
             }.store(in: &cancelable)
     }
     

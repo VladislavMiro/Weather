@@ -49,18 +49,22 @@ final class SearchViewModel: SearchViewModelProtocol {
     //MARK: - Private methods
     
     private func bind() {
-        searchText.sink { [unowned self] searchText in
+        searchText.sink { [weak self] searchText in
             if searchText.isEmpty {
-                output.removeAll()
-                refreshData.send()
+                self?.output.removeAll()
+                self?.refreshData.send()
                 return
             }
             
-            self.searchLocation(searchText: searchText)
+            self?.searchLocation(searchText: searchText)
         }.store(in: &cancelable)
         
-        selectionItem.sink { [unowned self] index in
-            self.saveData(data: data[index])
+        selectionItem.sink { [weak self] index in
+            guard let self = self else { return }
+            
+            let data = self.data[index]
+            
+            self.saveData(data: data)
         }.store(in: &cancelable)
     }
     
@@ -69,7 +73,9 @@ final class SearchViewModel: SearchViewModelProtocol {
             .requestLocation(locationName: searchText)
             .replaceError(with: [])
             .eraseToAnyPublisher()
-            .sink { [unowned self] data in
+            .sink { [weak self] data in
+                guard let self = self else { return }
+                
                 self.data = data
                 self.output = self.prepareData(data: data)
                 self.refreshData.send()

@@ -35,19 +35,19 @@ final class MainViewModel: MainViewModelProtocol {
     //MARK: Private methods
     
     private func bind() {
-        selectedTab.sink { [unowned self] tabIndex in
-           if currentTab != tabIndex {
+        selectedTab.sink { [weak self] tabIndex in
+            if self?.currentTab != tabIndex {
                 switch tabIndex {
                 case 0:
-                    coordinator.openWeatherView()
+                    self?.coordinator.openWeatherView()
                 case 1:
-                    coordinator.openWeatherListView()
+                    self?.coordinator.openWeatherListView()
                 default:
                     break
                 }
             }
             
-            currentTab = tabIndex
+            self?.currentTab = tabIndex
         }.store(in: &cancelable)
         
     }

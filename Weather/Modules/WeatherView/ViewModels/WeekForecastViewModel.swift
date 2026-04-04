@@ -33,11 +33,11 @@ final class WeekForecastViewModel: WeekForecastViewModelProtocol {
     //MARK: - Private methods
     
     private func bind() {
-        data.map({ [unowned self] data -> [Output] in
-            return self.prepareData(data: data.forecast)
-        }) .sink { [unowned self] data in
-            self.output = data
-            self.refreshData.send()
+        data.map({ [weak self] data -> [Output] in
+            return self?.prepareData(data: data.forecast) ?? .init()
+        }) .sink { [weak self] data in
+            self?.output = data
+            self?.refreshData.send()
         }.store(in: &cancelable)
     }
     
