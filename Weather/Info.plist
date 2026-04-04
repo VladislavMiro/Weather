@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIDesignRequiresCompatibility</key>
+	<true/>
 	<key>ApiKey</key>
 	<string>dae10b3d2afb406289a120023231112</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
