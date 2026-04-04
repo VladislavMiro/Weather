@@ -6,20 +6,21 @@
 //
 
 import UIKit
+import SnapKit
 
 final class WeatherListCell: UICollectionViewListCell {
 
-    //MARK: - Public fields
+    //MARK: - Public properties
     
-    public static let cellIdentifire = "WeatherLictCell"
+    public static let cellIdentifire = StringConstants.cellIdentifire
     
-    //MARK: - Private fields
+    //MARK: - Private properties
     
     private let temperatureLabel: UILabel = {
         let label = UILabel()
         
-        label.numberOfLines = 1
-        label.font = .boldSystemFont(ofSize: 36)
+        label.numberOfLines = LayoutConstants.temperatureLabelNumbersOfLines
+        label.font = Fonts.temperatureLabel
         label.textColor = Resources.Colors.fontColor
         label.textAlignment = .left
         
@@ -29,8 +30,8 @@ final class WeatherListCell: UICollectionViewListCell {
     private let regionLabel: UILabel = {
         let label = UILabel()
         
-        label.numberOfLines = 1
-        label.font = .boldSystemFont(ofSize: 16)
+        label.numberOfLines = LayoutConstants.regionLabelNumbersOfLines
+        label.font = Fonts.regionLabel
         label.textColor = Resources.Colors.fontColor
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
@@ -42,7 +43,7 @@ final class WeatherListCell: UICollectionViewListCell {
         let view = UIStackView()
         
         view.axis = .vertical
-        view.spacing = 5
+        view.spacing = LayoutConstants.labelStackSpacing
         view.alignment = .leading
         view.distribution = .fillProportionally
         
@@ -64,12 +65,17 @@ final class WeatherListCell: UICollectionViewListCell {
         view.axis = .horizontal
         view.alignment = .center
         view.distribution  = .fillProportionally
-        view.layoutMargins = .init(top: 0, left: 15, bottom: 0, right: 15)
-        view.spacing = 15
+        view.layoutMargins = .init(top: LayoutConstants.stackViewVerticalMargins,
+                                   left: LayoutConstants.stackViewHorizontalMargins,
+                                   bottom: LayoutConstants.stackViewVerticalMargins,
+                                   right: LayoutConstants.stackViewHorizontalMargins)
+        view.spacing = LayoutConstants.stackViewSpacing
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()
+    
+    //MARK: - Initialaizers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,19 +87,27 @@ final class WeatherListCell: UICollectionViewListCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Public methods
+}
+
+//MARK: - Extension with public methods
+
+extension WeatherListCell {
     
     public func update(data: WeatherListOutput) {
         temperatureLabel.text = data.temperature
         regionLabel.text = data.region
         imageView.image = UIImage(named: data.image)
     }
-    
-    //MARK: - Pribvate methods
+   
+}
 
-    private func configuration() {
+//MARK: - Extension with private methods
+
+private extension WeatherListCell {
+   
+    func configuration() {
         self.backgroundConfiguration?.backgroundColor = Resources.Colors.secondBackgroundColor
-        self.backgroundConfiguration?.cornerRadius = 15
+        self.backgroundConfiguration?.cornerRadius = LayoutConstants.backgroundCornerRadius
         
         labelStack.addArrangedSubview(temperatureLabel)
         labelStack.addArrangedSubview(regionLabel)
@@ -104,8 +118,21 @@ final class WeatherListCell: UICollectionViewListCell {
         contentView.addSubview(stackView)
     }
     
-    private func constraints() {
-        NSLayoutConstraint.activate([
+    func constraints() {
+        
+        imageView.snp.makeConstraints {
+            $0.size.equalTo(LayoutConstants.imageViewSize)
+        }
+        
+        stackView.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview { $0.layoutMarginsGuide }
+            $0.leading.equalToSuperview { $0.layoutMarginsGuide }
+                .offset(LayoutConstants.stackViewHorizontalMargins)
+            $0.trailing.equalToSuperview { $0.layoutMarginsGuide }
+                .inset(LayoutConstants.stackViewHorizontalMargins)
+        }
+        
+        /*NSLayoutConstraint.activate([
             imageView.heightAnchor.constraint(equalToConstant: 80),
             imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
             
@@ -117,7 +144,34 @@ final class WeatherListCell: UICollectionViewListCell {
                 .constraint(equalTo: self.contentView.layoutMarginsGuide.trailingAnchor, constant: 5),
             stackView.bottomAnchor
                 .constraint(equalTo: self.contentView.layoutMarginsGuide.bottomAnchor)
-        ])
+        ])*/
+    }
+   
+}
+
+//MARK: - Extension with private subobjects
+
+private extension WeatherListCell {
+    
+    enum LayoutConstants {
+        static let imageViewSize: CGFloat = 80.0
+        static let stackViewHorizontalOffset: CGFloat = 5.0
+        static let temperatureLabelNumbersOfLines: Int = 1
+        static let regionLabelNumbersOfLines: Int = 1
+        static let labelStackSpacing: CGFloat = 5.0
+        static let stackViewVerticalMargins: CGFloat = 0.0
+        static let stackViewHorizontalMargins: CGFloat = 15.0
+        static let stackViewSpacing: CGFloat = 15.0
+        static let backgroundCornerRadius: CGFloat = 15.0
+    }
+    
+    enum Fonts {
+        static let temperatureLabel: UIFont = .boldSystemFont(ofSize: 36)
+        static let regionLabel: UIFont = .boldSystemFont(ofSize: 16)
+    }
+    
+    enum StringConstants {
+        static let cellIdentifire: String = "WeatherLictCell"
     }
     
 }
