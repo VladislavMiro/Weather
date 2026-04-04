@@ -21,7 +21,7 @@ final class WeatherListCell: UICollectionViewListCell {
         
         label.numberOfLines = LayoutConstants.temperatureLabelNumbersOfLines
         label.font = Fonts.temperatureLabel
-        label.textColor = Resources.Colors.fontColor
+        label.textColor = Colors.temperatureLabelText
         label.textAlignment = .left
         
         return label
@@ -32,7 +32,7 @@ final class WeatherListCell: UICollectionViewListCell {
         
         label.numberOfLines = LayoutConstants.regionLabelNumbersOfLines
         label.font = Fonts.regionLabel
-        label.textColor = Resources.Colors.fontColor
+        label.textColor = Colors.regionLabelText
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
         
@@ -106,7 +106,7 @@ extension WeatherListCell {
 private extension WeatherListCell {
    
     func configuration() {
-        self.backgroundConfiguration?.backgroundColor = Resources.Colors.secondBackgroundColor
+        self.backgroundConfiguration?.backgroundColor = Colors.background
         self.backgroundConfiguration?.cornerRadius = LayoutConstants.backgroundCornerRadius
         
         labelStack.addArrangedSubview(temperatureLabel)
@@ -131,20 +131,7 @@ private extension WeatherListCell {
             $0.trailing.equalToSuperview { $0.layoutMarginsGuide }
                 .inset(LayoutConstants.stackViewHorizontalMargins)
         }
-        
-        /*NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalToConstant: 80),
-            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
-            
-            stackView.topAnchor
-                .constraint(equalTo: self.contentView.layoutMarginsGuide.topAnchor),
-            stackView.leadingAnchor
-                .constraint(equalTo: self.contentView.layoutMarginsGuide.leadingAnchor, constant: 5),
-            stackView.trailingAnchor
-                .constraint(equalTo: self.contentView.layoutMarginsGuide.trailingAnchor, constant: 5),
-            stackView.bottomAnchor
-                .constraint(equalTo: self.contentView.layoutMarginsGuide.bottomAnchor)
-        ])*/
+
     }
    
 }
@@ -172,6 +159,12 @@ private extension WeatherListCell {
     
     enum StringConstants {
         static let cellIdentifire: String = "WeatherLictCell"
+    }
+    
+    enum Colors {
+        static let background: UIColor? = R.color.secondBackgroundColor()
+        static let temperatureLabelText: UIColor? = R.color.fontColor()
+        static let regionLabelText: UIColor? = R.color.fontColor()
     }
     
 }
