@@ -117,7 +117,7 @@ extension WeekDayCell {
 private extension WeekDayCell {
     
     func configuration() {
-        backgroundColor = Resources.Colors.secondBackgroundColor
+        backgroundColor = Colors.background
         
         imageStack.addArrangedSubview(image)
         imageStack.addArrangedSubview(conditionLabel)
@@ -178,6 +178,7 @@ private extension WeekDayCell {
     }
     
     enum Colors {
+        static let background: UIColor? = R.color.secondBackgroundColor()
         static let dayLabelText: UIColor? = R.color.secondFontColor()
         static let temperatureLabelText: UIColor? = R.color.secondFontColor()
         static let conditionLabelText: UIColor? = R.color.secondFontColor()
