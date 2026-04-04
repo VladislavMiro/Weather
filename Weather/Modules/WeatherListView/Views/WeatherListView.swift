@@ -96,7 +96,7 @@ private extension WeatherListView {
     
     func configuration() {
         
-        self.collectionView.backgroundColor = Resources.Colors.backgroundColor
+        self.collectionView.backgroundColor = Colors.background
         
         self.navigationItem.title = StringConstants.navigationViewTitle
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -106,18 +106,18 @@ private extension WeatherListView {
         let searchController = UISearchController(searchResultsController: searchView)
         searchController.delegate = self
         self.navigationItem.searchController = searchController
-        self.navigationItem.rightBarButtonItem?.tintColor = Resources.Colors.fontColor
+        self.navigationItem.rightBarButtonItem?.tintColor = Colors.editButton
         self.navigationItem.searchController?.searchResultsUpdater = searchView
-        self.navigationItem.searchController?.searchBar.searchTextField.textColor = Resources.Colors.fontColor
-        self.navigationItem.searchController?.searchBar.searchTextField.leftView?.tintColor = Resources.Colors.secondFontColor
-        self.navigationItem.searchController?.searchBar.searchTextField.leftView?.tintColor = Resources.Colors.secondFontColor
+        self.navigationItem.searchController?.searchBar.searchTextField.textColor = Colors.searchTextFieldText
+        self.navigationItem.searchController?.searchBar.searchTextField.leftView?.tintColor = Colors.searchTextFieldLeftView
+        self.navigationItem.searchController?.searchBar.searchTextField.leftView?.tintColor = Colors.searchTextFieldLeftView
         self.navigationItem.searchController?.searchBar.searchTextField.keyboardAppearance = .dark
-        self.navigationItem.searchController?.searchBar.tintColor = Resources.Colors.fontColor
+        self.navigationItem.searchController?.searchBar.tintColor = Colors.searchBarTint
         self.navigationItem.searchController?.searchBar.barStyle = .black
         self.navigationItem.searchController?.searchBar.searchTextField
             .attributedPlaceholder = .some(.init(string: StringConstants.searchControllerPlaceholder,
                                                  attributes: [
-                                                    .foregroundColor: Resources.Colors.secondFontColor ?? .white
+                                                    .foregroundColor: Colors.searchTextFieldPlaceholder ?? .white
                                                  ]))
         
         createDataSource()
@@ -273,6 +273,15 @@ private extension WeatherListView {
     
     enum Section: Int, CaseIterable {
         case main
+    }
+    
+    enum Colors {
+        static let background: UIColor? = R.color.backgroundColor()
+        static let editButton: UIColor? = R.color.fontColor()
+        static let searchTextFieldText: UIColor? = R.color.fontColor()
+        static let searchTextFieldLeftView: UIColor? = R.color.secondFontColor()
+        static let searchBarTint: UIColor? = R.color.fontColor()
+        static let searchTextFieldPlaceholder: UIColor? = R.color.secondFontColor()
     }
     
 }
