@@ -45,7 +45,7 @@ final class AirConditionCell: UICollectionViewListCell {
         let label = UILabel()
         
         label.numberOfLines = LayoutConstants.labelNumberOfLines
-        label.textColor = Resources.Colors.secondFontColor
+        label.textColor = Colors.labelText
         label.textAlignment = .left
         label.font = Fonts.label
         label.adjustsFontSizeToFitWidth = true
@@ -58,7 +58,7 @@ final class AirConditionCell: UICollectionViewListCell {
         
         label.numberOfLines = LayoutConstants.dataLabelNumberOfLines
         label.font = Fonts.dataLabel
-        label.textColor = Resources.Colors.fontColor
+        label.textColor = Colors.dataLabelText
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
         
@@ -70,7 +70,7 @@ final class AirConditionCell: UICollectionViewListCell {
         
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
-        view.tintColor = Resources.Colors.secondFontColor
+        view.tintColor = Colors.imageViewTint
         
         return view
     }()
@@ -106,7 +106,7 @@ extension AirConditionCell {
 private extension AirConditionCell {
     
     func configuration() {
-        backgroundConfiguration?.backgroundColor = Resources.Colors.secondBackgroundColor
+        backgroundConfiguration?.backgroundColor = Colors.background
         backgroundConfiguration?.cornerRadius = LayoutConstants.superViewCornerRadius
         
         labelStackView.addArrangedSubview(imageView)
@@ -162,6 +162,13 @@ private extension AirConditionCell {
     
     enum Section: Int, CaseIterable {
         case main
+    }
+    
+    enum Colors {
+        static let background: UIColor? = R.color.secondBackgroundColor()
+        static let imageViewTint: UIColor? = R.color.secondFontColor()
+        static let dataLabelText: UIColor? = R.color.fontColor()
+        static let labelText: UIColor? = R.color.secondFontColor()
     }
     
 }
