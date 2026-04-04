@@ -50,3 +50,6 @@
 "WeatherListView.errorTitle" = "Error";
 "WeatherListView.okButtonTitle" = "OK";
 "WeatherListView.searchTextFieldPlaceholder" = "Search";
+"SearchView.errorTitle" = "Error";
+"SearchView.okButtonTitle" = "OK";
+

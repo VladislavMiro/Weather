@@ -138,8 +138,8 @@ private extension SearchView {
     
     enum StringConstants {
         static let cellIdentifire: String = "SearchViewCell"
-        static let errorTitle: String = "Error"
-        static let okButtonTitle: String = "OK"
+        static let errorTitle: String = R.string.localizable.searchViewErrorTitle()
+        static let okButtonTitle: String = R.string.localizable.searchViewOkButtonTitle()
     }
     
     enum Colors {
