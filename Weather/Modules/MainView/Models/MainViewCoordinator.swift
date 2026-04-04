@@ -97,8 +97,8 @@ extension MainViewCoordinator: CoordinatorProtocol {
 private extension MainViewCoordinator {
     
     enum StringConstants {
-        static let currentTab: String = "Current"
-        static let listTab: String = "List"
+        static let currentTab: String = R.string.localizable.currentTabTitle()
+        static let listTab: String = R.string.localizable.listTabTitle()
     }
     
     enum Images {

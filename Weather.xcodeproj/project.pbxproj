@@ -88,6 +88,7 @@
 		D3E4B4522B240CDB001B55FA /* WeatherListViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E4B4512B240CDB001B55FA /* WeatherListViewCoordinator.swift */; };
 		D3E7AFE92F815F950038DD6E /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = D3E7AFE82F815F950038DD6E /* RswiftLibrary */; };
 		D3E7AFF22F816EAF0038DD6E /* Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E7AFF12F816EAF0038DD6E /* Symbols.swift */; };
+		D3E7B0042F8170E80038DD6E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3E7B0022F8170E80038DD6E /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -172,6 +173,7 @@
 		D3E4B44F2B240CCE001B55FA /* WeatherListViewCoordinatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherListViewCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		D3E4B4512B240CDB001B55FA /* WeatherListViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherListViewCoordinator.swift; sourceTree = "<group>"; };
 		D3E7AFF12F816EAF0038DD6E /* Symbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbols.swift; sourceTree = "<group>"; };
+		D3E7B0032F8170E80038DD6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 			children = (
 				D3E4B3812B240163001B55FA /* Assets.xcassets */,
 				D3E4B3832B240163001B55FA /* LaunchScreen.storyboard */,
+				D3E7B0022F8170E80038DD6E /* Localizable.strings */,
 			);
 			name = Resources;
 			path = Resources/Resources;
@@ -683,6 +686,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3E4B3852B240163001B55FA /* LaunchScreen.storyboard in Resources */,
+				D3E7B0042F8170E80038DD6E /* Localizable.strings in Resources */,
 				D3E4B3822B240163001B55FA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -790,6 +794,14 @@
 				D3E4B3842B240163001B55FA /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D3E7B0022F8170E80038DD6E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3E7B0032F8170E80038DD6E /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

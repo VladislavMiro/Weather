@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  Weather
+
+  Created by Vladislav Miroshnichenko on 04.04.2026.
+  
+*/
+
+//MARK: - MainView
+
+"currentTab.title" = "Current";
+"listTab.title" = "List";
+
+//MARK: - WeatherView
+
+//MARK: - WeatherListView
