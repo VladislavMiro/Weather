@@ -10,13 +10,13 @@ import Combine
 
 final class SearchView: UITableViewController {
 
-    //MARK: - Public fields
+    //MARK: - Public properties
     
     public let viewModel: SearchViewModelProtocol
     
-    //MARK: - Private fields
+    //MARK: - Private properties
 
-    private let cellIdentifire = "SearchViewCell"
+    private let cellIdentifire = StringConstants.cellIdentifire
     
     private var cancelable = Set<AnyCancellable>()
     
@@ -34,7 +34,7 @@ final class SearchView: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Life cycles
+    //MARK: - Life cycles methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,53 +44,9 @@ final class SearchView: UITableViewController {
         
     }
     
-    //MARK: - Private methods
-    
-    private func configuration() {
-        self.tableView.backgroundColor = Resources.Colors.backgroundColor
-        self.clearsSelectionOnViewWillAppear = true
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifire)
-        
-        self.tableView.separatorColor = Resources.Colors.secondFontColor
-        
-    }
-    
-    private func bind() {
-        viewModel.refreshData.sink { [unowned self] _ in
-            self.tableView.reloadData()
-        }.store(in: &cancelable)
-        
-        viewModel.error.sink { [unowned self] error in
-            self.showAlert(message: error)
-        }.store(in: &cancelable)
-    }
-    
-    private func showAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        
-        alert.addAction(.init(title: "OK", style: .destructive, handler: nil))
-        
-        self.present(alert, animated: true)
-    }
-    
-    private func configureCell(cell: UITableViewCell, index: Int) -> UITableViewCell  {
-        var configuration = cell.defaultContentConfiguration()
-        
-        configuration.text = viewModel.output[index].name
-        configuration.secondaryText = viewModel.output[index].country
-        configuration.textProperties.color = Resources.Colors.fontColor ?? .black
-        configuration.secondaryTextProperties.color = Resources.Colors.fontColor ?? .black
-        
-        cell.backgroundColor = Resources.Colors.backgroundColor
-        cell.contentConfiguration = configuration
-        cell.selectionStyle = .none
-        
-        return cell
-    }
-    
 }
 
-//MARK: - UITableViewDataSource & UITableViewDelegate implementation
+//MARK: - Extension with UITableViewDataSource & UITableViewDelegate implementations
 
 extension SearchView {
 
@@ -113,7 +69,7 @@ extension SearchView {
     
 }
 
-//MARK: - UISearchResultsUpdationg implementation
+//MARK: - Extension with UISearchResultsUpdationg implementation
 
 extension SearchView: UISearchResultsUpdating {
     
@@ -122,6 +78,68 @@ extension SearchView: UISearchResultsUpdating {
         guard !text.isEmpty else { return } 
         
         viewModel.searchText.send(text)
+    }
+    
+}
+
+//MARK: - Extension with private methods
+
+private extension SearchView {
+    
+    func configuration() {
+        self.tableView.backgroundColor = Resources.Colors.backgroundColor
+        self.clearsSelectionOnViewWillAppear = true
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifire)
+        
+        self.tableView.separatorColor = Resources.Colors.secondFontColor
+        
+    }
+    
+    func bind() {
+        viewModel.refreshData.sink { [weak self] _ in
+            self?.tableView.reloadData()
+        }.store(in: &cancelable)
+        
+        viewModel.error.sink { [weak self] error in
+            self?.showAlert(message: error)
+        }.store(in: &cancelable)
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: StringConstants.errorTitle,
+                                      message: message, preferredStyle: .alert)
+        
+        alert.addAction(.init(title: StringConstants.okButtonTitle,
+                              style: .destructive, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
+    func configureCell(cell: UITableViewCell, index: Int) -> UITableViewCell  {
+        var configuration = cell.defaultContentConfiguration()
+        
+        configuration.text = viewModel.output[index].name
+        configuration.secondaryText = viewModel.output[index].country
+        configuration.textProperties.color = Resources.Colors.fontColor ?? .black
+        configuration.secondaryTextProperties.color = Resources.Colors.fontColor ?? .black
+        
+        cell.backgroundColor = Resources.Colors.backgroundColor
+        cell.contentConfiguration = configuration
+        cell.selectionStyle = .none
+        
+        return cell
+    }
+   
+}
+
+//MARK: - Extension with private subobjects
+
+private extension SearchView {
+    
+    enum StringConstants {
+        static let cellIdentifire: String = "SearchViewCell"
+        static let errorTitle: String = "Error"
+        static let okButtonTitle: String = "OK"
     }
     
 }
