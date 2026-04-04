@@ -60,7 +60,7 @@ final class AirConditionsItem: UIView {
                                height: LayoutConstants.imageViewSize)
         let view = UIImageView(frame: .init(origin: .zero, size: imageSize))
         
-        view.tintColor = Resources.Colors.secondFontColor
+        view.tintColor = Colors.imageViewTint
         view.contentMode = .scaleAspectFill
         
         return view
@@ -70,7 +70,7 @@ final class AirConditionsItem: UIView {
         let label = UILabel()
 
         label.font = Fonts.label
-        label.textColor = Resources.Colors.secondFontColor
+        label.textColor = Colors.labelText
         label.adjustsFontSizeToFitWidth = true
         
         return label
@@ -81,7 +81,7 @@ final class AirConditionsItem: UIView {
     
         label.font = Fonts.dataLabel
         label.textAlignment = .center
-        label.textColor = Resources.Colors.fontColor
+        label.textColor = Colors.dataLabelText
         
         return label
     }()
@@ -134,12 +134,6 @@ private extension AirConditionsItem {
             $0.edges.equalToSuperview { $0.layoutMarginsGuide.snp.edges }
         }
         
-        /*NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor)
-        ])*/
     }
     
 }
@@ -165,6 +159,12 @@ private extension AirConditionsItem {
     
     enum Images {
         static let imageDefaulValue: UIImage? = nil
+    }
+    
+    enum Colors {
+        static let imageViewTint: UIColor? = R.color.secondFontColor()
+        static let labelText: UIColor? = R.color.secondFontColor()
+        static let dataLabelText: UIColor? = R.color.fontColor()
     }
     
 }
